@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script>
+			var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+			var group = [
+				[],
+				[],
+				[],
+				[]
+			];
+			
+			function getSplit(arr, group) {
+				var i = 0, j = group.length, tmp = arr.sort(function(a, b) {
+					return 0.5 - Math.random();
+				});
+				
+				while(tmp.length) {
+					group[(i++) % j].push(tmp.pop());
+				}
+				
+				console.log(group);
+			}
+			
+			getSplit(arr, group);
+		</script>
+	</body>
+
+</html>

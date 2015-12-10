@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+
+
+
+	Function.prototype.extend = function(config) {
+		var fn = function() {};
+		var tmp = new this();
+
+		fn.prototype = tmp;
+
+		for(key in config) {
+			fn.prototype[key] = config[key];
+		}
+
+		return fn;
+	}
+
+	function Grand() {
+
+	}
+
+	Grand.prototype.say = function() {
+		console.log('say');
+	}
+
+	var Father = Grand.extend({
+		method1: function() {
+			console.log('method1');
+		}
+	});
+
+	var f = new Father();
+	f.say();
+	f.method1();
+	</script>
+</body>
+</html>

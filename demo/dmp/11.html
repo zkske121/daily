@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			/*logo*/
+			
+			@-webkit-keyframes fadeInRotate {
+				0% {
+					opacity: 0;
+					-webkit-transform: translateX(-20px) rotate(-60deg)
+				}
+				100% {
+					opacity: 1
+				}
+			}
+			@-moz-keyframes fadeInRotate {
+				0% {
+					opacity: 0;
+					-moz-transform: translateX(-20px) rotate(-60deg)
+				}
+				100% {
+					opacity: 1
+				}
+			}
+			@-ms-keyframes fadeInRotate {
+				0% {
+					opacity: 0;
+					-ms-transform: translateX(-20px) rotate(-60deg)
+				}
+				100% {
+					opacity: 1
+				}
+			}
+			@-o-keyframes fadeInRotate {
+				0% {
+					opacity: 0;
+					-o-transform: translateX(-20px) rotate(-60deg)
+				}
+				100% {
+					opacity: 1
+				}
+			}
+			@keyframes fadeInRotate {
+				0% {
+					opacity: 0;
+					transform: translateX(-20px) rotate(-60deg)
+				}
+				100% {
+					opacity: 1
+				}
+			}
+			.logo {
+				width: 100px;
+				height: 100px;
+				color: #fff;
+				background-color: red;
+				border-radius: 50px;
+				animation: fadeInRotate .9s ease;
+				-webkit-animation: fadeInRotate .9s ease;
+				-moz-animation: fadeInRotate .9s ease;
+				-ms-animation: fadeInRotate .9s ease;
+				-o-animation: fadeInRotate .9s ease
+			}
+			/*left*/
+			
+			@-webkit-keyframes bounceInLeft {
+				0% {
+					opacity: 0;
+					-webkit-transform: translateX(-2000px)
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: translateX(30px)
+				}
+				80% {
+					-webkit-transform: translateX(-10px)
+				}
+				100% {
+					-webkit-transform: translateX(0)
+				}
+			}
+			@-moz-keyframes bounceInLeft {
+				0% {
+					opacity: 0;
+					-moz-transform: translateX(-2000px)
+				}
+				60% {
+					opacity: 1;
+					-moz-transform: translateX(30px)
+				}
+				80% {
+					-moz-transform: translateX(-10px)
+				}
+				100% {
+					-moz-transform: translateX(0)
+				}
+			}
+			@-o-keyframes bounceInLeft {
+				0% {
+					opacity: 0;
+					-o-transform: translateX(-2000px)
+				}
+				60% {
+					opacity: 1;
+					-o-transform: translateX(30px)
+				}
+				80% {
+					-o-transform: translateX(-10px)
+				}
+				100% {
+					-o-transform: translateX(0)
+				}
+			}
+			@keyframes bounceInLeft {
+				0% {
+					opacity: 0;
+					transform: translateX(-2000px)
+				}
+				60% {
+					opacity: 1;
+					transform: translateX(30px)
+				}
+				80% {
+					transform: translateX(-10px)
+				}
+				100% {
+					transform: translateX(0)
+				}
+			}
+			.hide {
+				display: none;
+			}
+			.slider.bounceInLeft {
+				display: left;
+				width: 200px;
+				border:1px solid red;
+				background-color: gray;
+				animation: bounceInLeft .7s ;
+				-webkit-animation: bounceInLeft .7s ;
+				-moz-animation: bounceInLeft .7s ;
+				-ms-animation: bounceInLeft .7s ;
+				-o-animation: bounceInLeft .7s 
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="logo">
+			logo
+		</div>
+		<button id="btn1">toggle</button>
+		<div class="slider bounceInLeft">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+				<li>9</li>
+				<li>10</li>
+			</ul>
+		</div>
+		<script src="jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(function() {
+				$('#btn1').click(function() {
+					$('.slider').toggleClass('bounceInLeft hide');
+				});
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="../react-0.13.0/build/react.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../react-0.13.0/build/JSXTransformer.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/jsx">
+			var Demo = React.createClass({
+				getInitialState: function() {
+					return {
+						left: 0
+					}
+				},
+				render: function() {
+					var _style = {
+						marginLeft: this.state.left + 'px'	
+					};
+					if(this.state.left < 100) {
+						setTimeout(function() {
+							this.setState({left: this.state.left + 10})
+						}.bind(this), 20);
+					}
+					return <div style={_style}>我随风而来，随风而走</div>
+				}
+			});
+			
+			React.render(<Demo />, document.body);
+		</script>
+	</body>
+</html>

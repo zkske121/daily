@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="container" id=".">
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+		<div class="footer">
+			
+		</div>
+	</div>
+
+	<div class="container2">
+		
+	</div>
+	<script>
+	var idStr = '.';
+
+	var container = document.querySelectorAll('.container')[0];
+	var container2 = document.querySelectorAll('.container2')[0];
+
+	var data = {};
+	var tmp, tmpj;
+
+	setId(container, '.0');
+
+	// addData(container, container.id);
+
+	// for(var i = 0, len = container.children.length; i < len; i++) {
+	// 	tmp = container.children[i];
+	// 	tmp.id = container.id +i;
+	// 	addData(tmp, tmp.id);
+	// 	if(tmp.children.length > 0) {
+	// 		for(var j = 0, jLen = tmp.children.length; j < jLen; j++) {
+	// 			tmpj = tmp.children[j];
+	// 			tmpj.id = tmp.id + '.' + j;
+	// 			addData(tmpj, tmpj.id);
+	// 		}
+	// 	}
+	// }
+
+	console.log(data);
+
+	function setId(dom, id) {
+		addData(dom, id);
+		if(dom.children.length) {
+			Array.prototype.forEach.call(dom.children, function(v, i) {
+				setId(v, id + '.' + i);
+			});
+		}
+	}
+
+	function addData(dom, id) {
+		data[id] = {};
+		dom.id = id;
+		data[id].dom = dom;
+
+	}
+
+	for(var key in data) {
+		var ids = key.match(/\d/g);
+		var tmp = getEle.apply(document.body, ids);
+		container2.appendChild(tmp.cloneNode());
+	}
+
+	function getEle(id) {
+		var args = Array.prototype.concat.apply([], arguments);
+		if(args.length == 1) return this.children[id];
+		return getEle.apply(this.children[args.shift()], args);
+	}
+	</script>
+</body>
+</html>

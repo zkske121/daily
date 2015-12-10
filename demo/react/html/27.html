@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="../react-0.13.0/build/react-with-addons.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../react-0.13.0/build/JSXTransformer.js" type="text/javascript" charset="utf-8"></script>
+		<!--
+        	父组件属性变化，会引起所有子组件render，有性能问题
+        	shouldComponentUpdate 返回false阻止render
+        -->
+		<script type="text/jsx">
+			var norml = {
+				width: '100px',
+				height: '100px',
+				float: 'left',
+				margin: '20px',
+				backgroundColor: 'grey'
+			};
+			var chioce = {
+				width: '100px',
+				height: '100px',
+				float: 'left',
+				margin: '20px',
+				backgroundColor: 'red'
+			};
+			
+			var Item = React.createClass({
+				shouldComponentUpdate: function(nextProp, nextState) {
+					return nextProp.inputNumber == this.props.index || nextProp.lastNumber == this.props.index;
+				},
+				render: function() {
+					return <div style={this.props.index == this.props.inputNumber ? chioce : norml}>
+						{this.props.index}
+					</div>
+				}	
+			});
+			var Number = React.createClass({
+				getInitialState: function() {
+					return {
+						inputNumber: -1,
+						lastNumber: -1
+					}
+				},
+				inputHandle: function(e) {
+					this.setState({
+						inputNumber: parseInt(e.target.value),
+						lastNumber: this.state.inputNumber
+					});
+				},
+				render: function() {
+					var items = [];
+					for(var i = 0; i < 10000; i++) {
+						items.push(<Item index={i} inputNumber={this.state.inputNumber} lastNumber={this.state.lastNumber} />);
+					}
+					return <div>
+						<input type="text" onChange={this.inputHandle} />
+						<br />
+						{items}
+					</div>;
+				}
+			});
+			
+			React.render(<Number />, document.body);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+		.container {height: 400px;border:1px solid gray;overflow-y: scroll;}
+		.content {height:2000px;background-color: #269ABC;}
+		</style>
+	</head>
+	
+	<body>
+		<div class="container">
+			<div id="content" class="content"></div>
+		</div>
+		<script src="js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		var arr1 = [{id:"248f6285-6d0a-4fc5-98f8349c0d6ae2a0",name:'zenki',version:1},{id:2,name:'zenki',version:0},{id:3,name:'zenki',version:2},{id:4,name:'zenki',version:3}];
+		var arr = arr1.sort(function(a, b) {
+			var ret = 0;
+			if(a.version > b.version) {
+				ret = 1;
+			} else if(a.version < b.version){
+				ret = -1
+			}
+			console.log(ret);
+			return ret;
+		});
+		
+		console.log(arr);
+		</script>
+	</body>
+</html>

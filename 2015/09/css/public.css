@@ -1,0 +1,234 @@
+@charset 'utf-8';
+body, div, p, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, th, td, input, button, textarea{ margin:0; padding:0;}
+body{ font:12px/1.5 "\5FAE\8F6F\96C5\9ED1","\5B8B\4F53",Tahoma,Arial,sans-serif; color:#666; background-color:#fff;}
+table{ border-collapse:collapse; border-spacing:0;}
+a{ color:#06c; text-decoration:none; outline:none;}
+a:hover{ text-decoration:underline;}
+li{ list-style:none;}
+i, em, dfn{ font-style:normal;}
+dfn{ font-family:Arial;}
+img{ border:0 none; vertical-align:bottom;}
+h1, h2, h3, h4, h5, h6{ font-size:100%; font-weight:100;}
+input, button, textarea, select, optgroup, option{ font-family:"\5FAE\8F6F\96C5\9ED1";}
+input, select{ vertical-align:middle;}
+
+.hide{ display:none;}
+.clearfix:after{ display:block; content:""; clear:both; height:0; visibility:hidden;}
+.clearfix{ *zoom:1;}
+
+.mod-box, .wrapper_980{ width:980px; margin:0 auto;}
+
+/* Colors */
+.color-gray{ color:#999;}
+.color-white{ color:#fff;}
+
+/* Buttons */
+.item-btn, .ok-btn, .cancel-btn{ display:inline-block; text-align:center; cursor:pointer; border-width:1px; border-style:solid; border-radius:3px; -webkit-box-shadow:0 1px 0 rgba(0, 0, 0, 0.4); box-shadow:0 1px 0 rgba(0, 0, 0, 0.4);}
+.item-btn:hover, .ok-btn:hover, .cancel-btn:hover{ text-decoration:none;}
+
+.item-btn.disable, .item-btn.disable:hover{ color:#999; cursor:default; border-color:#D4D4D4; background-color:#E7E7E7;}
+
+.sure-btn{ width:200px; height:35px; font-weight:700; font-size:16px; line-height:35px; color:#fff; text-indent:0.4em; letter-spacing:0.4em; text-shadow:1px 1px 0 #cf7000; border-color:#e77c00; background-color:#FFB000;}
+.sure-btn:hover{ border-color:#de7800; background-color:#F79700;}
+
+.add-btn, .save-btn{ width:118px; height:28px; font-size:14px; line-height:28px;}
+
+.add-btn{ color:#f80; border-color:#f80; background-color:#fff;}
+.add-btn:hover{ color:#fff; border-color:#F78500; background-color:#F79700;}
+
+.save-btn{ color:#fff; border-color:#05a; background-color:#27c;}
+.save-btn:hover{ border-color:#07d; background-color:#29f;}
+
+.ok-btn, .cancel-btn{ width:45px; height:20px; line-height:16px;}
+
+.ok-btn{ color:#fff; border-color:#05a; background-color:#27c;}
+.ok-btn:hover{ border-color:#07d; background-color:#29f;}
+
+.cancel-btn{ color:#333; border-color:#ddd; background-color:#fff;}
+.cancel-btn:hover{ color:#fff; border-color:#05a; background-color:#27c;}
+
+/* Tips */
+.message{ position:relative; zoom:1; padding:4px; font:12px/20px "\5B8B\4F53"; color:#333; border:1px solid #ffb533; border-radius:3px; background-color:#fff5d1;}
+.triangle{ display:inline-block; width:0; height:0; overflow:hidden; border:8px dashed transparent;}
+.bottom-bd{ border-bottom-color:#ffb533; border-bottom-style:solid;}
+.bottom-bg{ border-bottom-color:#fff5d1; border-bottom-style:solid;}
+.top-bd{ border-top-color:#ffb533; border-top-style:solid;}
+.top-bg{ border-top-color:#fff5d1; border-top-style:solid;}
+.left-bd{ border-left-color:#ffb533; border-left-style:solid;}
+.left-bg{ border-left-color:#fff5d1; border-left-style:solid;}
+.message .triangle{ position:absolute;}
+.message .bottom-bd{ left:8px; top:-16px;}
+.message .bottom-bg{ left:8px; top:-15px;}
+.message .top-bd{ left:8px; bottom:-16px;}
+.message .top-bg{ left:8px; bottom:-15px;}
+.message .left-bd{ top:11px; right:-16px;}
+.message .left-bg{ top:11px; right:-15px;}
+
+/* Form */
+.form .item{ position:relative; overflow:hidden; zoom:1; z-index:1; padding-top:10px; font-size:14px; line-height:30px; color:#333; background-color:#fff;}
+.form .item-name{ float:left; width:110px; margin-right:20px; text-align:right;}
+.form .item-info{ overflow:hidden; zoom:1; *display:inline;}
+
+.form .item-radio{ float:left; margin-right:40px; cursor:pointer;}
+.form .input-radio{ float:left; margin:8px 2px 0 0; *width:13px; *height:13px;}
+.form .txt{ float:left;}
+.form .pic{ display:block; width:140px; height:190px; padding:4px; border:1px solid #bbb;}
+.form .pic:hover{ border-color:#f80;}
+.form .pic img{ width:100%; height:100%;}
+
+.form .item-input{ margin-left:5px;}
+.form .input-text{ width:100%; height:28px; margin-left:-5px; padding-left:3px; font-size:14px; line-height:20px; vertical-align:top; outline:none; border-width:1px; border-style:solid; border-color:#bbb #ddd #ddd #bbb; border-radius:3px; box-shadow:1px 1px 1px #ddd inset; *float:left;}
+.form .input-text:focus{ border-color:#5d9de5; box-shadow:none;}
+.form .input-text.error{ color:#333; border-color:#d80000 #e50000 #e50000 #d80000; box-shadow:1px 1px 3px #e6dfc4 inset; background-color:#fff7d9;}
+::-webkit-input-placeholder{ color:#ccc;}
+
+.form .message{ display:inline-block; margin-top:10px; *display:inline;}
+
+.form .w001, .form .w002{ float:left; margin-left:0;}
+.form .w001{ width:30%; margin-right:10px;}
+.form .w002{ width:4%;}
+.form .colon{ float:left;}
+.form .divider{ float:left; width:2%; height:2px; overflow:hidden; margin:14px 1%; background-color:#ddd;}
+
+.form .item-textarea{ height:60px; margin-left:5px;}
+.form .textarea{ width:100%; height:58px; margin-left:-5px; padding-left:3px; font-size:14px; color:#000; resize:none; *margin-left:-10px;}
+
+.form .preview{ float:left; margin-right:20px; width:50px; height:50px; padding:4px; border:1px solid #f80;}
+.form .preview img{ width:100%; height:100%;}
+
+.form .sure-btn{ float:left; margin-right:20px;}
+.form .back-btn{ line-height:35px;}
+
+.form .select{ float:left; width:120px; height:30px; padding:2px 0; line-height:26px; *height:22px; *margin:4px 0; *float:none;}
+
+/* 选项卡 */
+.tab-box{ overflow:hidden; zoom:1;}
+
+.tab-hd{ position:relative; zoom:1; height:29px; margin:20px 0; border-bottom:1px solid #05a;}
+.tab-hd ul{ position:absolute; left:0; top:0;}
+.tab-hd li{ float:left;}
+.tab-hd li a{ display:block; width:118px; height:28px; line-height:28px; text-align:center; border:1px solid #05a;}
+.tab-hd li a:hover, .tab-hd li a.cur{ color:#fff; text-decoration:none; background-color:#27c;}
+
+.tab-con{ border:1px solid #05a;}
+.tab-info{ position:relative; zoom:1; padding:5px 0 5px 15px; border-bottom:1px solid #05a;}
+.tab-info p{ margin:0; line-height:20px;}
+.tab-info p a{ padding-left:25px;}
+.tab-info .save-btn{ position:absolute; right:10px; top:10px;}
+
+.tab-mod .right-area, .tab-mod .temp-list{ display:none;}
+.tab-mod .left-area{ width:978px;}
+.tab-mod .add-mod{ left:50%; bottom:50%; margin:0 0 -87px -170px;}
+
+/* 右侧操作区域 */
+.right-area{ position:relative; float:right; width:360px; height:820px; overflow:hidden; overflow-y:auto; border-left:1px solid #05a;}
+.right-area dd{ padding:0 10px 10px;}
+.right-area dt{ height:30px; font-size:16px; line-height:30px; color:#fff; text-align:center; background-color:#27c;}
+.right-area .form .item-name{ width:100px; margin-right:0;}
+.right-area .form .item-radio{ margin-right:10px;}
+
+.level01, .level03{ margin-top:-1px; padding-bottom:11px; border-top:1px dashed #999;}
+.title01, .title03{ display:inline-block; width:94px; padding-top:10px; font-weight:100; font-size:14px; line-height:30px; color:#999; text-align:right;}
+.level02{ margin-top:10px; padding:10px 10px 10px 0; border:1px solid #ccc; background-color:#f2f2f2;}
+.form .level02 .item{ background-color:transparent;}
+.level02, .level02 .level02-hd{ overflow:hidden; zoom:1;}
+.level02 .title02{ float:left; padding-left:10px;}
+.level02 .show{ float:right;}
+.level02 .triangle{ margin-left:3px; border-width:6px;}
+.level02 .bottom-bd{ vertical-align:top; border-bottom-style:solid; border-bottom-color:#06c;}
+.level02 .top-bd{ vertical-align:bottom; border-top-style:solid; border-top-color:#06c;}
+.level02-bd{ clear:both;}
+
+.noborder, .level01 .level03{ margin:0; padding:0; border:0 none;}
+.noborder .level03-hd{ display:none;}
+
+.field .item{ overflow:hidden; zoom:1; border-bottom:1px dashed #999;}
+.field .checkbox{ float:left;}
+.field .checkbox .input-radio{ margin-right:7px;}
+.field .singlebox{ float:right;}
+.field .singlebox .item-radio{ margin:0 0 0 10px;}
+.field .color-gray .item-radio{ cursor:default;}
+
+/* Edit */
+.edit-area{ display:none; position:absolute; right:5px; bottom:5px; z-index:3;}
+.edit-area a{ float:left; width:50px; height:20px; margin-left:5px; line-height:20px; color:#fff; text-align:center; background-color:#f80;}
+.edit-area a:hover{ text-decoration:none; background-color:#F79700;}
+.edit-area .message{ position:absolute; right:60px; bottom:-10px; width:180px; padding:9px;}
+.edit-area .message span{ float:left;}
+.edit-area .message button{ float:right; margin-left:10px;}
+
+.mask{ position:absolute; left:0; top:0; z-index:2; width:100%; height:100%; opacity:0; filter:Alpha(opacity=0); background-color:#000;}
+
+/* 添加组件 */
+.add-mod{ position:absolute; left:-8px; bottom:0; z-index:3; width:100%;}
+.add-mod .message{ margin:0 10px; padding:0 30px 30px; font-size:14px; font-family:"\5FAE\8F6F\96C5\9ED1"; text-align:center;}
+.add-mod .triangle{ margin-left:-20px; border-width:20px;}
+.add-mod .bottom-bd{ left:50%; top:-35px;}
+.add-mod .bottom-bg{ left:50%; top:-34px;}
+.add-mod h1{ position:relative; z-index:1; height:40px; line-height:40px; background-color:#fff5d1;}
+.add-mod ul{ overflow:hidden; zoom:1; margin-right:-2%;}
+.add-mod li{ float:left; width:31.3%; margin-right:2%;}
+.add-mod li a{ display:block; width:100%; height:100px; line-height:100px; color:#f80; border:1px solid #f80; background-color:#fff;}
+.add-mod li a:hover{ color:#fff; text-decoration:none; border-color:#F78500; background-color:#F79700;}
+
+/* 左侧显示区域 */
+.left-area{ float:left; width:617px;}
+.container{ width:340px; margin:0 auto; padding:110px 29px; text-align:left; background:url(../images/iphone.jpg) no-repeat;}
+.wrapper{ position:relative; zoom:1; height:600px;}
+.temp-list{ position:relative; overflow:hidden; zoom:1; height:600px; overflow-y:auto;}
+.temp-item{ padding-bottom:174px;}
+.temp-mod, .static-mod{ position:relative; zoom:1; margin-bottom:20px; padding:2px; border:1px dashed #05a;}
+.selected{ padding:0; border-width:3px;}
+.selected .edit-area{ display:block;}
+
+/* 预览查看 */
+.preview-box{ position:relative; zoom:1;}
+
+.view-box{ margin-bottom:62px; border:1px solid #05a;}
+.view-box dt{ padding:10px 0 0 40px; font-weight:700; font-size:16px; line-height:30px; color:#333;}
+
+.page-info{ width:100%; height:740px; margin:0 auto; background-color:#999;}
+
+.tips-box{ position:absolute; left:0; bottom:-62px; width:100%;}
+.tips-info{ overflow:hidden; zoom:1; padding:15px 0 15px 530px; font-size:14px; line-height:30px; border:1px solid #ffb533; background-color:#fff5d1; *padding-left:430px;}
+.tips-info .txt{ float:left; width:520px; margin-left:-530px; text-align:right; *width:420px; *margin-left:-430px;}
+.tips-info .save-btn{ float:left; margin-right:20px;}
+
+/* 弹层 */
+.pop-up{ position:relative; zoom:1; border:1px solid #05a; background-color:#fff;}
+.pop-up .hd{ height:38px; padding:0 20px; line-height:38px; background-color:#27c;}
+.pop-up .title{ margin-right:10px; font-size:14px; color:#fff; cursor:default;}
+.pop-up .close{ position:absolute; right:6px; top:4px; width:20px; font:20px/20px Tahoma; color:#fff; text-align:center;}
+.pop-up .close:hover{ color:#000; text-decoration:none;}
+.pop-up .bd{ padding:20px; text-align:center;}
+.pop-up .btn-area{ padding:0;}
+.pop-up .item-btn{ width:98px;}
+.pop-up .no-btn{ margin-left:20px; font-size:14px; line-height:30px;}
+
+.tips{ width:298px;}
+.tips .tips-txt{ height:90px;}
+.tips .txt, .tips .lines{ display:inline-block; vertical-align:middle;}
+.tips .txt{ font-size:14px;}
+.tips .lines{ width:0; height:100%;}
+
+.add-pic{ width:598px;}
+.add-pic .pic-box{ display:inline-block; *display:inline; *zoom:1; margin-bottom:50px;}
+.add-pic .preview{ width:80px; height:80px; border:10px solid #f80;}
+.add-pic .preview img{ width:100%; height:100%;}
+.add-pic .add-btn{ margin-top:10px;}
+.add-pic .message{ position:absolute; left:249px; bottom:60px;}
+
+.activity{ width:598px;}
+.activity .bd{ text-align:left;}
+
+.details{ width:250px; border-color:#099fde;}
+.details .hd{ background-color:#099fde;}
+.details .bd{ text-align:left;}
+.details .details-con{ height:230px; overflow:hidden; overflow-y:auto; color:#666;}
+.details .details-con p{ padding-bottom:1.5em;}
+
+@media screen and (max-width:1180px) {
+	.tips-info{ padding-left:430px;}
+
+	.tips-info .txt{ width:420px; margin-left:-430px;}
+}

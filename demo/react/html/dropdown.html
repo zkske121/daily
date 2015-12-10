@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    * {
+    	margin:0;
+    	padding:0;
+    }
+	ul {
+		list-style:none;
+	}
+	.drop {
+		border:1px solid grey;
+		width:100px;
+		position: relative;
+	}
+	.drop div{
+		height:20px;
+		background-color:yellow;
+	}
+	.drop ul {
+		position:absolute;
+		width:100px;
+		top:22px;
+		left:0;
+		border:1px solid red;
+		z-index:10;
+		background-color:#fff;
+	}
+    </style>
+</head>
+
+<body>
+    <script src="../react-0.13.0/build/react-with-addons.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../react-0.13.0/build/JSXTransformer.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/jsx">
+    var Drop = React.createClass({
+    	getInitialState: function() {
+    		return {
+    			choice: this.props.choice,
+    			list: this.props.list,
+    			flag: false
+    		}
+    	},
+    	showHandle: function() {
+    		this.setState({
+    			flag: !this.state.flag
+    		});
+    	},
+    	selectHandle: function(v) {
+    		this.setState({
+    			choice: v,
+    			flag: true
+    		});
+    	},
+    	render: function() {
+    		var list = this.state.list.map(function(v, i) {
+	    				return <li onClick={this.selectHandle.bind(this, v)}>{v}</li>
+	    			}.bind(this));
+
+    		return <div className = "drop">
+    			<div onClick={this.showHandle}>{this.state.choice}</div>
+    			{this.state.flag && <ul>{list}</ul>}
+    		</div>
+    	}
+    });
+
+    React.render(<div><Drop choice="java" list={['java', 'c++', 'javascript', 'c#', 'go']} /><Drop choice="java" list={['java', 'c++', 'javascript', 'c#', 'go']} /></div>, document.body);
+    </script>
+</body>
+
+</html>

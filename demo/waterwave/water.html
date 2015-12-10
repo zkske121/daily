@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>water wave</title>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    
+    body {
+        background-color: #f5f5f5;
+    }
+    
+    @keyframes sploosh {
+        0% {
+            box-shadow: 0 0 0 0px rgba(66, 166, 223, 0.7);
+            background: rgba(66, 166, 223, 0.7);
+        }
+        100% {
+            box-shadow: 0 0 0 50px rgba(66, 166, 223, 0);
+            background: rgba(66, 166, 223, 0);
+        }
+    }
+
+    @-webkit-keyframes sploosh {
+        0% {
+            box-shadow: 0 0 0 0px rgba(66, 166, 223, 0.7);
+            background: rgba(66, 166, 223, 0.7);
+        }
+        100% {
+            box-shadow: 0 0 0 50px rgba(66, 166, 223, 0);
+            background: rgba(66, 166, 223, 0);
+        }
+    }
+    
+    .water {
+        position:absolute;
+        height: 2px;
+        width: 2px;
+        border-radius: 100%;
+        z-index: 0;
+        animation: sploosh 3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        -webkit-animation: sploosh 3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        background: transparent;
+    }
+    </style>
+</head>
+
+<body>
+    <script>
+    (function() {
+    	var water = document.createElement('div');
+    	water.className = 'water';
+
+    	document.onclick = function(e) {
+            e = e || window.event;
+    		var _water = water.cloneNode(water);
+    		_water.style.left = (e.pageX || e.offsetX) + 'px';
+    		_water.style.top = (e.pageY || e.offsetY) + 'px';
+    		document.body.appendChild(_water);
+    		setTimeout(function() {
+    			document.body.removeChild(_water);
+    		}, 3000);
+    	}
+    })();
+    </script>
+</body>
+
+</html>

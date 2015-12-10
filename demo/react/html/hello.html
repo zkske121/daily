@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>hello</title>
+		<script src="../react-0.13.0/build/react.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../react-0.13.0/build/JSXTransformer.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<script type="text/jsx">
+			var Hello = React.createClass({
+				getInitialState: function() {
+					return {'name': 'zenki'};
+				},
+				handle:function(event) {
+					this.setState({name: event.target.value});
+				},
+				render: function() {
+					return <div style={helloStyle}>Hello {this.state.name}
+						<br />
+						<input type="text" onChange={this.handle} />
+						<br />
+						<div	 dangerouslySetHTML={data}></div>
+						</div>
+				}
+			});
+			
+			var helloStyle = {
+				color: 'red',
+				border: '1px solid grey'
+			};
+			
+			var data = {
+				__html: 'Tt is my life'
+			};
+			
+			var instance = React.render(<Hello name="zzz"/>, document.body);
+			React.render(<Hello name="zzz"/>, document.body);
+			instance.setProps({name:'zenki'});
+		</script>
+	</body>
+</html>

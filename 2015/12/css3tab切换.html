@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tab</title>
+	<style>
+	* {
+		padding:0;
+		margin:0;
+	}
+	body {
+		background-color:#f3f3f3;
+	}
+	.clearfix::after {
+		content:'';
+		display:table;
+		clear:both;
+	}
+	.clearfix {
+		*zoom:1;
+	}
+	ul {
+		list-style:none;
+	}
+	.container {
+		width:80%;
+		margin:auto;
+		
+		cursor: default;
+	}
+	.nav {
+		background-color:#000;
+		color:#fff;
+		height:50px;
+		line-height:50px;
+		font-size:20px;
+		border:1px solid grey;
+	}
+	.nav li{
+		float:left;
+		padding:10px;
+	}
+	.content {
+		text-align:center;
+		margin-top:20px;
+		height:500px;
+		position:relative;
+	}
+	.content li {
+		width:100%;
+		height:500px;
+		display:none;
+		position:absolute;
+		background-color:red;
+	}
+	@keyframes right-tab {
+		0% {
+			transform:translate(100%);
+			opacity:0;
+		}
+		100% {
+			transform:translate(0);
+			opacity:1;
+		}
+	}
+	@-webkit-keyframes right-tab {
+		0% {
+			-webkit-transform:translate(100%);
+			opacity:0;
+		}
+		100% {
+			transform:translate(0);
+			opacity:1;
+		}
+	}
+	@keyframes left-tab {
+		0% {
+			transform:translate(-100%);
+			opacity:0;
+		}
+		100% {
+			transform:translate(0);
+			opacity:1;
+		}
+	}
+	@-webkit-keyframes left-tab {
+		0% {
+			-webkit-transform:translate(-100%);
+			opacity:0;
+		}
+		100% {
+			transform:translate(0);
+			opacity:1;
+		}
+	}
+	@keyframes remove {
+		0% {
+			opacity:1;
+		}
+		100% {
+			transform:scale(.5,.5);
+			opacity:0;
+		}
+	}
+	@-webkit-keyframes remove {
+		0% {
+			opacity:1;
+		}
+		100% {
+			transform:scale(.5,.5);
+			opacity:0;
+		}
+	}
+	.content .left-active, .content .right-active{
+		display:block;
+	}
+	.content .left-active {
+		animation:left-tab 2s;
+		-webkit-animation:left-tab 2s;
+	}
+	.content .right-active {
+		animation:right-tab 2s;
+		-webkit-animation:right-tab 2s;
+	}
+
+	.content .remove {
+		animation:remove 2s;
+		-webkit-animation:remove 2s;
+		display:block;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<ul class="nav clearfix">
+			<li>nav1</li>
+			<li>nav2</li>
+			<li>nav3</li>
+			<li>nav4</li>
+		</ul>
+		<ul class="content" index="0">
+			<li class="right-active">content1</li>
+			<li>content2</li>
+			<li>content3</li>
+			<li>content4</li>
+		</ul>
+	</div>
+	<script>
+		var nav = document.querySelectorAll('.nav')[0],
+			content = document.querySelectorAll('.content')[0],
+			moveFlag = true;
+
+		nav.onclick = function(e) {
+			var target = e.target,
+			index = Array.prototype.indexOf.call(this.children, target),
+			_index = content.getAttribute('index');
+			if(index === -1 || index == _index || !moveFlag) return;
+
+			moveFlag = false;
+			content.setAttribute('index', index);
+			content.children[index].className = index > _index ? 'right-active' : 'left-active';
+			content.children[_index].className = 'remove';
+			
+			setTimeout(function() {
+				content.children[_index].removeAttribute('class');
+				moveFlag = true;
+			}, 2000);
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			ul {
+				list-style: none;
+			}
+			li {
+				padding: 4px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<form action="" id="form1">
+			<ul>
+				<li>
+					<label for="">1:</label>
+					<input type="text" />
+				</li>
+				<li>
+					<label for="">2:</label>
+					<input type="text" />
+				</li>
+				<li>
+					<label for="">3:</label>
+					<input type="text" />
+				</li>
+				<li>
+					<label for="">4:</label>
+					<input type="text" />
+				</li>
+			</ul>
+		</form>
+		<script src="js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(function() {
+				var $inputs = $('#form1').find('input');
+				$inputs.on('input', function() {
+					var $this = $(this),
+						$warp = $this.closest('li'),
+						$next = $warp.next();
+					if ($next.length && this.value.length >= 5) {
+						$next.insertBefore($warp);
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

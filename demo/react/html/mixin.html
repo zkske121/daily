@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>mixin</title>
+		<script src="../react-0.13.0/build/react.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../react-0.13.0/build/JSXTransformer.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="con1"></div>
+		<div id="con2"></div>
+		<script type="text/jsx">
+			var myMixin = {
+				changeHandle: function(key) {
+					var that = this, state = {};
+					return function(e) {
+						debugger;
+						state[key] = e.target.value;
+						that.setState(state);
+					}
+				}
+			};
+			
+			var Name = React.createClass({
+				mixins:[myMixin],
+				getInitialState: function() {
+					return {
+						text: ''
+					}
+				},
+				render: function() {
+					return <div >
+						<input type="text" onChange={this.changeHandle('text')} />
+						<p>{this.state.text}</p>
+					</div>
+				}
+			});
+			
+			
+			React.render(<Name></Name>, document.getElementById('con1'));
+			React.render(<Name></Name>, document.getElementById('con2'));
+		</script>
+	</body>
+</html>

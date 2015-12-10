@@ -1,0 +1,24 @@
+$fontSize: 14px !default;
+
+* {
+    font-size:$fontSize;
+}
+
+
+@mixin center {
+    display: block;
+    margin: auto;
+}
+
+@mixin absulote-full($top: 0, $left: 0, $bottom: 0, $right: 0) {
+    position: absolute;
+    top:$top;
+    left:$left;
+    right:$right;
+    bottom:$bottom;
+}
+
+.container {
+    @include center;
+    @include absulote-full(10px, 20);
+}

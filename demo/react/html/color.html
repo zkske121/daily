@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>color</title>
+		<script src="../react-0.13.0/build/react.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../react-0.13.0/build/JSXTransformer.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<script type="text/jsx">
+			var Color = React.createClass({
+				getInitialState: function() {
+					return {
+						backgroundColor: '#FFFFFF'
+					}
+				},
+				colorChange: function(e) {
+					var color = parseInt(this.state.backgroundColor.substr(1), 16);
+					var newColor = '#' + (color + e.deltaY * 998).toString(16).substr(-6);
+					this.setState({
+						backgroundColor: newColor
+					});
+				},
+				render: function() {
+					console.log(this.state);
+					return <div style={this.state} onWheel={this.colorChange}>
+								背景颜色随滚轮滚动而改变
+							</div>
+				}
+			});
+			
+			React.render(<Color></Color>, document.body);
+		</script>
+	</body>
+</html>

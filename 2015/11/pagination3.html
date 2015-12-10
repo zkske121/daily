@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>pagination3</title>
+    <style>
+    .active {
+        color: #fff;
+        background-color: green;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="pagination">
+    </div>
+    <script>
+    function Page(container, total, index, load) {
+        this.container = container;
+        this.total = total;
+        this.index = index || 1;
+        this.load = load;
+        this.virtual = [];
+        this.dom = container.children;
+    }
+
+    Page.prototype = {
+        constructor: Page,
+        set: function(curr, total) {
+            var i = 1,
+                len = this.total;
+            this.virtual.length = 0;
+            this.virtual.push(this.getBtn('first'));
+            this.setDisabled(curr == 1);
+            this.virtual.push(this.getBtn('prev'));
+            this.setDisabled(curr == 1);
+
+            if (this.total < 6) {
+                step.call(this);
+            } else {
+                if (curr < 4) {
+                    len = 3;
+                    step.call(this);
+                    this.virtual.push(this.getBtn('...'));
+                    this.virtual.push(this.getBtn(this.total));
+                } else if (this.total - curr < 3) {
+                    this.virtual.push(this.getBtn(1));
+                    this.virtual.push(this.getBtn('...'));
+                    i = this.total - 2;
+                    step.call(this);
+                } else {
+                    i = curr - 1;
+                    len = i + 2;
+                    step.call(this);
+                    this.virtual.push(this.getBtn('...'));
+                    this.virtual.push(this.getBtn(this.total));
+                }
+            }
+
+            this.virtual.push(this.getBtn('next'));
+            this.setDisabled(curr == this.total);
+            this.virtual.push(this.getBtn('last'));
+            this.setDisabled(curr == this.total);
+
+            this.mount();
+            this.index = curr;
+
+            function step() {
+                var btn;
+                while (i <= len && i <= this.total) {
+                    btn = this.getBtn(i);
+                    this.virtual.push(btn);
+                    if (i == curr) btn.className = 'active';
+                    i++;
+                }
+            }
+        },
+        getBtn: (function() {
+            var btn = document.createElement('button');
+            return function(text) {
+                var ret = btn.cloneNode();
+                ret.innerHTML = text;
+                return ret;
+            }
+        })(),
+        setDisabled: function(flag) {
+            flag && this.virtual[this.virtual.length - 1].setAttribute('disabled', 'disabled');
+        },
+        mount: function() {
+            Array.prototype.forEach.call(this.virtual, function(v, i) {
+            	var d = this.dom[i];
+            	if(!d) {
+            		this.bindEvent(v);
+            		this.container.appendChild(v);
+            	} else {
+	            	if(v.hasAttribute('disabled') != d.hasAttribute('disabled')) {
+	            		v.hasAttribute('disabled') ? d.setAttribute('disabled', 'disabled') : d.removeAttribute('disabled');
+	            	}
+	            	if(v.className.indexOf('active') != d.className.indexOf('active')) {
+	            		v.className.indexOf('active') > -1 ? d.className = 'active' : d.removeAttribute('class');
+	            	}
+	            	if(v.innerHTML != d.innerHTML) {
+	            		d.innerHTML = v.innerHTML;
+	            		this.bindEvent(d);
+	            	}
+            	}
+            }.bind(this));
+
+            this.dom = this.container.children;
+        },
+        bindEvent: function(v) {
+        	var text = v.innerHTML, n;
+
+        	if('...'.indexOf(text) > -1) {
+	    		v.onclick = null;
+	    		return;
+	    	}
+        	
+    		v.onclick = function() {
+    			if('first'.indexOf(text) > -1) {
+	        		n = 1;
+	        	} else if('next'.indexOf(text) > -1) {
+	        		n = this.index + 1;
+	        		n > this.total && (n = this.total);
+	        	} else if('prev'.indexOf(text) > -1) {
+	        		n = this.index - 1;
+	        		n < 1 && (n = 1);
+	        	} else if('last'.indexOf(text) > -1) {
+	        		n = this.total;
+	        	} else {
+	        		n = parseInt(text);
+	        	} 
+    			this.set(n);
+    		}.bind(this);
+        }
+    };
+
+    var p = new Page(document.querySelectorAll('.pagination')[0], 3);
+
+    p.set(1);
+    setTimeout(function() {
+    	 p.total = 20;
+    	p.set(1);
+    }, 1000);
+   
+    </script>
+</body>
+
+</html>

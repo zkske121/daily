@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="pagintion">
+		
+	</div>
+	<script src="../react-0.13.0/build/react-with-addons.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../react-0.13.0/build/JSXTransformer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/jsx">
+	var Pagintion = React.createClass({
+		getInitialState: function() {
+			return {
+				pages: this.props.pages,
+				index: this.props.index
+			}
+		},
+		componentDidUpdate: function() {
+			console.log(this.state.index, this.state.pages);
+		},
+		changeIndex: function(curr) {
+			parseInt(curr) && this.setState({index: curr});
+		},	
+		setItem: function(text) {
+			return <input type="button" style={{'backgroundColor' : this.state.index == text ? 'green' : '#fff'}} onClick={this.changeIndex.bind(this, text)} value={text} />;
+		},
+		render: function() {
+			var list = [], index = this.state.index, i = 1,len, pages = this.state.pages;
+
+			do{
+				if(pages <= 5) {
+					len = pages;
+					break;
+				}
+
+				if(pages - index < 3) {
+					list.push(this.setItem(1));
+					list.push(<input type="button" value="..." />);
+					i = pages - 2;
+					len = pages;
+					break;
+				}
+
+				if(index < 3) {
+					len = 3;
+					list.push(<input type="button" value="..." />);
+					list.push(this.setItem(pages));
+					break;
+				}
+
+				i = index - 1;
+				len = i + 2;
+				list.push(<input type="button" value="..." />);
+				list.push(this.setItem(pages));
+			}while(0);
+
+
+
+			// if(pages <= 5 ) {
+			// 	len = pages;
+			// } else {
+			// 	if(pages - index < 3) {
+			// 		list.push(this.setItem(1));
+			// 		list.push(<input type="button" value="..." />);
+			// 		i = pages - 2;
+			// 		len = pages;
+			// 	} else {
+			// 		if(index < 3) {
+			// 			len = 3;
+			// 		} else {
+			// 			i = index - 1;
+			// 			len = i + 2;
+			// 		}
+			// 		list.push(<input type="button" value="..." />);
+			// 		list.push(this.setItem(pages));
+			// 	}
+			// }
+
+			while(i <= this.state.pages && i <= len) {
+				list.push(this.setItem(i));
+				i++;
+			}
+
+			if(pages > 5 && pages - index > 2) {
+				list.push(list.shift());
+				list.push(list.shift());
+			}
+
+			return <div>
+				<input type="button" disabled={this.state.index == 1 ? 'disabled' : ''} onClick={this.changeIndex.bind(this, 1)} value="first" />
+				<input type="button" disabled={this.state.index == 1 ? 'disabled' : ''} onClick={this.changeIndex.bind(this, parseInt(this.state.index) - 1)} value="prev" />
+				{list}
+				<input type="button" disabled={this.state.index == this.state.pages ? 'disabled' : ''} onClick={this.changeIndex.bind(this, parseInt(this.state.index) + 1)} value="next" />
+				<input type="button" disabled={this.state.index == this.state.pages ? 'disabled' : ''} onClick={this.changeIndex.bind(this, this.state.pages)} value="last" />
+			</div>
+		}
+	});
+
+	React.render(<Pagintion index="10" pages="20" />, document.getElementById('pagintion'));
+	</script>
+</body>
+</html>

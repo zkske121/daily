@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="../react-0.13.0/build/react-with-addons.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../react-0.13.0/build/JSXTransformer.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/jsx">
+			var List = React.createClass({
+				getInitialState: function() {
+					return {
+						list: '临兵斗者皆阵列在前'.split('')
+					}
+				},
+				removeHandle: function(index) {
+					var newList = this.state.list.splice(index, 1);
+					this.setState({
+						list: this.state.list
+					});
+				},
+				render: function() {
+					var that = this, items = [];
+					this.state.list.forEach(function(v, i) {
+						items.push(<Item removeHandle={that.removeHandle.bind(that, i)} text={v} />);
+					})
+					return <ul>{items}</ul>;
+				}
+			});
+			var Item = React.createClass({
+				shouldComponentUpdate: function(nextProps, nextState) {
+					return nextProps == this.props;	
+				},
+				render: function() {
+					return <li onClick={this.props.removeHandle}>{this.props.text}</li>;
+				}
+			});
+			
+			
+			React.render(<List />, document.body);
+		</script>
+	</body>
+</html>

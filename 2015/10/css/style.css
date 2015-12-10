@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 12px;
+  background-color: green;
+}
+
+.container {
+  font-size: 12px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #269ABC;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
+  margin-left: 200px;
+}
+.container a {
+  font-size: 12px;
+}
+
+/*# sourceMappingURL=style.css.map */

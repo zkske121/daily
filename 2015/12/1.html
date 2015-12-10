@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<label for="r1"><input type="radio" name="r" id="r1" value="r1" />r1</label>
+	<label for="r2"><input type="radio" name="r" id="r2" value="r2"/>r2</label>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script>
+	$(function() {
+		$('input').click(function() {
+			var ret = $(this).filter('[name="r"]:checked').val();
+			console.log(ret);
+		})
+	});
+	</script>
+</body>
+</html>

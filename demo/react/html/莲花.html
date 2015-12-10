@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="../react-0.13.0/build/react.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../react-0.13.0/build/JSXTransformer.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/jsx">
+			var Item = React.createClass({
+				getInitialState: function() {
+					return {
+						li: {
+							position: 'absolute',
+							top: '25px',
+							left: '50%',
+							width: '100px',
+							height: '500px',
+							marginLeft:'-50px'
+						},
+						div: {
+							width: '100px',
+							height: '100px',
+							borderRadius: '50px',
+							lineHeight: '100px',
+							color: 'white',
+							backgroundColor: 'red',
+							fontSize: '40px',
+							textAlign: 'center',
+							position: 'absolute',
+							top: '0',
+							left: '0'
+						}
+					};
+				},
+				componentDidMount: function() {
+					var _li = this.state.li, _div = this.state.div, _i = this.props.index;
+					setTimeout(function() {
+						_li.transform = 'rotate(' + 360 / 9 * _i  + 'deg)';
+						_li.transition = 'transform ' + 0.25 * _i  + 's';
+						_li.zIndex = 10 - _i;
+						
+						_div.transform = 'rotate(' + 360 / 9 * -_i + 'deg)';
+						_div.transition = 'transform ' + 0.25 * _i + 's';
+						this.setState({
+							li: _li,
+							div: _div
+						});
+					}.bind(this));
+				},
+				render: function() {
+					return <li style={this.state.li}><div style={this.state.div}>{this.props.text}</div></li>;
+				}
+			});
+			
+			var Lotus = React.createClass({
+				getInitialState: function() {
+					return {
+						listStyle: 'none',
+						height: '600px',
+						padding: 0,
+						margin: 0,
+						position: 'relative'
+					}	
+				},
+				render: function() {
+					var items = '临兵斗者皆阵列在前'.split('');
+					for(var i = 0, len = items.length; i < len; i++) {
+						items.push(<Item text={items.shift()} index={i} />);
+					}
+					return <ul style={this.state}>{items}</ul>
+				}
+			});
+			
+			React.render(<div><Lotus /><Lotus /><Lotus /></div>, document.body);
+		</script>
+	</body>
+</html>

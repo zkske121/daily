@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="form1" >
+        <label for="quanxian-1">
+            <input type="checkbox" name="quanxian" id="quanxian-1"><span>1</span></label>
+        <label for="quanxian-2">
+            <input type="checkbox" name="quanxian" id="quanxian-2"><span>2</span></label>
+        <label for="quanxian-3">
+            <input type="checkbox" name="quanxian" id="quanxian-3"><span>3</span></label>
+        <label for="quanxian-4">
+            <input type="checkbox" name="quanxian" id="quanxian-4"><span>4</span></label>
+        <button type="button" id="btn">submit</button>
+    </form>
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script>
+    // $('#btn').click(function() {
+    // 	console.log('form');
+    // 	$.ajax({
+    // 		url:'/action',
+    // 		type:'post',
+    // 		dataType:'json',
+    // 		data:{
+    // 			quanxian: [1,2,3,4]
+    // 		},
+    // 		success:function() {
+
+    // 		},
+    // 		error:function() {
+
+    // 		}
+    // 	});
+    // 	return false;
+    // });
+
+	var cQ = function(context, selector) {
+		return new cQ.init(context, selector);
+	}
+
+	cQ.prototype = {
+		constructor: cQ,
+		init: function() {
+			this.name = 'cQ';
+			return this;
+		}
+	}
+
+	cQ.prototype.init.prototype = cQ.prototype;
+
+	console.log(cQ().name);
+    </script>
+</body>
+
+</html>

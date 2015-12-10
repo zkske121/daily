@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			ul {
+				list-style: none;
+			}
+			.container {
+				width: 400px;
+				margin: auto;
+				padding: 20px;
+			}
+			.item {
+				position: relative;
+			}
+			.item li {
+				position: absolute;
+				top:0;
+				left:0;
+				width: 100px;
+				height: 500px;
+			}
+			.item li div{
+				width: 100px;
+				height: 100px;
+				border-radius: 50px;
+				line-height: 100px;
+				color:white;
+				background-color: red;
+				font-size: 40px;
+				text-align: center;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<ul class="item">
+				<li><div>临</div></li>
+				<li><div>兵</div></li>
+				<li><div>斗</div></li>
+				<li><div>者</div></li>
+				<li><div>皆</div></li>
+				<li><div>阵</div></li>
+				<li><div>列</div></li>
+				<li><div>在</div></li>
+				<li><div>前</div></li>
+			</ul>
+		</div>
+		<script>
+		window.onload = function() {
+			var item = document.querySelectorAll('.item')[0];
+			var deg = 360 / item.children.length;
+			Array.prototype.forEach.call(item.children, function(v, i) {
+				v.style.zIndex = 10 - i;
+				v.style.transform =  'rotate(' + i * deg + 'deg)';
+				v.style.transition = 'transform ' + i* 0.5 +'s';
+				v.children[0].style.transform = 'rotate(' + i * -deg + 'deg)';
+				v.children[0].style.transition = 'transform(' + i * 0.5 + 's)';
+			});
+		}
+		</script>
+	</body>
+
+</html>

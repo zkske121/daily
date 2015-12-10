@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>data-platform</title>
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/data-platform.css">
+</head>
+<body>
+	
+	<script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.js"></script>
+	<script src="../react-0.13.0/build/react.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../react-0.13.0/build/JSXTransformer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/jsx">
+	var ContentArea = React.createClass({
+		getInitialState: function() {
+			return {
+				expansion: this.props.expansion ? 'expansion' : ''
+			}
+		},
+		expand: function() {
+			this.setState({
+				expansion: this.state.expansion ? '' : 'expansion'
+			});
+		},
+		render: function() {
+			return <div><OptionArea expansion={this.state.expansion} expand={this.expand} /><MainArea expansion={this.state.expansion} /></div>;
+		}
+	});
+
+	var OptionArea = React.createClass({
+		render: function() {
+			return <div className="option-area">
+				<Header expand={this.props.expand} />
+				<Slider expansion={this.props.expansion} />
+			</div>;
+		}
+	});
+
+	var MainArea = React.createClass({
+		render: function() {
+			return <div className={"container-fluid main-area " + this.props.expansion}></div>;
+		}
+	});
+
+	var Header =  React.createClass({
+		render: function() {
+			return <div className = "header">
+				<button type="button" className="btn btn-success" onClick={this.props.expand}>expansion</button>
+			</div>;
+		}
+	});
+
+	var Slider = React.createClass({
+		render: function() {
+			return <div className={'slider ' + this.props.expansion}>expansion</div>;
+		}
+	});
+
+	React.render(<ContentArea expansion='true' />, document.body);
+	</script>
+</body>
+</html>

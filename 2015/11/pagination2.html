@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>pagination2</title>
+    <style>
+    .active {
+        background-color: green;
+        color: #fff;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="pagination"></div>
+    <div class="pagination"></div>
+    <div class="pagination"></div>
+    <div class="pagination"></div>
+    <div class="pagination"></div>
+    <div class="pagination"></div>
+    <div class="pagination"></div>
+    <div class="pagination"></div>
+    <div class="pagination"></div>
+    <div class="pagination"></div>
+    <script>
+    var list = document.querySelectorAll('.pagination');
+    var p_module = (function() {
+        var btn = document.createElement('button');
+
+        function getBtn(text) {
+            var ret = btn.cloneNode();
+            ret.innerHTML = text;
+            return ret;
+        }
+
+        function setPagination(container, index, total, curr) {
+        	var tmp = [],
+            	i = 1,
+                len = total;
+
+            if (index == curr || curr < 1 || curr > total) return;
+
+            container.innerHTML = '';
+            if (!curr) curr = index;
+            addBtn('first', 1);
+            addBtn('prev', curr - 1);
+
+            if (total < 6) {
+                step();
+            } else {
+                if (curr < 4) {
+                    len = 3;
+                    step();
+                    addBtn('...', 0, 1);
+                    addBtn(total, total);
+                } else if (total - curr < 3) {
+                    addBtn(1, 1);
+                    addBtn('...', 0, 1);
+                    i = total - 2;
+                    step();
+                } else {
+                    i = curr - 1;
+                    len = i + 2;
+                    step();
+                    addBtn('...', 0, 1);
+                    addBtn(total, total);
+                }
+            }
+
+            addBtn('next', curr + 1);
+            addBtn('last', total);
+
+            tmp.forEach(function(v) {
+                container.appendChild(v);
+            });
+
+            function step() {
+                for (; i <= len && i <= total; i++) {
+                    addBtn(i, i);
+                }
+            }
+
+            function addBtn(t, n, dot) {
+                var b = getBtn(t);
+                tmp.push(b);
+                if (n == curr && t == n) b.className = 'active';
+                if (dot) return;
+                if(('first prev'.indexOf(t) > -1 && curr == 1) || ('next last'.indexOf(t) > -1 && curr == total)){
+                	b.setAttribute('disabled', 'disabled');
+                	return;
+                }
+                b.onclick = setPagination.bind(null, container, curr, total, n);
+            }
+        }
+
+        return {
+            setPagination: setPagination
+        }
+    })();
+
+    Array.prototype.forEach.call(list, function(v, i) {
+    	p_module.setPagination(v, i + 1, 10);
+    });
+    </script>
+</body>
+
+</html>

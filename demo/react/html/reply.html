@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>reply demo</title>
+		<script src="../react-0.13.0/build/react.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../react-0.13.0/build/JSXTransformer.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="container"></div>
+		<div id="result"></div>
+		<script type="text/jsx">
+			var Reply = React.createClass({
+				getInitialState: function() {
+					var userList = ['zenki', 'john', 'jack'];
+					return {options: userList, userName: userList[0]};	
+				},
+				selectHandle: function(e) {
+					this.setState({userName: e.target.value});	
+				},
+				render: function() {
+					var options = [];
+					this.state.options.forEach(function(v, i) {
+						options.push(<option value={v}>{v}</option>);
+					});
+					return <div><select onChange={this.selectHandle}>{options}</select><Content userName={this.state.userName}></Content></div>
+				}
+			});
+			
+			var Content = React.createClass({
+				getInitialState: function() {
+					return {text: ''};	
+				},
+				contentHandle: function(e) {
+					this.setState({text: e.target.value});
+				},
+				submitHandle: function() {
+					document.getElementById('result').innerHTML += 'reply to ' + this.props.userName + ':<br />' + this.state.text + '\n';
+				},
+				render: function() {
+					return <div>
+						<textarea onChange={this.contentHandle}  placeholder="please input something..."></textarea>
+						<button onClick={this.submitHandle}>reply</button>
+					</div>
+				}
+			});
+			
+			React.render(<Reply></Reply>, document.getElementById('container'));
+		</script>
+	</body>
+</html>

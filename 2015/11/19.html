@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			ul {
+				list-style: none;
+			}
+			.slider {
+				border:1px solid gray;
+				width: 240px;
+				position: fixed;
+				top:9px;
+				left: 9px;
+				bottom:10px;
+			}
+			.main {
+				margin:10px 10px 10px 260px;
+				height: 2000px;
+				border: 1px solid goldenrod;
+			}
+			.message {
+				position: fixed;
+				top:0;
+				left:0;
+				right: 0;
+				bottom: 0;
+			}
+			.message ul {
+				float:right;
+				margin-right:10px;
+				margin-top:10px;
+				border:1px solid red;
+			}
+			.warning {
+				background-color: green;
+				color: #fff;
+				height: 50px;
+				margin:10px 10px 10px 260px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="slider"></div>
+		<div class="main"></div>
+		<div class="message">
+			<div class="warning">警告框1</div>
+			<div class="warning">警告框2</div>
+			<div class="warning">警告框3</div>
+			<div class="warning">警告框4</div>
+			<div class="warning">警告框5</div>
+		</div>
+	</body>
+</html>

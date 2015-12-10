@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>extends</title>
+</head>
+<body>
+	<script>
+	Function.prototype.extend = function(config) {
+		var fn = function() {};
+		var tmp = new this;
+
+		fn.prototype = tmp;
+
+		for(key in config) {
+			if(fn.prototype[key]) {
+				fn.__super.prototype[key] = tmp[key].bind(tmp);
+				fn.prototype[key] = config[key].setName(key);
+			} else {
+				fn.prototype[key] = config[key];
+			}
+		}
+
+		fn.prototype.super = function() {
+			arguments.caller.callee.__name
+		}
+	}
+
+	Function.prototype.__super = function() {
+
+	}
+
+	Function.prototype.setName = function(name) {
+		this.__name = name;
+		return this;
+	}
+	</script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <script>
+    //          var Light = function() {
+    //              this.currState = FSM.off; //ÉèÖÃµ±Ç°×´Ì¬
+    //              this.button = null;
+    //          };
+    //          
+    //          Light.prototype.init = function() {
+    //              var button = document.createElement('button');
+    //              var _this = this;
+    //              
+    //              button.innerHTML = 'ÒÑ¹ØµÆ';
+    //              this.button = document.body.appendChild(button);
+    //              
+    //              this.button.onclick = function() {
+    //                  _this.currState.buttonWasPressed.call(_this); //°ÑÇëÇóÎ¯ÍÐ¸øfsm×´Ì¬»ú
+    //              }
+    //          };
+    //          
+    //          var FSM = {
+    //              off: {
+    //                  buttonWasPressed: function() {
+    //                      console.log('¹ØµÆ');
+    //                      this.button.innerHTML = 'ÏÂÒ»´Î°´ÎÒ¿ªµÆ';
+    //                      this.currState = FSM.on;
+    //                  }
+    //              },
+    //              on: {
+    //                  buttonWasPressed: function() {
+    //                      console.log('¿ªµÆ');
+    //                      this.button.innerHTML = 'ÏÂÒ»´Î°´ÎÒ¹ØµÆ';
+    //                      this.currState = FSM.off;
+    //                  }
+    //              }
+    //          }
+    //          
+    //          var light = new Light();
+    //          light.init();
+
+    // var btn = document.createElement('button');
+
+    // var events = [function() {
+    //     console.log(1);
+    // }, function() {
+    //     console.log(2);
+    // }, function() {
+    //     console.log(3);
+    // }, function() {
+    //     console.log(4);
+    // }];
+
+    // btn.innerHTML = 'press';
+    // document.body.appendChild(btn);
+    // btn.onclick = function() {
+    //     var fn = events.shift();
+    //     events.push(fn);
+    //     fn.call();
+    // }
+
+    /*'use strict'
+    function Inherit() {
+
+    }
+
+    Function.prototype.extend = function(config) {
+        var fn = function() {},
+            tmp = new this();
+
+        fn.prototype = tmp;
+
+        for (var key in config) {
+            if (this.prototype[key]) {
+                fn.prototype.super = tmp[key].bind(tmp);
+                fn.prototype[key] = config[key].bind(tmp);
+            } else {
+                fn.prototype[key] = config[key];
+            }
+        }
+
+        return fn;
+    };*/
+
+
+    var Inherit = {
+        super: function() {
+            var fn = this.__super[arguments.callee.caller.__name];
+            return fn && fn.call(this);
+        },
+        setName: function(name) {
+            this.__name = name;
+            return this;
+        },
+        extend: function(methods) {
+            if (this === Inherit) {
+                var superFn = function() {};
+                for (var i in Inherit) superFn.prototype[i] = Inherit.setName.call(Inherit[i], i);
+                var __super = new superFn;
+            }
+            var fn = superFn || this;
+            for (var i in methods) fn.prototype[i] = Inherit.setName.call(methods[i], i);
+            var Fn = function() {};
+            Fn.prototype = new fn;
+            if (__super) Fn.prototype.__super = __super;
+            Fn.extend = Fn.prototype.extend;
+            return Fn;
+        }
+    };
+
+
+    Function.prototype.extend = function(config) {
+        var ret = function() {};
+        var superFn = function() {};
+        for(i in this.prototype) {
+            superFn.prototype[i] = this.prototype.setName.call(this.prototype[i], i);
+        }
+        for(fnName in config) 
+    };
+
+    Function.prototype.setName = function(i) {
+        this.__name = i;
+        return this;
+    };
+
+    Function.prototype.__super = function() {
+
+    };
+
+    function Inherit() {
+
+    }
+
+    // console.log(f.method1(), f.super());
+
+    (function(Inherit) {
+        if (!Inherit) return;
+
+        var GrandFather = Inherit.extend({
+            method1: function() {
+                return 1;
+            },
+
+            method2: function() {
+                return 2;
+            }
+        });
+
+        var Father = GrandFather.extend({
+            method2: function() {
+                return this.super() * 2;
+            }
+        });
+
+        var Son = Father.extend({
+            method1: function() {
+                return this.super() + this.method2();
+            },
+
+            say: function() {
+                console.log('The result is: ' + this.method1())
+            }
+        });
+
+        var son = new Son();
+        // console.log(GrandFather.prototype, Father.prototype, Son.prototype);
+
+        son.say(); // 完成inherit.js, 使此处可以在控制台输出: 'The result is: 5'
+
+    })(window.Inherit)
+    </script>
+</body>
+
+</html>

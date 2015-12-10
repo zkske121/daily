@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	* {
+		padding:0;
+		margin:0;
+	}
+	ul {
+		list-style:none;
+	}
+	.container {
+		margin:100px;
+		line-height:50px;
+		position:relative;
+		cursor:default;
+	}
+	.clearfix {
+		*zoom:1;
+	}
+	.clearfix::after {
+		content:'';
+		clear:both;
+		display:table;
+	}
+	.container li {
+		float:left;
+		width:100px;
+		height:50px;
+		text-align:center;
+	}
+	.container .ceil{
+		background-color:red;
+		color:#fff;
+		position:absolute;
+		left:140px;
+		top:0;
+		width:100px;
+		height:50px;
+		overflow:hidden;
+		border-radius:50px;
+	}
+	.container .ceil .ceil-list {
+		width:1000px;
+		margin-left:-140px;
+	}
+	</style>
+</head>
+<body>
+	<div class="container ">
+		<ul class="floor clearfix">
+			<li>java</li>
+			<li>.net</li>
+			<li>javascript</li>
+			<li>c++</li>
+			<li>go</li>
+		</ul>
+		<div class="ceil">
+			<ul class="ceil-list clearfix">
+				<li>java</li>
+				<li>.net</li>
+				<li>javascript</li>
+				<li>c++</li>
+				<li>go</li>
+			</ul>
+		</div>
+	</div>
+	<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>
+	$(function() {
+		var $curr = $('.ceil'),
+			$currList = $curr.find('.ceil-list');
+		$('.container').on('click', '.floor li', function(){
+			var move = $(this).offset().left - $(this).parent().offset().left;
+			$currList.animate({marginLeft:-move});
+			$curr.animate({left: move});
+		});
+	});
+	</script>
+</body>
+</html>

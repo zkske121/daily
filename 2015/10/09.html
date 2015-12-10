@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#borders {
+				position: relative;
+				z-index: 1;
+				padding: 30px;
+				border: 5px solid #f00;
+				background: #ff9600;
+			}
+			#borders:before {
+				content: "";
+				position: absolute;
+				z-index: -1;
+				top: 5px;
+				left: 5px;
+				right: 5px;
+				bottom: 5px;
+				border: 5px solid #ffea00;
+				background: #4aa929;
+			}
+			/*#borders:after {
+				content: "";
+				position: absolute;
+				z-index: -1;
+				top: 15px;
+				left: 15px;
+				right: 15px;
+				bottom: 15px;
+				border: 5px solid #00b4ff;
+				background: #fff;
+			}*/
+		</style>
+	</head>
+
+	<body>
+		<div id="borders" href="#">多重边框</div>
+	</body>
+
+</html>

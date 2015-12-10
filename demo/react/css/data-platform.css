@@ -1,0 +1,40 @@
+*{
+	padding: 0;
+	margin:0;
+}
+
+.option-area {
+	position: fixed;
+	top:0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.option-area .header {
+	height: 50px;
+	background-color: #fff;
+	border-bottom: 1px solid #d3d7db;
+}
+
+.option-area .slider {
+	width: 50px;
+	height: 100%;
+	background-color: #1d2939;
+	color: #fff;
+}
+
+.option-area .expansion {
+	width: 240px;
+}
+
+.main-area {
+	min-height: 1000px;
+	margin-left: 50px;
+	margin-top:50px;
+	background-color: #ddd;
+}
+
+.main-area.expansion {
+	margin-left: 240px;
+}

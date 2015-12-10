@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			padding:0;
+			margin:0;
+		}
+		.container {
+			position:relative;
+		}
+		.circle {
+			background-color:green;
+			width:100px;
+			height:100px;
+			border-radius:50px;
+		}
+		.container .inner {
+			background-color:#fff;
+			width:50px;
+			height:50px;
+			border-radius:25px;
+			position:absolute;
+			top:25px;
+			left:25px;
+			z-index:10;
+		}
+		.container .cover {
+			position:absolute;
+			left:0;
+			top:0;
+			width:50px;
+			height:100px;
+			overflow:hidden;
+		}
+		.container .cover.left {
+			transform-origin:50px 50px;
+		}
+		.container .cover.right {
+			left:50px;
+			transform-origin:0 50px;
+			transform:rotate(7deg);
+		}
+		.container .right .circle{
+			margin-left:-50px;
+		}
+		.container .cover .circle {
+			background-color:red;
+		}
+	</style>
+</head>
+<body>
+	<div class="container circle">
+		<div class="inner"></div>
+		<div class="cover left">
+			<div class="circle"></div>
+		</div>
+		
+		<div class="cover right">
+			<div class="circle"></div>
+		</div>
+	</div>
+	<script></script>
+</body>
+</html>

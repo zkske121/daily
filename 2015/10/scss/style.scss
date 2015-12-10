@@ -1,0 +1,32 @@
+$fontSize: 12px;
+$bgColor: green;
+$conPosition: left;
+
+@import "base";
+
+@mixin border-radius($radius) {
+    -webkit-border-radius:$radius;
+    -moz-border-radius:$radius;
+    -khtml-border-radius:$radius;   
+    border-radius:$radius;  
+}
+
+body{
+    font-size:$fontSize;
+    background-color: $bgColor;
+}
+
+.container {
+    font-size: $fontSize;
+    width: 200px;
+    height: 200px;
+    border:1px solid #269ABC;
+    @include border-radius(10px);
+    margin-#{$conPosition}:200px;
+    a{
+        font-size: $fontSize;
+    }
+}
+
+
+

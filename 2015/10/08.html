@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+
+	<body>
+	<div class="container">
+		container
+	</div>
+		<script>
+			for (var i = 0; i < 10; i++) {
+				setTimeout(function() {
+					console.log(i);
+					loadScript('http://127.0.0.1:8020/daily/2015/10/js/console.js');
+				}, i);
+			}
+			console.log('tttt');
+
+			function loadScript(url, callback) {
+				var script = document.createElement("script");
+				script.type = "text/javascript";
+				if (script.readyState) { //IE
+					script.onreadystatechange = function() {
+						if (script.readyState == "loaded" || script.readyState == "complete") {
+							script.onreadystatechange = null;
+							callback && callback();
+						}
+					};
+				} else { //Others
+					script.onload = function() {
+						callback && callback();
+					};
+				}
+				script.src = url;
+				document.getElementsByTagName("head")[0].appendChild(script);
+			}
+		</script>
+	</body>
+
+</html>

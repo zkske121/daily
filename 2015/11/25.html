@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.option {
+			position:fixed;
+			left:0;
+			top:0;
+			right:0;
+			bottom:0;
+		}
+		.main {
+			margin:65px 15px 15px 215px;
+			height:800px;
+			border:1px solid grey;
+		}
+	</style>
+</head>
+<body>
+	<div class="option">
+		
+	</div>
+	<div class="main"></div>
+	<script>
+	var fns = [1,2,3,4,0,5];
+
+	for(var i = 0, fn; fn = fns[i++];) {
+		console.log(fn);
+	}
+
+	for(var j = 0, jn; !!(jn = fns[j]); j++) {
+		console.log(jn);
+	}
+
+	for(var g = 0, gn; g < fns.length; g++) {
+		gn = fns[g];
+		console.log(gn);
+	}
+	</script>
+</body>
+</html>

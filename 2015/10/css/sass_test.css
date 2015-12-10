@@ -1,0 +1,13 @@
+* {
+  font-size: 14px;
+}
+
+.container {
+  display: block;
+  margin: auto;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  right: 0;
+  bottom: 0;
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>pagination</title>
+	<style>
+	.active {
+		background-color:green;
+	}
+	</style>
+</head>
+<body>
+	<h3 class="message">演示完毕后可点击！</h3>
+	<div class="pagination">
+	</div>
+
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script>
+	$(function() {
+		var total = 10, index = 1;
+
+		var $pagination = $('.pagination');
+		var btn = $('<button>');
+		var reg = /\b(first)|(prev)|(next)|(last)\b/;
+
+		function _add(text) {
+			return btn.clone().text(text).appendTo($pagination);
+		}
+
+		function _set(index, total) {
+			_add('首页').addClass('first');
+			_add('上一页').addClass('prev');
+
+			var i = 1, len = total;
+
+			if(total < 6) {
+				_step();
+			} else {
+				if(index < 4) {
+					len = 3;
+					_step();
+					_add('...');
+					_add(total);
+				} else if(total - index < 3) {
+					_add(1);
+					_add('...');
+					i = total - 2;
+					_step();
+				} else {
+					i = index - 1;
+					len = i + 2;
+					_step();
+					_add('...');
+					_add(total);
+				}
+			}
+
+			function _step() {
+				for(;i <= len && i <= total; i++) {
+					_add(i);
+				}
+			}
+
+			_add('下一页').addClass('next');
+			_add('尾页').addClass('last');
+
+			$pagination.find('button').each(function(i, v) {
+				if($(v).html() == index) {
+					$(v).addClass('active');
+				}
+			});
+
+		}
+		
+		// _set(1, 10);
+		// _init();
+
+		function _init() {
+			$pagination.on('click', 'button', function() {
+				var $this = $(this), className = $this.attr('class'), index = parseInt($this.html()), curr;
+				var tmp = reg.exec(className);
+
+				if((!tmp && !index) || $this.hasClass('active')) return;
+				
+				if(tmp) {
+					curr = parseInt($pagination.find('.active').html());
+					switch(tmp[0]) {
+						case 'first':
+							if(curr == 1) return;
+							index = 1;
+							break;
+						case 'prev': 
+							if(curr == 1) return;
+							index = curr - 1;
+							break;
+						case 'next':
+							if(curr == total) return;
+							index = curr + 1;
+							break;
+						case 'last':
+							if(curr == total) return;
+							index = total;
+							break;
+					}
+
+				}
+
+				$pagination.empty();
+				_set(index, total);
+			});
+		}
+
+		var _start = 1, _end = 1;
+
+		var timer;
+
+		timer = setInterval(function() {
+			if(_end == 10 && _start == _end) {
+				clearInterval(timer);
+				_init();
+				$('.message').text('请点击查看效果！');
+			}
+			if(_start > _end) {
+				_start = 1;
+				_end++;
+			}
+			$pagination.empty();
+			_set(_start++, _end);
+		},200);
+		 
+	});
+	</script>
+</body>
+</html>

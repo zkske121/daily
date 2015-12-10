@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="../react-0.13.0/build/react-with-addons.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../react-0.13.0/build/JSXTransformer.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/jsx">
+			var List = React.createClass({
+				getInitialState: function() {
+					return {
+						list:[
+							{
+								id: 1,
+								name: 'zenki'
+							},
+							{
+								id: 2,
+								name: 'zhang'
+							},
+							{
+								id: 3,
+								name: 'zk'
+							}
+						]
+					};
+				},
+				addItem: function() {
+					this.state.list.push({
+							id: this.state.list.length + 1,
+							name: 'xxx'
+					});
+					this.setState({
+						list: this.state.list
+					});	
+				},
+				render: function() {
+					return <ul>
+						{
+							this.state.list.map(function(v, i) {
+								return <Item name={v.name} index={v.id}></Item>
+							})
+						}
+						<button onClick={this.addItem}>addItem</button>
+					</ul>
+				}
+			});
+			
+			var Item = React.createClass({
+				getInitialState: function() {
+					return this.props;	
+				},
+				shouldComponentUpdate: function(nextProps, nextState) {
+					/*
+					 * 父节点属性变化会重新赋值，需要手动判断是否需要更新，提高性能
+					 * state改变需要重新render
+					 */
+					return this.state.name != nextState.name || this.props.index != nextProps.index;
+				},
+				upcaseHandle: function() {
+					this.setState({
+						name: this.state.name.toUpperCase()
+					});
+				},
+				render: function() {
+					return <li onClick={this.upcaseHandle}>{this.state.index}.{this.state.name}</li>
+				}
+			});
+			
+			React.render(<div><List></List><List></List></div>, document.body);
+			perf = React.addons.Perf;
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <meta charset="UTF-8">
+    <title>snow</title>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    
+    body {
+        background-color: red;
+        height:2000px;
+    }
+    /*雪花*/
+    
+    @keyframes mysnow {
+        0% {
+            bottom: 100%;
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+            bottom: 0;
+        }
+    }
+    
+    @-webkit-keyframes mysnow {
+        0% {
+            bottom: 100%;
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+            bottom: 0;
+        }
+    }
+
+    #snowzone {
+        position: absolute;
+        z-index: 2;
+    }
+    
+    .roll {
+        position: absolute;
+        opacity: 0;
+        animation: mysnow 5s;
+        -webkit-animation: mysnow 5s;
+        height: 50px;
+        z-index: 999;
+    }
+    
+    .snow {
+        position: fixed;
+        z-index: 999;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div id="snowzone">
+    </div>
+    <script>
+    /*雪花*/
+    (function() {
+        function getSnow(left, height, src) {
+            var snow = document.createElement("div");
+            var img = document.createElement("img");
+            snow.appendChild(img);
+            img.className = "roll";
+            img.src = src;
+            snow.style.left = left + "px";
+            snow.style.height = height + "px";
+            snow.className = "snow";
+            document.getElementById("snowzone").appendChild(snow);
+            setTimeout(function() {
+                document.getElementById("snowzone").removeChild(snow);
+            }, 5000);
+        }
+        setInterval(function() {
+            var left = Math.random() * window.innerWidth;
+            var height = Math.random() * window.innerHeight;
+            var src = "images/" + "s" + Math.floor(Math.random() * 2) + ".png";
+            getSnow(left, height, src);
+        }, 100);
+    })();
+    </script>
+</body>
+
+</html>

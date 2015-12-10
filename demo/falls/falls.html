@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.container {
+				position: absolute;
+				top: 0;
+				left: 100px;
+				right: 100px;
+				bottom: 0;
+			}
+			.list {
+				width: 32%;
+				float: left;
+				padding: 5px;
+			}
+			img {
+				width: 100%;
+				margin: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="list">
+			</div>
+			<div class="list">
+			</div>
+			<div class="list">
+			</div>
+		</div>
+		<script src="jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(function() {
+				var lists = $('.list'),
+					$d = $(document),
+					$w = $(window);
+				var dataUtils = (function() {
+					var imgPool = [];
+
+					function fetchImg(callback) {
+						//模拟ajax请求
+						setTimeout(function() {
+							while (imgPool.length < 10) {
+								imgPool.push(randomImg());
+							}
+							callback && callback();
+						}, 300);
+					}
+					return {
+						getImg: function(fn) {
+							if (imgPool.length) {
+								return imgPool.shift();
+							} else {
+								fetchImg(fn);
+							}
+						}
+					}
+				})();
+				loadImg(function() {
+					//内容不足
+					return $d.height() <= $w.height();
+				}, bindMouseWheelEvent);
+
+				function mouseLoad() {
+					if (!isBottom()) return;
+					$w.off('mousewheel', mouseLoad);
+					loadImg(isBottom, bindMouseWheelEvent);
+				}
+
+				function bindMouseWheelEvent() {
+					$w.on('mousewheel', mouseLoad);
+				}
+
+				function isBottom() {
+					//文档高度 － 可视区高度 ＝ 滚动条位置
+					return $d.scrollTop() >= $d.height() - $w.height();
+				}
+
+				function loadImg(check, callback) {
+					var img = dataUtils.getImg(arguments.callee.bind(null, check, callback));
+					if (!img) return;
+					$('<img>').attr('src', img).appendTo(getMinBox()).on('load', function() {
+						if (check && check()) {
+							loadImg(check, callback);
+						} else {
+							callback && callback();
+						}
+					});
+				}
+
+				function getMinBox() {
+					var min = lists.eq(0);
+					lists.each(function(i, v) {
+						var $v = $(v);
+						if ($v.height() < min.height()) min = $v;
+					});
+					return min;
+				}
+
+				function randomImg() {
+					return 'http://dummyimage.com/' + Math.ceil(Math.random() * 10) + '00x' + Math.ceil(Math.random() * 10) + '00/c60000/fff';
+				}
+			});
+		</script>
+	</body>
+
+</html>

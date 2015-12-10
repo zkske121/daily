@@ -1,0 +1,3275 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<link rel="shortcut icon" href="images/favicon.html" type="image/png">
+
+		<title>小微金融数据查询平台</title>
+
+		<link href="css/style.default.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/extend.css" />
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+	</head>
+
+	<body>
+		<!-- Preloader -->
+		<div id="preloader">
+			<div id="status"><i class="fa fa-spinner fa-spin"></i></div>
+		</div>
+
+		<section>
+
+			<div class="leftpanel">
+
+				<div class="logopanel">
+					<h1>
+						<span>[</span> 
+						ctrip 
+						<span>]</span>
+						<span class="header-title">小微金融数据查询平台</span>
+					</h1>
+				</div>
+				<!-- logopanel -->
+
+				<div class="leftpanelinner bounceInLeft">
+
+					<ul class="nav nav-pills nav-stacked nav-bracket">
+						<li class="active"><a href="javascript:;"><i class="fa fa-desktop"></i> <span>控制版面</span></a></li>
+						<li><a href="javascript:;"><i class="fa fa-money"></i> <span>礼品卡订单数据</span></a></li>
+						<li class="nav-parent"><a href="javascript:;"><i class="fa fa-male"></i> <span>礼品卡账户情况</span></a>
+							<ul class="children">
+								<li><a href="javascript:;">按卡类型查询</a></li>
+								<li><a href="javascript:;">按项目性质查询</a></li>
+								<li><a href="javascript:;">新老客户分布情况</a></li>
+								<li><a href="javascript:;">礼品卡管理费</a></li>
+							</ul>
+						</li>
+						<li class="nav-parent"><a href="javascript:;"><i class="fa fa-building-o"></i> <span>存款证明订单数据</span></a>
+							<ul class="children">
+								<li><a href="javascript:;">按订单类型查询</a></li>
+								<li><a href="javascript:;">按订单状态查询</a></li>
+							</ul>
+						</li>
+						<li class="nav-parent"><a href="javascript:;"><i class="fa fa-heart"></i> <span>送心意订单数据</span></a>
+							<ul class="children">
+								<li><a href="javascript:;">C2C送心意</a></li>
+								<li><a href="javascript:;">B2C送心意</a></li>
+							</ul>
+						</li>
+						<li><a href="javascript:;"><i class="fa fa-users"></i> <span>访问权限管理</span></a></li>
+					</ul>
+
+					<div class="infosummary">
+						<h5 class="sidebartitle">Information Summary</h5>
+						<ul>
+							<li>
+								<div class="datainfo">
+									<span class="text-muted">Daily Traffic</span>
+									<h4>630, 201</h4>
+								</div>
+								<div id="sidebar-chart" class="chart"></div>
+							</li>
+							<li>
+								<div class="datainfo">
+									<span class="text-muted">Average Users</span>
+									<h4>1, 332, 801</h4>
+								</div>
+								<div id="sidebar-chart2" class="chart"></div>
+							</li>
+							<li>
+								<div class="datainfo">
+									<span class="text-muted">Disk Usage</span>
+									<h4>82.2%</h4>
+								</div>
+								<div id="sidebar-chart3" class="chart"></div>
+							</li>
+							<li>
+								<div class="datainfo">
+									<span class="text-muted">CPU Usage</span>
+									<h4>140.05 - 32</h4>
+								</div>
+								<div id="sidebar-chart4" class="chart"></div>
+							</li>
+							<li>
+								<div class="datainfo">
+									<span class="text-muted">Memory Usage</span>
+									<h4>32.2%</h4>
+								</div>
+								<div id="sidebar-chart5" class="chart"></div>
+							</li>
+						</ul>
+					</div>
+					<!-- infosummary -->
+
+				</div>
+				<!-- leftpanelinner -->
+			</div>
+			<!-- leftpanel -->
+
+			<div class="mainpanel">
+
+				<div class="headerbar">
+					<div class="header-wrapper">
+						<a class="menutoggle"><i class="fa fa-bars"></i></a>
+						<div class="header-right">
+							<ul class="headermenu">
+								<li>
+									<a href="javascript:;" data-toggle="modal" data-target="#module-change"><i class="glyphicon glyphicon-share-alt"></i>快速切换</a>
+								</li>
+								<li>
+									<!-- 无权操作 -->
+									<a href="javascript:jQuery('.warning-content').toggleClass('hide');"><i class="glyphicon glyphicon-home"></i>返回首页</a>
+								</li>
+								<li>
+									<a href="javascript:;"><i class="glyphicon glyphicon-lock"></i>口令</a>
+								</li>
+								<li class="user-info">
+									<!-- 提示信息 -->
+									<a href="javascript:;"><i class="glyphicon glyphicon-user"></i>John Doe</a>
+								</li>
+							</ul>
+						</div>
+						<!-- header-right -->
+					</div>
+					<div class="modal fade" id="module-change">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+									<h4 class="modal-title">请输入模块代号：</h4>
+								</div>
+								<div class="modal-body">
+									<form class="form-horizontal">
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="form-group mt10 padding10">
+											<button type="button" class="btn btn-default col-sm-offset-7 col-sm-2 mr30">取消</button>
+											<button type="button" class="btn btn-primary col-sm-2">确定</button>
+										</div>
+									</form>
+
+								</div>
+							</div>
+							<!-- modal-content -->
+						</div>
+						<!-- modal-dialog -->
+					</div>
+				</div>
+				<!-- headerbar -->
+
+				<!-- 没有权限 -->
+				<div class="warning-content hide">
+					<div class="content">
+						<h3>对不起，您没有此平台的操作权限！</h3>
+					</div>
+			    </div>
+
+				<!--礼品卡订单数据-->
+				<div class="contentpanel">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="option-area">
+								<div class="row mb10">
+									<div class="col-sm-6 data-box">
+										<div class="btn-group">
+											<button type="button" class="btn btn-white ">最近7天</button>
+											<button type="button" class="btn btn-success ">最近30天</button>
+										</div>
+										<input class="form-control data-box date-ui" type="text" placeholder="请选择日期" />
+										<span class="separator">-</span>
+										<input class="form-control data-box date-ui" type="text" placeholder="请选择日期" />
+									</div>
+									<div class="col-sm-3 text-right col-sm-offset-3">
+										<button class="btn btn-warning btn-query">查询</button>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-3 text-right">
+										下单渠道：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">APP</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li><a href="#">Online</a></li>
+												<li class="active"><a href="#">APP</a></li>
+												<li><a href="#">H5</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-sm-3 text-right">
+										下单来源：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">自然</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li><a href="#">分销</a></li>
+												<li><a href="#">搜索</a></li>
+												<li class="active"><a href="#">自然</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-sm-3 text-right">
+										订单类型：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">携程宝－月月返</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li><a href="#">常规订单</a></li>
+												<li class="active"><a href="#">携程宝－月月返</a></li>
+												<li><a href="#">携程宝－90天</a></li>
+												<li><a href="#">携程宝－180天</a></li>
+												<li><a href="#">转赠订单</a></li>
+												<li><a href="#">讨盘缠</a></li>
+												<li><a href="#">礼品卡红包</a></li>
+												<li><a href="#">送心意</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-sm-3 text-right">
+										卡类型：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">任我行</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li class="active"><a href="#">任我行</a></li>
+												<li><a href="#">任我游</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-3 text-right">
+										发放类型：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">电子卡</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li><a href="#">实体卡</a></li>
+												<li class="active"><a href="#">电子卡</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-sm-3 text-right">
+										是否内购：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">是</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li class="active"><a href="#">是</a></li>
+												<li><a href="#">否</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-sm-3 text-right">
+										订单状态：
+										<div class="btn-group text-left ">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">已成交</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li><a href="#">未支付</a></li>
+												<li><a href="#">已支付</a></li>
+												<li><a href="#">支付中</a></li>
+												<li><a href="#">处理中</a></li>
+												<li class="active"><a href="#">已成交</a></li>
+												<li><a href="#">已配送待激活</a></li>
+												<li><a href="#">已取消</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-sm-3 text-right">
+										支付类型：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">微信支付</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li class="active"><a href="#">微信支付</a></li>
+												<li><a href="#">支付宝</a></li>
+												<li><a href="#">信用卡</a></li>
+												<li><a href="#">网银支付</a></li>
+												<li><a href="#">转账汇款</a></li>
+												<li><a href="#">礼品卡</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-3 text-right">
+										卡面值：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">5000</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li><a href="#">500</a></li>
+												<li><a href="#">1000</a></li>
+												<li><a href="#">2000</a></li>
+												<li class="active"><a href="#">5000</a></li>
+												<li><a href="#">其他</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-sm-4 dashboard-title-info">
+									<div class="btn-group">
+										<button type="button" class="btn btn-success ">曲线图</button>
+										<button type="button" class="btn btn-white ">饼图</button>
+									</div>
+									<input type="checkbox" id="chain" />
+									<label for="chain">显示环比数据</label>
+								</div>
+								<div class="col-sm-2 col-sm-offset-4 text-right"><span class="color-line-1 mr5">-o-</span>订单量（笔）</div>
+								<div class="col-sm-2 text-right"><span class="color-line-2 mr5">-o-</span>订单金额（万元）</div>
+							</div>
+							<div class="row">
+								<div id="area-chart" style="height: 300px; position: relative;">
+									<svg height="300" version="1.1" width="616" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative;">
+										<desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.0</desc>
+										<defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs>
+										<text x="32.4375" y="263" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan>
+										</text>
+										<path fill="none" stroke="#aaaaaa" d="M44.9375,263H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<text x="32.4375" y="203.5" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">50</tspan>
+										</text>
+										<path fill="none" stroke="#aaaaaa" d="M44.9375,203.5H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<text x="32.4375" y="144" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">100</tspan>
+										</text>
+										<path fill="none" stroke="#aaaaaa" d="M44.9375,144H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<text x="32.4375" y="84.5" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">150</tspan>
+										</text>
+										<path fill="none" stroke="#aaaaaa" d="M44.9375,84.5H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<text x="32.4375" y="25" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">200</tspan>
+										</text>
+										<path fill="none" stroke="#aaaaaa" d="M44.9375,25H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<text x="591" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2012</tspan>
+										</text>
+										<text x="500.03112163395707" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2011</tspan>
+										</text>
+										<text x="409.0622432679142" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2010</tspan>
+										</text>
+										<text x="318.09336490187127" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2009</tspan>
+										</text>
+										<text x="226.8752567320858" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2008</tspan>
+										</text>
+										<text x="135.9063783660429" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2007</tspan>
+										</text>
+										<text x="44.9375" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2006</tspan>
+										</text>
+										<path fill="#eacca3" stroke="#000000" d="M44.9375,203.5L135.9063783660429,96.4L226.8752567320858,155.9L318.09336490187127,96.4L409.0622432679142,155.9L500.03112163395707,96.4L591,36.900000000000006L591,263L44.9375,263Z" fill-opacity="0.8" stroke-width="0"
+										style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 0.8;"></path>
+										<path fill="none" stroke="#f0ad4e" d="M44.9375,203.5L135.9063783660429,96.4L226.8752567320858,155.9L318.09336490187127,96.4L409.0622432679142,155.9L500.03112163395707,96.4L591,36.900000000000006" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<circle cx="44.9375" cy="203.5" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="135.9063783660429" cy="96.4" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="226.8752567320858" cy="155.9" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="318.09336490187127" cy="96.4" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="409.0622432679142" cy="155.9" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="500.03112163395707" cy="96.4" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="591" cy="36.900000000000006" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<path fill="#39c3b0" stroke="#000000" d="M44.9375,227.3L135.9063783660429,173.75L226.8752567320858,203.5L318.09336490187127,173.75L409.0622432679142,203.5L500.03112163395707,173.75L591,144L591,263L44.9375,263Z" fill-opacity="0.8" stroke-width="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 0.8;"></path>
+										<path fill="none" stroke="#1caf9a" d="M44.9375,227.3L135.9063783660429,173.75L226.8752567320858,203.5L318.09336490187127,173.75L409.0622432679142,203.5L500.03112163395707,173.75L591,144" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<circle cx="44.9375" cy="227.3" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="135.9063783660429" cy="173.75" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="226.8752567320858" cy="203.5" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="318.09336490187127" cy="173.75" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="409.0622432679142" cy="203.5" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="500.03112163395707" cy="173.75" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="591" cy="144" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									</svg>
+									<div class="morris-hover morris-default-style" style="left: 188.875px; top: 108px; display: none;">
+										<div class="morris-hover-row-label">2008</div>
+										<div class="morris-hover-point" style="color: #1CAF9A">
+											Series A: 50
+										</div>
+										<div class="morris-hover-point" style="color: #F0AD4E">
+											Series B: 40
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<!--订单状态-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<span class="mr30">订单总量：88888</span>
+							<span>订单总额：88888</span>
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th rowspan="2">日期</th>
+										<th colspan="2">已成交</th>
+										<th colspan="2">已支付</th>
+										<th colspan="2">处理中</th>
+										<th colspan="2">已配送待激活</th>
+										<th colspan="2">支付中</th>
+										<th colspan="2">未支付</th>
+										<th colspan="2">已取消</th>
+										<th colspan="2">总计</th>
+									</tr>
+									<tr>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!--订单类型-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<span class="mr30">订单总量：88888</span>
+							<span>订单总额：88888</span>
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th rowspan="2">日期</th>
+										<th colspan="2">常规订单</th>
+										<th colspan="2">账户充值</th>
+										<th colspan="2">携程宝</th>
+										<th colspan="2">转赠订单</th>
+										<th colspan="2">讨盘缠</th>
+										<th colspan="2">礼品卡红包</th>
+										<th colspan="2">送心意</th>
+										<th colspan="2">总计</th>
+									</tr>
+									<tr>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!--携程宝订单-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<span class="mr30">订单总量：88888</span>
+							<span>订单总额：88888</span>
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th rowspan="2">日期</th>
+										<th colspan="2">携程宝－月月返</th>
+										<th colspan="2">携程宝－90天</th>
+										<th colspan="2">携程宝－180天</th>
+										<th colspan="2">携程宝返利</th>
+										<th colspan="2">总计</th>
+									</tr>
+									<tr>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!--支付类型-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<span class="mr30">订单总量：88888</span>
+							<span>订单总额：88888</span>
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th rowspan="2">日期</th>
+										<th colspan="2">微信支付</th>
+										<th colspan="2">支付宝</th>
+										<th colspan="2">信用卡</th>
+										<th colspan="2">网银支付</th>
+										<th colspan="2">转账汇款</th>
+										<th colspan="2">礼品卡</th>
+										<th colspan="2">总计</th>
+									</tr>
+									<tr>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!--卡类型-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<span class="mr30">订单总量：88888</span>
+							<span>订单总额：88888</span>
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th rowspan="2">日期</th>
+										<th colspan="2">任我行</th>
+										<th colspan="2">任我游</th>
+										<th colspan="2">总计</th>
+									</tr>
+									<tr>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!--卡面额-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<span class="mr30">订单总量：88888</span>
+							<span>订单总额：88888</span>
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th rowspan="2">日期</th>
+										<th colspan="2">5000面额</th>
+										<th colspan="2">2000面额</th>
+										<th colspan="2">1000面额</th>
+										<th colspan="2">500面额</th>
+										<th colspan="2">自定义面额</th>
+										<th colspan="2">总计</th>
+									</tr>
+									<tr>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!--下单来源-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<span class="mr30">订单总量：88888</span>
+							<span>订单总额：88888</span>
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th rowspan="2">日期</th>
+										<th colspan="2">自然</th>
+										<th colspan="2">搜索</th>
+										<th colspan="2">分销</th>
+										<th colspan="2">总计</th>
+									</tr>
+									<tr>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!--下单渠道-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<span class="mr30">订单总量：88888</span>
+							<span>订单总额：88888</span>
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th rowspan="2">日期</th>
+										<th colspan="2">APP</th>
+										<th colspan="2">H5</th>
+										<th colspan="2">Online</th>
+										<th colspan="2">总计</th>
+									</tr>
+									<tr>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!--设备类型-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<span class="mr30">订单总量：88888</span>
+							<span>订单总额：88888</span>
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th rowspan="2">日期</th>
+										<th colspan="2">IPhone</th>
+										<th colspan="2">Android</th>
+										<th colspan="2">其他</th>
+										<th colspan="2">总计</th>
+									</tr>
+									<tr>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>30</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!--新老客户分布情况-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<span class="mr30">订单总量：88888</span>
+							<span>订单总额：88888</span>
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th>日期</th>
+										<th>单人最高订单量</th>
+										<th>单笔最高金额</th>
+										<th>客单价</th>
+										<th>单笔多面额占比</th>
+										<th>新客户占比</th>
+										<th>老客户占比</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>16</td>
+										<td>10%</td>
+										<td>10%</td>
+										<td>10%</td>
+									</tr>
+									<tr>
+										<td>2015-10-29</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>15%</td>
+										<td>15%</td>
+										<td>15%</td>
+									</tr>
+									<tr>
+										<td>2015-10-28</td>
+										<td>7777</td>
+										<td>7777</td>
+										<td>7777</td>
+										<td>18%</td>
+										<td>18%</td>
+										<td>18%</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<!--礼品卡账户情况-->
+				<div class="contentpanel">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="option-area">
+								<div class="row mb10">
+									<div class="col-sm-6 data-box">
+										<div class="btn-group">
+											<button type="button" class="btn btn-white ">最近7天</button>
+											<button type="button" class="btn btn-success ">最近30天</button>
+										</div>
+										<input class="form-control data-box date-ui" type="text" placeholder="请选择日期" />
+										<span class="separator">-</span>
+										<input class="form-control data-box date-ui" type="text" placeholder="请选择日期" />
+									</div>
+									<div class="col-sm-3 text-right col-sm-offset-3">
+										<button class="btn btn-warning btn-query">查询</button>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-3 text-right">
+										渠道：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">APP</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li><a href="#">Online</a></li>
+												<li class="active"><a href="#">APP</a></li>
+												<li><a href="#">H5</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-sm-3 text-right">
+										项目性质：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">收入类</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li class="active"><a href="#">收入类</a></li>
+												<li><a href="#">费用类</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-sm-3 text-right">
+										交易类型：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">礼品卡领用</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li class="active"><a href="#">礼品卡领用</a></li>
+												<li><a href="#">礼品卡赠送</a></li>
+												<li><a href="#">订单支出</a></li>
+												<li><a href="#">冻结</a></li>
+												<li><a href="#">作废</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-sm-3 text-right">
+										卡类型：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">任我行</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li class="active"><a href="#">任我行</a></li>
+												<li><a href="#">任我游</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div id="area-chart" style="height: 300px; position: relative;">
+								<svg height="300" version="1.1" width="616" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative;">
+									<desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.0</desc>
+									<defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs>
+									<text x="32.4375" y="263" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan>
+									</text>
+									<path fill="none" stroke="#aaaaaa" d="M44.9375,263H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+									<text x="32.4375" y="203.5" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">50</tspan>
+									</text>
+									<path fill="none" stroke="#aaaaaa" d="M44.9375,203.5H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+									<text x="32.4375" y="144" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">100</tspan>
+									</text>
+									<path fill="none" stroke="#aaaaaa" d="M44.9375,144H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+									<text x="32.4375" y="84.5" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">150</tspan>
+									</text>
+									<path fill="none" stroke="#aaaaaa" d="M44.9375,84.5H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+									<text x="32.4375" y="25" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">200</tspan>
+									</text>
+									<path fill="none" stroke="#aaaaaa" d="M44.9375,25H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+									<text x="591" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2012</tspan>
+									</text>
+									<text x="500.03112163395707" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2011</tspan>
+									</text>
+									<text x="409.0622432679142" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2010</tspan>
+									</text>
+									<text x="318.09336490187127" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2009</tspan>
+									</text>
+									<text x="226.8752567320858" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2008</tspan>
+									</text>
+									<text x="135.9063783660429" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2007</tspan>
+									</text>
+									<text x="44.9375" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2006</tspan>
+									</text>
+									<path fill="#eacca3" stroke="#000000" d="M44.9375,203.5L135.9063783660429,96.4L226.8752567320858,155.9L318.09336490187127,96.4L409.0622432679142,155.9L500.03112163395707,96.4L591,36.900000000000006L591,263L44.9375,263Z" fill-opacity="0.8" stroke-width="0"
+									style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 0.8;"></path>
+									<path fill="none" stroke="#f0ad4e" d="M44.9375,203.5L135.9063783660429,96.4L226.8752567320858,155.9L318.09336490187127,96.4L409.0622432679142,155.9L500.03112163395707,96.4L591,36.900000000000006" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+									<circle cx="44.9375" cy="203.5" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="135.9063783660429" cy="96.4" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="226.8752567320858" cy="155.9" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="318.09336490187127" cy="96.4" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="409.0622432679142" cy="155.9" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="500.03112163395707" cy="96.4" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="591" cy="36.900000000000006" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<path fill="#39c3b0" stroke="#000000" d="M44.9375,227.3L135.9063783660429,173.75L226.8752567320858,203.5L318.09336490187127,173.75L409.0622432679142,203.5L500.03112163395707,173.75L591,144L591,263L44.9375,263Z" fill-opacity="0.8" stroke-width="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 0.8;"></path>
+									<path fill="none" stroke="#1caf9a" d="M44.9375,227.3L135.9063783660429,173.75L226.8752567320858,203.5L318.09336490187127,173.75L409.0622432679142,203.5L500.03112163395707,173.75L591,144" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+									<circle cx="44.9375" cy="227.3" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="135.9063783660429" cy="173.75" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="226.8752567320858" cy="203.5" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="318.09336490187127" cy="173.75" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="409.0622432679142" cy="203.5" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="500.03112163395707" cy="173.75" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="591" cy="144" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+								</svg>
+								<div class="morris-hover morris-default-style" style="left: 188.875px; top: 108px; display: none;">
+									<div class="morris-hover-row-label">2008</div>
+									<div class="morris-hover-point" style="color: #1CAF9A">
+										Series A: 50
+									</div>
+									<div class="morris-hover-point" style="color: #F0AD4E">
+										Series B: 40
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--default-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th rowspan="2">日期</th>
+										<th colspan="2">领用</th>
+										<th colspan="2">直充</th>
+										<th colspan="2">支出</th>
+										<th colspan="2">冻结</th>
+										<th colspan="2">作废</th>
+										<th colspan="2">账户可用余额</th>
+									</tr>
+									<tr>
+										<th>数量</th>
+										<th>金额</th>
+										<th>数量</th>
+										<th>金额</th>
+										<th>数量</th>
+										<th>金额</th>
+										<th>数量</th>
+										<th>金额</th>
+										<th>数量</th>
+										<th>金额</th>
+										<th>数量</th>
+										<th>金额</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>2</td>
+										<td>8888</td>
+										<td>18961</td>
+										<td>8888</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!--卡类型-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th>日期</th>
+										<th>领用数量</th>
+										<th>任我行领用比例</th>
+										<th>任我游领用比例</th>
+										<th>消费数量</th>
+										<th>任我行消耗占比</th>
+										<th>任我游消耗占比</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>50%</td>
+										<td>50%</td>
+										<td>8888</td>
+										<td>40%</td>
+										<td>60%</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>50%</td>
+										<td>50%</td>
+										<td>8888</td>
+										<td>40%</td>
+										<td>60%</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>50%</td>
+										<td>50%</td>
+										<td>8888</td>
+										<td>40%</td>
+										<td>60%</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!--项目性质-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th>日期</th>
+										<th>领用数量</th>
+										<th>收入类领用占比</th>
+										<th>费用类领用占比</th>
+										<th>消费数量</th>
+										<th>收入类消耗占比</th>
+										<th>费用类消耗占比</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>50%</td>
+										<td>50%</td>
+										<td>8888</td>
+										<td>40%</td>
+										<td>60%</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>50%</td>
+										<td>50%</td>
+										<td>8888</td>
+										<td>40%</td>
+										<td>60%</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>50%</td>
+										<td>50%</td>
+										<td>8888</td>
+										<td>40%</td>
+										<td>60%</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!--新老客户分布情况-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th rowspan="2">日期</th>
+										<th colspan="3">礼品卡领用情况</th>
+										<th colspan="3">礼品卡消费情况</th>
+									</tr>
+									<tr>
+										<th>用户量</th>
+										<th>老用户占比</th>
+										<th>新客户占比</th>
+										<th>用户量</th>
+										<th>老用户占比</th>
+										<th>新客户占比</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>10</td>
+										<td>50%</td>
+										<td>50%</td>
+										<td>8888</td>
+										<td>60%</td>
+										<td>40%</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>10</td>
+										<td>50%</td>
+										<td>50%</td>
+										<td>8888</td>
+										<td>60%</td>
+										<td>40%</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>10</td>
+										<td>50%</td>
+										<td>50%</td>
+										<td>8888</td>
+										<td>60%</td>
+										<td>40%</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<!--礼品卡管理费-->
+				<div class="contentpanel">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="option-area">
+								<div class="row mb10">
+									<div class="col-sm-6 data-box">
+										<div class="btn-group">
+											<button type="button" class="btn btn-white ">最近6个月</button>
+											<button type="button" class="btn btn-success ">最近1年</button>
+										</div>
+										<input class="form-control date-ui" type="text" placeholder="请选择日期" />
+										<span class="separator">-</span>
+										<input class="form-control date-ui" type="text" placeholder="请选择日期" />
+									</div>
+									<div class="col-sm-3 text-right col-sm-offset-3">
+										<button class="btn btn-warning btn-query">查询</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div id="area-chart" style="height: 300px; position: relative;">
+								<svg height="300" version="1.1" width="616" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative;">
+									<desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.0</desc>
+									<defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs>
+									<text x="32.4375" y="263" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan>
+									</text>
+									<path fill="none" stroke="#aaaaaa" d="M44.9375,263H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+									<text x="32.4375" y="203.5" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">50</tspan>
+									</text>
+									<path fill="none" stroke="#aaaaaa" d="M44.9375,203.5H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+									<text x="32.4375" y="144" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">100</tspan>
+									</text>
+									<path fill="none" stroke="#aaaaaa" d="M44.9375,144H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+									<text x="32.4375" y="84.5" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">150</tspan>
+									</text>
+									<path fill="none" stroke="#aaaaaa" d="M44.9375,84.5H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+									<text x="32.4375" y="25" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">200</tspan>
+									</text>
+									<path fill="none" stroke="#aaaaaa" d="M44.9375,25H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+									<text x="591" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2012</tspan>
+									</text>
+									<text x="500.03112163395707" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2011</tspan>
+									</text>
+									<text x="409.0622432679142" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2010</tspan>
+									</text>
+									<text x="318.09336490187127" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2009</tspan>
+									</text>
+									<text x="226.8752567320858" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2008</tspan>
+									</text>
+									<text x="135.9063783660429" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2007</tspan>
+									</text>
+									<text x="44.9375" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+									font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+										<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2006</tspan>
+									</text>
+									<path fill="#eacca3" stroke="#000000" d="M44.9375,203.5L135.9063783660429,96.4L226.8752567320858,155.9L318.09336490187127,96.4L409.0622432679142,155.9L500.03112163395707,96.4L591,36.900000000000006L591,263L44.9375,263Z" fill-opacity="0.8" stroke-width="0"
+									style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 0.8;"></path>
+									<path fill="none" stroke="#f0ad4e" d="M44.9375,203.5L135.9063783660429,96.4L226.8752567320858,155.9L318.09336490187127,96.4L409.0622432679142,155.9L500.03112163395707,96.4L591,36.900000000000006" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+									<circle cx="44.9375" cy="203.5" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="135.9063783660429" cy="96.4" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="226.8752567320858" cy="155.9" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="318.09336490187127" cy="96.4" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="409.0622432679142" cy="155.9" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="500.03112163395707" cy="96.4" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="591" cy="36.900000000000006" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<path fill="#39c3b0" stroke="#000000" d="M44.9375,227.3L135.9063783660429,173.75L226.8752567320858,203.5L318.09336490187127,173.75L409.0622432679142,203.5L500.03112163395707,173.75L591,144L591,263L44.9375,263Z" fill-opacity="0.8" stroke-width="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 0.8;"></path>
+									<path fill="none" stroke="#1caf9a" d="M44.9375,227.3L135.9063783660429,173.75L226.8752567320858,203.5L318.09336490187127,173.75L409.0622432679142,203.5L500.03112163395707,173.75L591,144" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+									<circle cx="44.9375" cy="227.3" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="135.9063783660429" cy="173.75" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="226.8752567320858" cy="203.5" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="318.09336490187127" cy="173.75" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="409.0622432679142" cy="203.5" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="500.03112163395707" cy="173.75" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									<circle cx="591" cy="144" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+								</svg>
+								<div class="morris-hover morris-default-style" style="left: 188.875px; top: 108px; display: none;">
+									<div class="morris-hover-row-label">2008</div>
+									<div class="morris-hover-point" style="color: #1CAF9A">
+										Series A: 50
+									</div>
+									<div class="morris-hover-point" style="color: #F0AD4E">
+										Series B: 40
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<span class="mr30">过期纪录：88888</span>
+							<span>管理费：88888</span>
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th>日期</th>
+										<th>过期纪录</th>
+										<th>管理费</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2015-09</td>
+										<td>9999</td>
+										<td>9999</td>
+									</tr>
+									<tr>
+										<td>2015-08</td>
+										<td>8888</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-07</td>
+										<td>7777</td>
+										<td>7777</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<!--存款证明-->
+				<div class="contentpanel">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="option-area">
+								<div class="row mb10">
+									<div class="col-sm-6 data-box">
+										<div class="btn-group">
+											<button type="button" class="btn btn-white ">最近7天</button>
+											<button type="button" class="btn btn-success ">最近30天</button>
+										</div>
+										<input class="form-control data-box date-ui" type="text" placeholder="请选择日期" />
+										<span class="separator">-</span>
+										<input class="form-control data-box date-ui" type="text" placeholder="请选择日期" />
+									</div>
+									<div class="col-sm-3 text-right col-sm-offset-3">
+										<button class="btn btn-warning btn-query">查询</button>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-3 text-right">
+										订单类型：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">存款证明</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li class="active"><a href="#">存款证明</a></li>
+												<li><a href="#">保证金</a></li>
+												<li><a href="#">一金双用</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-sm-3 text-right">
+										有效期限：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">90天</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li><a href="#">90天内</a></li>
+												<li class="active"><a href="#">90天</a></li>
+												<li><a href="#">180天</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-sm-3 text-right">
+										出资方式：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">携程出资</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li><a href="#">用户出资</a></li>
+												<li class="active"><a href="#">携程出资</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-sm-3 text-right">
+										订单状态：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">审核通过</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li><a href="#">未支付</a></li>
+												<li><a href="#">已支付</a></li>
+												<li><a href="#">支付中</a></li>
+												<li><a href="#">审核中</a></li>
+												<li class="active"><a href="#">审核通过</a></li>
+												<li><a href="#">审核失败</a></li>
+												<li><a href="#">已成交</a></li>
+												<li><a href="#">已取消</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-3 text-right">
+										支付类型：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">微信支付</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li class="active"><a href="#">微信支付</a></li>
+												<li><a href="#">支付宝</a></li>
+												<li><a href="#">信用卡</a></li>
+												<li><a href="#">网银支付</a></li>
+												<li><a href="#">转账汇款</a></li>
+												<li><a href="#">礼品卡</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-sm-4 dashboard-title-info">
+									<div class="btn-group">
+										<button type="button" class="btn btn-success ">曲线图</button>
+										<button type="button" class="btn btn-white ">饼图</button>
+									</div>
+									<input type="checkbox" id="chain" />
+									<label for="chain">显示环比数据</label>
+								</div>
+								<div class="col-sm-2 col-sm-offset-4 text-right"><span class="color-line-1 mr5">-o-</span>订单量（笔）</div>
+								<div class="col-sm-2 text-right"><span class="color-line-2 mr5">-o-</span>订单金额（万元）</div>
+							</div>
+							<div class="row">
+								<div id="area-chart" style="height: 300px; position: relative;">
+									<svg height="300" version="1.1" width="616" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative;">
+										<desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.0</desc>
+										<defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs>
+										<text x="32.4375" y="263" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan>
+										</text>
+										<path fill="none" stroke="#aaaaaa" d="M44.9375,263H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<text x="32.4375" y="203.5" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">50</tspan>
+										</text>
+										<path fill="none" stroke="#aaaaaa" d="M44.9375,203.5H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<text x="32.4375" y="144" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">100</tspan>
+										</text>
+										<path fill="none" stroke="#aaaaaa" d="M44.9375,144H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<text x="32.4375" y="84.5" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">150</tspan>
+										</text>
+										<path fill="none" stroke="#aaaaaa" d="M44.9375,84.5H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<text x="32.4375" y="25" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">200</tspan>
+										</text>
+										<path fill="none" stroke="#aaaaaa" d="M44.9375,25H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<text x="591" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2012</tspan>
+										</text>
+										<text x="500.03112163395707" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2011</tspan>
+										</text>
+										<text x="409.0622432679142" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2010</tspan>
+										</text>
+										<text x="318.09336490187127" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2009</tspan>
+										</text>
+										<text x="226.8752567320858" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2008</tspan>
+										</text>
+										<text x="135.9063783660429" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2007</tspan>
+										</text>
+										<text x="44.9375" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2006</tspan>
+										</text>
+										<path fill="#eacca3" stroke="#000000" d="M44.9375,203.5L135.9063783660429,96.4L226.8752567320858,155.9L318.09336490187127,96.4L409.0622432679142,155.9L500.03112163395707,96.4L591,36.900000000000006L591,263L44.9375,263Z" fill-opacity="0.8" stroke-width="0"
+										style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 0.8;"></path>
+										<path fill="none" stroke="#f0ad4e" d="M44.9375,203.5L135.9063783660429,96.4L226.8752567320858,155.9L318.09336490187127,96.4L409.0622432679142,155.9L500.03112163395707,96.4L591,36.900000000000006" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<circle cx="44.9375" cy="203.5" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="135.9063783660429" cy="96.4" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="226.8752567320858" cy="155.9" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="318.09336490187127" cy="96.4" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="409.0622432679142" cy="155.9" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="500.03112163395707" cy="96.4" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="591" cy="36.900000000000006" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<path fill="#39c3b0" stroke="#000000" d="M44.9375,227.3L135.9063783660429,173.75L226.8752567320858,203.5L318.09336490187127,173.75L409.0622432679142,203.5L500.03112163395707,173.75L591,144L591,263L44.9375,263Z" fill-opacity="0.8" stroke-width="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 0.8;"></path>
+										<path fill="none" stroke="#1caf9a" d="M44.9375,227.3L135.9063783660429,173.75L226.8752567320858,203.5L318.09336490187127,173.75L409.0622432679142,203.5L500.03112163395707,173.75L591,144" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<circle cx="44.9375" cy="227.3" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="135.9063783660429" cy="173.75" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="226.8752567320858" cy="203.5" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="318.09336490187127" cy="173.75" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="409.0622432679142" cy="203.5" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="500.03112163395707" cy="173.75" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="591" cy="144" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									</svg>
+									<div class="morris-hover morris-default-style" style="left: 188.875px; top: 108px; display: none;">
+										<div class="morris-hover-row-label">2008</div>
+										<div class="morris-hover-point" style="color: #1CAF9A">
+											Series A: 50
+										</div>
+										<div class="morris-hover-point" style="color: #F0AD4E">
+											Series B: 40
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--订单类型-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<span class="mr30">订单总量：88888</span>
+							<span>订单总额：88888</span>
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th rowspan="2">日期</th>
+										<th colspan="2">存款证明</th>
+										<th colspan="2">保证金</th>
+										<th colspan="2">一金双用</th>
+										<th colspan="2">总计</th>
+									</tr>
+									<tr>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--订单状态-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<span class="mr30">订单总量：88888</span>
+							<span>订单总额：88888</span>
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th rowspan="2">日期</th>
+										<th colspan="2">已成交</th>
+										<th colspan="2">已配送</th>
+										<th colspan="2">审核通过</th>
+										<th colspan="2">审核失败</th>
+										<th colspan="2">支付中</th>
+										<th colspan="2">未支付</th>
+										<th colspan="2">已取消</th>
+										<th colspan="2">总计</th>
+									</tr>
+									<tr>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+										<td>16</td>
+										<td>8888</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<!--送心意-->
+				<div class="contentpanel">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="option-area">
+								<div class="row mb10">
+									<div class="col-sm-6 data-box">
+										<div class="btn-group">
+											<button type="button" class="btn btn-white ">最近7天</button>
+											<button type="button" class="btn btn-success ">最近30天</button>
+										</div>
+										<input class="form-control data-box date-ui" type="text" placeholder="请选择日期" />
+										<span class="separator">-</span>
+										<input class="form-control data-box date-ui" type="text" placeholder="请选择日期" />
+									</div>
+									<div class="col-sm-3 text-right col-sm-offset-3">
+										<button class="btn btn-warning btn-query">查询</button>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-3 text-right">
+										心意类型：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">礼品卡心意</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li class="active"><a href="#">礼品卡心意</a></li>
+												<li><a href="#">实体心意</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-sm-3 text-right">
+										项目性质：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">收入类</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li class="active"><a href="#">收入类</a></li>
+												<li><a href="#">费用类</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-sm-3 text-right">
+										赠送方式：
+										<div class="btn-group text-left">
+											<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-info">固定金额</span>
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">全部</a></li>
+												<li class="active"><a href="#">固定金额</a></li>
+												<li><a href="#">随即金额</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-sm-4 dashboard-title-info">
+									<div class="btn-group">
+										<button type="button" class="btn btn-success ">曲线图</button>
+										<button type="button" class="btn btn-white ">饼图</button>
+									</div>
+									<input type="checkbox" id="chain" />
+									<label for="chain">显示环比数据</label>
+								</div>
+								<div class="col-sm-2 col-sm-offset-4 text-right"><span class="color-line-1 mr5">-o-</span>订单量（笔）</div>
+								<div class="col-sm-2 text-right"><span class="color-line-2 mr5">-o-</span>订单金额（万元）</div>
+							</div>
+							<div class="row">
+								<div id="area-chart" style="height: 300px; position: relative;">
+									<svg height="300" version="1.1" width="616" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative;">
+										<desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.0</desc>
+										<defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs>
+										<text x="32.4375" y="263" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan>
+										</text>
+										<path fill="none" stroke="#aaaaaa" d="M44.9375,263H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<text x="32.4375" y="203.5" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">50</tspan>
+										</text>
+										<path fill="none" stroke="#aaaaaa" d="M44.9375,203.5H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<text x="32.4375" y="144" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">100</tspan>
+										</text>
+										<path fill="none" stroke="#aaaaaa" d="M44.9375,144H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<text x="32.4375" y="84.5" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">150</tspan>
+										</text>
+										<path fill="none" stroke="#aaaaaa" d="M44.9375,84.5H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<text x="32.4375" y="25" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">200</tspan>
+										</text>
+										<path fill="none" stroke="#aaaaaa" d="M44.9375,25H591" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<text x="591" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2012</tspan>
+										</text>
+										<text x="500.03112163395707" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2011</tspan>
+										</text>
+										<text x="409.0622432679142" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2010</tspan>
+										</text>
+										<text x="318.09336490187127" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2009</tspan>
+										</text>
+										<text x="226.8752567320858" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2008</tspan>
+										</text>
+										<text x="135.9063783660429" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2007</tspan>
+										</text>
+										<text x="44.9375" y="275.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: sans-serif;"
+										font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6)">
+											<tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2006</tspan>
+										</text>
+										<path fill="#eacca3" stroke="#000000" d="M44.9375,203.5L135.9063783660429,96.4L226.8752567320858,155.9L318.09336490187127,96.4L409.0622432679142,155.9L500.03112163395707,96.4L591,36.900000000000006L591,263L44.9375,263Z" fill-opacity="0.8" stroke-width="0"
+										style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 0.8;"></path>
+										<path fill="none" stroke="#f0ad4e" d="M44.9375,203.5L135.9063783660429,96.4L226.8752567320858,155.9L318.09336490187127,96.4L409.0622432679142,155.9L500.03112163395707,96.4L591,36.900000000000006" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<circle cx="44.9375" cy="203.5" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="135.9063783660429" cy="96.4" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="226.8752567320858" cy="155.9" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="318.09336490187127" cy="96.4" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="409.0622432679142" cy="155.9" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="500.03112163395707" cy="96.4" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="591" cy="36.900000000000006" r="4" fill="#f0ad4e" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<path fill="#39c3b0" stroke="#000000" d="M44.9375,227.3L135.9063783660429,173.75L226.8752567320858,203.5L318.09336490187127,173.75L409.0622432679142,203.5L500.03112163395707,173.75L591,144L591,263L44.9375,263Z" fill-opacity="0.8" stroke-width="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 0.8;"></path>
+										<path fill="none" stroke="#1caf9a" d="M44.9375,227.3L135.9063783660429,173.75L226.8752567320858,203.5L318.09336490187127,173.75L409.0622432679142,203.5L500.03112163395707,173.75L591,144" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+										<circle cx="44.9375" cy="227.3" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="135.9063783660429" cy="173.75" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="226.8752567320858" cy="203.5" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="318.09336490187127" cy="173.75" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="409.0622432679142" cy="203.5" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="500.03112163395707" cy="173.75" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+										<circle cx="591" cy="144" r="4" fill="#1caf9a" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+									</svg>
+									<div class="morris-hover morris-default-style" style="left: 188.875px; top: 108px; display: none;">
+										<div class="morris-hover-row-label">2008</div>
+										<div class="morris-hover-point" style="color: #1CAF9A">
+											Series A: 50
+										</div>
+										<div class="morris-hover-point" style="color: #F0AD4E">
+											Series B: 40
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--C2C送心意-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<span class="mr30">订单总量：88888</span>
+							<span>订单总额：88888</span>
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th rowspan="2">日期</th>
+										<th colspan="2">礼品卡心意</th>
+										<th colspan="2">实体心意</th>
+										<th colspan="2">总计</th>
+									</tr>
+									<tr>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!--B2C送心意-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<span class="mr30">订单总量：88888</span>
+							<span>订单总额：88888</span>
+							<table class="table table-bordered mb30 mt10">
+								<thead>
+									<tr>
+										<th rowspan="2">日期</th>
+										<th colspan="2">礼品卡心意</th>
+										<th colspan="2">实体心意</th>
+										<th colspan="2">总计</th>
+									</tr>
+									<tr>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+										<th>订单量</th>
+										<th>订单金额</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+									</tr>
+									<tr>
+										<td>2015-10-30</td>
+										<td>9999</td>
+										<td>9999</td>
+										<td>8888</td>
+										<td>8888</td>
+										<td>10</td>
+										<td>8888</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="excel-download"><a href="javascript:;"><span class="glyphicon glyphicon-floppy-save mr5"></span>下载报表</a></div>
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!--权限-->
+				<div class="contentpanel">
+					<div class="panel">
+						<div class="panel-heading">
+							<form class="form-inline">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="姓名">
+								</div>
+								<div class="form-group">
+									<input type="email" class="form-control" placeholder="邮箱">
+								</div>
+								<button type="button" class="btn btn-success right">查询</button>
+								<button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#updateUser"><span class="glyphicon glyphicon-plus mr5"></span>新增分配</button>
+							</form>
+						</div>
+						<div class="panel-body">
+							<table class="table dataTable manager-table" id="table2">
+								<thead>
+									<tr role="row">
+										<th>姓名</th>
+										<th>邮箱</th>
+										<th>EID</th>
+										<th>权限</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>aaaa</td>
+										<td>hanf@ctrip.com</td>
+										<td>33457686</td>
+										<td>礼品卡订单数据，礼品卡账户情况，存款证明订单数据，送心意订单数据</td>
+										<td>
+											<a href="javascript:;" class="fa fa-wrench option-icon" data-toggle="modal" data-target="#updateUser"></a>
+											<a href="javascript:;" class="fa fa-minus-square option-icon" data-toggle="modal" data-target="#deleteUser"></a>
+										</td>
+									</tr>
+									<tr>
+										<td>aaaa</td>
+										<td>hanf@ctrip.com</td>
+										<td>33457686</td>
+										<td>礼品卡订单数据，礼品卡账户情况，存款证明订单数据，送心意订单数据</td>
+										<td>
+											<a href="javascript:;" class="fa fa-wrench option-icon" data-toggle="modal" data-target="#updateUser"></a>
+											<a href="javascript:;" class="fa fa-minus-square option-icon" data-toggle="modal" data-target="#deleteUser"></a>
+										</td>
+									</tr>
+									<tr>
+										<td>aaaa</td>
+										<td>hanf@ctrip.com</td>
+										<td>33457686</td>
+										<td>礼品卡订单数据，礼品卡账户情况，存款证明订单数据，送心意订单数据</td>
+										<td>
+											<a href="javascript:;" class="fa fa-wrench option-icon" data-toggle="modal" data-target="#updateUser"></a>
+											<a href="javascript:;" class="fa fa-minus-square option-icon" data-toggle="modal" data-target="#deleteUser"></a>
+										</td>
+									</tr>
+									<tr>
+										<td>aaaa</td>
+										<td>hanf@ctrip.com</td>
+										<td>33457686</td>
+										<td>礼品卡订单数据，礼品卡账户情况，存款证明订单数据，送心意订单数据</td>
+										<td>
+											<a href="javascript:;" class="fa fa-wrench option-icon" data-toggle="modal" data-target="#updateUser"></a>
+											<a href="javascript:;" class="fa fa-minus-square option-icon" data-toggle="modal" data-target="#deleteUser"></a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="row dataTables-footer">
+								<div class="paginate">
+									<button class="btn btn-white" disabled>首页</button>
+									<button class="btn btn-white" disabled>上一页</button>
+									<button class="btn btn-success">1</button>
+									<button class="btn btn-white">2</button>
+									<button class="btn btn-white">3</button>
+									<button class="btn btn-white">...</button>
+									<button class="btn btn-white">10</button>
+									<button class="btn btn-white">下一页</button>
+									<button class="btn btn-white">尾页</button>
+									<span class="vertical-line"></span>
+									<span>第</span>
+									<span>
+										<input type="text" class="form-control" maxlength="3"/>
+									</span>
+									<span>页</span>
+									<button class="btn btn-success">跳转</button>
+								</div>
+							</div>
+							<!--删除弹框-->
+							<div class="modal fade delete-user-modal" id="deleteUser">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+										</div>
+										<div class="modal-body">
+											<div class="row text-center mb30">
+												<h4>请确认是否删除？</h4>
+											</div>
+											<div class="row text-center mb30">
+												<button type="button" class="btn btn-primary col-sm-3 col-sm-offset-2" onclick="javascript:alert('do something');jQuery('#deleteUser').modal('hide');">确定</button>
+												<button type="button" class="btn btn-default col-sm-3 col-sm-offset-2" data-dismiss="modal" aria-hidden="true">取消</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--修改弹框-->
+							<div class="modal fade" id="updateUser">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+											<h4 class="modal-title">分配权限</h4>
+										</div>
+										<div class="modal-body">
+											<form class="form-horizontal" id="signupForm">
+												<div class="error"></div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">姓名</label>
+													<div class="col-sm-10">
+														<input type="text" name="name" class="form-control" placeholder="请输入对方的姓名" >
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">邮箱</label>
+													<div class="col-sm-10">
+														<input type="text" name="email" class="form-control" placeholder="请输入对方的公司邮箱" >
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">EID</label>
+													<div class="col-sm-10">
+														<input type="text" name="eid" class="form-control" placeholder="请输入对方的EID" disabled>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">权限分配:</label>
+													<div class="col-sm-10">
+														<div class="row mt5">
+															<div class="col-sm-6">
+																<input type="checkbox" id="lpkddsj" value="m" name="int[]">
+																<label for="lpkddsj">礼品卡订单数据</label>
+															</div>
+															<div class="col-sm-6">
+																<input type="checkbox" id="lpkzhqk" value="m" name="int[]">
+																<label for="lpkzhqk">礼品卡账户情况</label>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-sm-6">
+																<input type="checkbox" id="ckzmddsj" value="m" name="int[]">
+																<label for="ckzmddsj">存款证明订单数据</label>
+															</div>
+															<div class="col-sm-6">
+																<input type="checkbox" id="sxyddsj" value="m" name="int[]">
+																<label for="sxyddsj">送心意订单数据</label>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="form-group mt10 padding10">
+													<button type="submit" class="btn btn-primary col-sm-offset-3 col-sm-6">确定</button>
+												</div>
+
+											</form>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<!--提示信息-->
+				<div class="alert-message">
+					<!--<div class="alert alert-warning">
+		                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		                <span class="fa fa-exclamation-circle mr10"></span><span class="mr30">对不起，暂时没有找到符合条件的信息，请更改搜索条件后重试。</span> 
+	                </div>
+					<div class="alert alert-danger">
+		                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		                <span class="fa fa-exclamation-triangle mr10"></span><span class="mr30">结束日期必须大于开始日期，请重新选择查询条件</span>
+	                </div>-->
+					<div id="messageTpl" class="alert alert-danger hide">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<span class="fa fa-exclamation-circle mr10"></span><span class="mr30">对不起，暂时没有找到符合条件的信息，请更改搜索条件后重试。</span>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- mainpanel -->
+		</section>
+
+		<script src="js/jquery-1.10.2.min.js"></script>
+		<script src="js/jquery.validate.min.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/jquery.sparkline.min.js"></script>
+		<script src="js/toggles.min.js"></script>
+		<script src="js/custom.js"></script>
+		<!-- 日期控件 -->
+		<script type="text/javascript" src="js/lib/cQuery_110421.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/lib/calendar-6.0.js" charset="utf-8"></script>
+		<!-- 分页 -->
+		<script type="text/javascript" src="js/pagination.js"></script>
+		<script>
+			jQuery(function() {
+				//日期控件
+				$('.date-ui').each(function(v) {
+					$(v).regMod('calendar', '6.0')
+				});
+				//message
+				jQuery('.user-info').click(function() {
+					var tmp = jQuery('#messageTpl').clone().removeClass('hide');
+					jQuery('.alert-message').append(tmp);
+					setTimeout(function() {
+						tmp.remove();
+					}, 4000);
+				});
+				//表单验证
+				jQuery("#signupForm").validate({
+					errorLabelContainer:jQuery('#signupForm .error'),
+					rules: {
+						name: "required",
+						email: {
+							required: true,
+							email: true
+						},
+						eid: {
+							required: true,
+							minlength: 5
+						}
+					},
+					messages: {
+						name: "<i class='fa fa-exclamation-circle mr5'></i>请输入姓名",
+						email: {
+							required: "<i class='fa fa-exclamation-circle mr5'></i>请输入Email地址",
+							email: "<i class='fa fa-exclamation-circle mr5'></i>请输入正确的email地址"
+						},
+						eid: {
+							required: "<i class='fa fa-exclamation-circle mr5'></i>请输入eid",
+							minlength: jQuery.format("<i class='fa fa-exclamation-circle mr5'></i>eid不能小于{0}个字符")
+						}
+					},
+					highlight: function(element) {
+				      jQuery(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+				    },
+				    success: function(element) {
+			    		  jQuery(element).closest('form').find('[name="'+element.attr('for')+'"]').closest('.form-group').removeClass('has-error');
+//				      jQuery(element).closest('.form-group').removeClass('has-error');
+				    }
+				});
+
+				// 分页
+				jQuery('.paginate').each(function(i, v) {
+				    p_module.setPagination(v, 1, 10);
+				});
+
+			});
+		</script>
+	</body>
+</html>

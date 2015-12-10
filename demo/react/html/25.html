@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" id="in">
+	<select name="" id="st">
+		<option value="">1</option>
+		<option value="">2</option>
+		<option value="">3</option>
+		<option value="">4</option>
+		<option value="">5</option>
+	</select>
+	<script>
+	var st = document.querySelector('#st');
+	console.log(st);
+	st.onFocus = function() {
+		console.log('focus');
+	}
+	st.onblur = function() {
+		console.log('blur');
+	}
+	var oIn = document.querySelector('#in');
+	oIn.onfocus = function() {
+		console.log('oIn focus');
+	}
+	oIn.onFocus = function() {
+		console.log('in focus');
+	}
+	</script>
+</body>
+</html>

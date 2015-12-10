@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+	11
+<body>
+	<script>
+		function React() {
+			this.virtial = {};
+			this.dom = {};
+			this.container = null;
+		} 
+
+		React.create = function(config) {
+			return new React()._extends(config);
+		}
+
+		React.render = function(reactNode, parent) {
+			parent.innerHTML = '';
+			parent.appendChild(reactNode.mount());
+			reactNode.container = parent;
+		}
+
+		React.prototype = {
+			custructor: React,
+			_extends: function(config) {
+				for(key in config) {
+					this[key] = config[key];
+				}
+
+				return this;
+			},
+			check: function() {
+				this.mount(this.dom, this.virtail);
+			},
+			mount: function() {
+				// if(!this._diff(d, v) d = v;
+				var dom = this.render();
+				var tmpV, tmpD;
+				this.generateId(dom, '.0');
+				for(var key in this.virtial) {
+					tmpD = this.dom[key];
+					tmpV = this.virtial[key];
+
+					if(!tmpD) {
+						this.dom[key] = {};
+						this.dom[key] = tmpV;
+						this.mountToDom.apply(this.container, key.match(/\d/));
+					} else {
+
+					}
+				}
+				console.log(this.virtial);
+			},
+			_diff: function(d, v) {
+				if(d.nodeName != v.nodeName) return false;
+				for(key in d.Attributes) {
+					if(d.Attributes[key] != v.Attributes[key]) return false;
+				}
+				return true;
+			},
+			generateId: function(dom, id) {
+				this.addVirtailData(dom, id);
+				if(dom.children.length) {
+					Array.prototype.forEach.call(dom.children, function(v, i) {
+						this.generateId(v, id + '.' + i);
+					}.bind(this));
+				}
+			},
+			addVirtailData: function(dom, id) {
+				this.virtial[id] = {};
+				dom.setAttribute('data-id', id);
+				this.virtial[id].dom = dom;
+			},
+			mountToDom: function() {
+				var args = Array.prototype.concat([], arguments);
+				var tmp;
+				if(args.length == 1) {
+					tmp = this.children[args[0]];
+				}
+				this.container.children[id]
+			}
+		}
+
+		var t = React.create({
+			// 返回值为node节点
+			render: function() {
+				console.log('render');
+				var ret = document.createElement('div');
+				ret.innerHTML = ['<ul>',
+							'	<li>1</li>',
+							'	<li>2</li>',
+							'	<li>3</li>',
+							'	<li>4</li>',
+							'	<li>5</li>',
+							'</ul>'].join("");
+				return ret;
+			}
+		});
+
+		t.mount();
+	</script>
+</body>
+</html>
