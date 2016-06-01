@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	function generateCounter(init, step, check) {
+		return function(count) {
+			return function() {
+				count = step(count);
+				if(check(count)) count = init;
+				return count;
+			}
+		}
+	}
+
+	function addOne(count) {
+		return count + 1;
+	}
+
+	function checkWeeks(count) {
+		return count > 7;
+	}
+
+	function stepArr(arr, n) {
+		return function(count) {
+			var step = arr[n + 1] - arr[n];
+			return count + step;
+		}
+	}
+
+	function checkArr(obj) {
+		var len = typeof obj === 'number' ? obj : obj.length; 
+		return function(count) {
+			return count > len;
+		}
+	}
+
+	// var countWeek = generateCounter(1, addOne, checkWeeks)(5);
+	var selectCountWeek = generateCounter(1, addOne, checkArr(3))(5);
+
+	var i = 0;
+
+	
+
+	function stepArr(arr, n) {
+		var len = arr.length,
+			n = n || 0;
+
+		return function() {
+			var tmp = n;
+			n = n < len - 1 ? n + 1 : 0;
+			return arr[tmp];
+		}
+	}
+
+	var getName = stepArr([1,2,3,4,5,6]);
+
+	while(i++ < 10) {
+		// console.log(selectCountWeek());
+		console.log(getName());
+	}
+	</script>
+</body>
+</html>

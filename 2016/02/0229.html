@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body{
+		/*background: url(http://images2015.cnblogs.com/blog/35695/201602/35695-20160215151750532-1876432241.png) no-repeat;*/
+	}
+	</style>
+</head>
+<body>
+	<!-- <img src="http://images2015.cnblogs.com/blog/35695/201602/35695-20160215151750532-1876432241.png" alt=""> -->
+	<div id="container">
+		container
+		<div id="item">item</div>
+	</div>
+	<script>
+		var container = document.getElementById('container'),
+			item = document.getElementById('item');
+
+		container.addEventListener('click', function(e) {
+			if(e.currentTarget === e.target) {
+				console.log('container');
+			} else {
+				console.log('item');
+			}
+		}, false);
+/*
+		item.addEventListener('click', function(e) {
+			console.log('item');
+		}, true);*/
+	</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" id="search">
+	</br>
+	<p id="result"></p>
+	<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.js"></script>
+	<script>
+		$(function() {
+			var result = document.getElementById('result');
+			var i = 2000;
+			var ret;
+
+			$('#search').on('input', debounce(serchAction, 100));
+
+			function serchAction(e) {
+				ret = $.ajax({
+					url:'http://www.feiniu.com/search/autocomplete?term=' + e.target.value
+				});
+
+				ret.then(function(data) {
+					data = JSON.parse(data);
+					console.log(data[data.length -1].curr);
+					// result.innerHTML += '--' + data;
+				}); 
+			}
+
+			function debounce(fn, time) {
+				var timer; 
+				return function() {
+					var self = this,args = arguments;
+					clearTimeout(timer);
+					timer = setTimeout(function() {
+						fn.apply(self, args);
+					}, time || 500);
+				}
+			}
+		});
+
+		
+	</script>
+</body>
+</html>

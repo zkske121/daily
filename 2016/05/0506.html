@@ -1,0 +1,35 @@
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<div>23123123</div>
+		<script>
+			window.onload = function() {
+
+
+			    var elem = document.getElementsByTagName('div');
+
+			    console.log('red');
+			    elem[0].style.backgroundColor = 'red';
+
+
+			    for (var i=0; i< 1000; i++)  {
+			    	for(var j = 0; j < 1000; j++) {
+		    			 elem[0].style.backgroundColor = 'red';
+			    	}
+			       
+
+			    }
+			    debugger;
+			    setTimeout(function() {
+			    	elem[0].style.backgroundColor = 'blue';
+			    });
+
+
+			}
+		</script>
+	</body>
+	</html>

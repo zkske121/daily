@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	var url = 'https://www.baidu.com/s?wd=%E4%B8%AD%E6%96%87%E5%AD%97%E7%AC%A6&rsv_spt=1&rsv_iqid=0xfdcaba890016944e&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&oq=urlencode&inputT=3628&rsv_t=e07dJK%2FwG1Z7H71SHA6Hj3C7%2F%2BDG742tdhSQOsgj4wi9dW%2FI07jTgYQt1ww9PwjpCViR&rsv_pq=f90b428b001b75ed&rsv_sug3=28&rsv_sug1=26&bs=urlencode#ss';
+
+	var getQuery = function (url, key) {
+	    var n = new RegExp('(\\?|&)' + key + '=([^&]+)(&|$)', 'i'),
+	        r = url.match(n);
+	    return r ? r[2] : '';
+	};
+
+	var ret =  getQuery(decodeURIComponent(url), 'bs');
+
+	console.log(ret);
+	</script>
+</body>
+</html>

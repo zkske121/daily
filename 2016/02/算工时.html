@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var list = [
+		['10:50:00', '18:30:00'],
+		['9:26:00', '19:50:00'],
+		['10:27:00', '18:19:00'],
+		['09:47:00', '18:57:00'],
+		['10:18:00', '18:25:00'],
+		['09:29:00', '13:31:00'],
+		['10:19:00', '18:22:00'],
+		['10:16:00', '18:31:00'],
+		['09:56:00', '21:11:00'],
+		['10:15:00', '18:41:00'],
+		['10:11:00', '21:24:00'],
+		['10:18:00', '19:22:00'],
+		['10:42:00', '20:42:00'],
+		['10:02:00', '18:32:00'],
+		['10:04:00', '21:24:00'],
+		['10:19:00', '18:46:00'],
+		['09:48:00', '20:13:00'],
+		];
+
+		/*var list = [
+		['10:50:00', '18:30:00'],
+		['9:26:00', '18:20:00'],
+		['10:27:00', '17:19:00'],
+		['09:47:00', '17:30:00'],
+		['10:18:00', '17:25:00'],
+		['09:29:00', '12:31:00'],
+		['10:19:00', '17:22:00'],
+		['10:16:00', '17:30:00'],
+		['09:56:00', '19:41:00'],
+		['10:15:00', '17:11:00'],
+		['10:11:00', '19:54:00'],
+		['10:18:00', '17:52:00'],
+		['10:42:00', '19:12:00'],
+		['10:02:00', '17:02:00'],
+		['10:04:00', '19:54:00'],
+		['10:19:00', '17:16:00'],
+		['09:48:00', '18:43:00'],
+		];*/
+
+		var aMin = 1000 * 60;
+		var anHour = aMin * 60;
+
+		function createDate() {
+			var now = new Date();
+			var prev = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate() + ' ';
+			return function(start, end) {
+				var end  = new Date(prev + end);
+				var start = new Date(prev + start);
+
+				if(start.getHours() < 7) {
+					start.setHours(7);
+					start.setMinutes(0);
+				}
+
+				var endHour = end.getHours();
+
+				if(endHour >= 19) {
+					end = new Date(end -  anHour * 1.5);
+				} else if(endHour == 18 && end.getMinutes() >= 30){
+					end.setMinutes(30);
+					end = end - anHour;
+				} else if(endHour >= 13) {
+					end = new Date(end - anHour);
+				} else if(endHour == 12) {
+					end.setMinutes(0);
+				}
+
+				console.log((end - start) / aMin / 60);
+				return (end - start) / aMin; 
+			}
+		}
+
+		var subDate = createDate();
+
+		var ret = list.reduce(function(p, n) {
+			return p + subDate(n[0], n[1]);
+		}, 0);
+
+		console.log(18 * 8 - ret / 60);
+	</script>
+</body>
+</html>

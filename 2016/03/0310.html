@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+    function checkNumber(price) {
+        //不允许输入第二个小数点，或者其他非数字字符
+        if (price.match(/^\d{1,3}(\,\d{3}){0,}(.\d{0,2}){0,1}$/)) {
+            //OK 币种的标准格式
+            return true;
+        } else if (price.match(/^\d{1,}(\,\d{3,}){0,}(.\d{0,2}){0,1}$/)) {
+            return true;
+        }
+        return false;
+    }
+
+    function check(price) {
+    	var tpl = '---,---,---,---,---.--';
+    	var tmp = price.replace(/\d/g, '-');
+    	var reg = /(^0?[,.])|([,.]\d?$)|(\.\d{3,}$)/;
+
+    	return /[,\d.]/g.test(price) && !reg.test(price) && tpl.indexOf(tmp) > -1;
+    }
+
+    var data = [];
+
+    /*data.push(assert(checkNumber, ['12,12,3,2,1.0'], false));
+    data.push(assert(checkNumber, ['asdasdasd'], false));
+    data.push(assert(checkNumber, [',12,3,2,1.0'], false));
+    data.push(assert(checkNumber, ['12,3,2,1.2'], false));
+    data.push(assert(checkNumber, ['121,23.'], false));
+    data.push(assert(checkNumber, ['0,121,232.03'], false));
+    data.push(assert(checkNumber, ['121,232.3'], false));
+    data.push(assert(checkNumber, ['123.1122'], false));
+    data.push(assert(checkNumber, ['121,232.35'], true));
+    data.push(assert(checkNumber, ['1.11'], true));
+    data.push(assert(checkNumber, ['12.11'], true));
+    data.push(assert(checkNumber, ['123.11'], true));
+    data.push(assert(checkNumber, ['123'], true));*/
+
+   /* data.push(assert(check, ['12,12,3,2,1.0'], false));
+    data.push(assert(check, ['asdasdasd'], false));
+    data.push(assert(check, [',12,3,2,1.0'], false));
+    data.push(assert(check, ['12,3,2,1.2'], false));
+    data.push(assert(check, ['121,23.'], false));
+    data.push(assert(check, ['0,121,232.03'], false));
+    data.push(assert(check, ['121,232.3'], false));
+    data.push(assert(check, ['123.1122'], false));
+    data.push(assert(check, ['121,232.35'], true));
+    data.push(assert(check, ['1.11'], true));
+    data.push(assert(check, ['12.11'], true));
+    data.push(assert(check, ['123.11'], true));
+    data.push(assert(check, ['123'], true));
+*/
+    
+    var data = [];
+
+    function add(a, b) {
+        return a + b;
+    }
+
+    data.push(assert(add, [1,2], 3));
+    data.push(assert(add, [0,0], 1));
+
+    data.forEach(function(v, i) {
+        console.log(['第', i + 1, '条测试', v()?'':'没有' ,'通过!'].join(''));
+    });
+
+    function assert(fn, args, result) {
+        return function(){
+            try{
+                return fn.apply(null, args) === result;
+            }catch(e) {
+                return false;
+            }
+        }
+    }
+
+    //求正则
+    var arr = [
+        // '[def:11:爱你][def:57:来][def:44:阴险][def:57:来]',
+        // '[def:11:爱你[def:57:来][def:44:阴险][def:57:来]', //希望[def:11:爱你   不会改变
+        '[def:11:爱你]def:57:来][def:44:阴险][def:57:来]'  //希望def:57:来]   不会改变
+    ];
+
+
+    var html = arr.reduce(function(m, item){
+        return m + item.replace(/\[([^\[\]]+):([^\[\]]+):([^\[\]]+)\]/g, '<img src="$1/$2.gif" alt="$3">');
+    }, '');
+
+    console.log(html);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	function compose() {
+		var slice = Array.prototype.slice;
+		var args = slice.call(arguments);
+		var param = args.pop();
+
+		while(args.length) {
+			var tmp = args.pop();
+			param = tmp(param);
+		}
+
+		return param;
+	}
+
+	var ret = compose(function(v) {
+		console.log(v);
+		return v + 1;
+	}, 
+	function(v) {
+		console.log(v);
+		return v + 2;
+	}, 1 );
+	console.log(ret);
+	</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	span {
+		margin:5px;
+		border:1px solid #eee;
+		padding:5px;
+	}
+	</style>
+</head>
+<body>
+	<div id="container">
+		
+	</div>
+	<script>
+	var span = document.createElement('span');
+	var br = document.createElement('br');
+	var container = document.getElementById('container');
+
+	function changeState(dom, i, j) {
+		var currState = dom.style.display;
+		
+		if(currState) {
+			dom.style.display = currState === 'inline-block' ? 'none' : 'inline-block';
+			return;
+		}
+
+		dom.innerHTML = [i, ' * ', j, ' = ', i*j].join('');
+		dom.style.display = 'inline-block';
+		container.appendChild(dom);
+		if(i === j) container.appendChild(br.cloneNode());
+	}
+
+	function init() {
+		var list = [];
+		var i = 1, j = 1, tmp;
+		var k = 0;
+		var timer;
+		var initState = 1;
+
+		for(; i <= 9; i++) {
+			for(; j <= i; j++) {
+				tmp = span.cloneNode();
+				tmp.setAttribute('i', j);
+				tmp.setAttribute('j', i);
+				list.push(tmp);
+			}
+			j = 1;
+		}
+
+		timer = setInterval(function() {
+			var curr;
+			if(k < list.length && initState != 2) {
+				curr = list[k];
+				changeState(curr, curr.getAttribute('i'), curr.getAttribute('j'));
+				k++;
+			} 
+
+			if(k > 0 && k <= list.length && initState == 2) {
+				changeState(list[--k]);
+			}
+
+			if(k === list.length && initState == 1) {
+				initState =  2;
+			}
+
+			if(k === list.length && initState == 3) {
+				clearInterval(timer);
+			}
+
+			if(initState == 2 && k == 0) initState = 3;
+
+		}, 100);
+	}
+
+
+	init();
+	</script>
+</body>
+</html>

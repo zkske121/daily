@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选取日期</title>
+</head>
+<body>
+	筛选一年中,选中的星期数的日期:<br />
+	<select name="" id="start">
+		<option value="1">星期一</option>
+		<option value="2">星期二</option>
+		<option value="3">星期三</option>
+		<option value="4">星期四</option>
+		<option value="5">星期五</option>
+		<option value="6">星期六</option>
+		<option value="7">星期天</option>
+	</select>
+	至
+	<select name="" id="end">
+		<option value="1">星期一</option>
+		<option value="2">星期二</option>
+		<option value="3">星期三</option>
+		<option value="4">星期四</option>
+		<option value="5">星期五</option>
+		<option value="6">星期六</option>
+		<option value="7">星期天</option>
+	</select>
+	<button id="show">show</button>
+	<script>
+	function getById(id) {
+		return document.getElementById(id);
+	}
+
+	function createFilter(day) {
+		day = day == 7 ? 0 : day;
+		return function(date) {
+			return date.getDay() == day;
+		}
+	}
+
+	function getDates() {
+		var start = new Date(new Date().getFullYear() + '/01/01'),
+			year = start.getFullYear();
+
+		return function(filters) {
+			var result = [], 
+				flag,
+				tmp = new Date(start);
+
+			while(tmp.getFullYear() == year) {
+				
+				flag = filters.some(function(filter) {
+					return filter(tmp);
+				});
+
+				if(flag) result.push(new Date(tmp));
+
+				tmp.setDate(tmp.getDate() + 1);
+			}
+
+			return result;
+		}
+	}
+
+	var oStart = getById('start'),
+		oEnd = getById('end'),
+		oShow = getById('show'),
+		getDates = getDates(),
+		weeks = ['一', '二', '三', '四', '五', '六', '天'],
+		timeId = 0;
+
+	oShow.onclick = function() {
+		console.time(timeId);
+		var i = 0, result;
+		
+		//执行多次 查看运行时间
+		while(i++ < 10000) {
+			result = action();
+		}
+		// result = action();
+		console.timeEnd(timeId++);
+		
+		result = result.map(function(day) {
+			return [day.getMonth() + 1, '月', day.getDate(), '日', ' 星期' , weeks[(day.getDay() !== 0 ? day.getDay() : 7) - 1]].join('');
+		});
+		
+		console.log(result);
+	};
+
+	function action() {
+		var selectDays = [], 
+			startDay = parseInt(oStart.value),
+			endDay = parseInt(oEnd.value),
+			filters;
+
+		while(startDay <= endDay) {
+			selectDays.push(startDay);
+			startDay++;
+		}
+
+		filters = selectDays.map(function(day) {
+			return createFilter(day);
+		});
+
+		return getDates(filters);
+	}
+	</script>
+</body>
+</html>

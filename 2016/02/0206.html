@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	var duck = {
+		duckSinging: function() {
+			console.log('嘎嘎嘎');
+		}
+	};
+
+	var chicken = {
+		cduckSinging: function() {
+			console.log('嘎嘎嘎');
+		}
+	};
+
+	var choir = [];
+
+	var joinChoir = function(animal) {
+		if(animal && typeof animal.duckSinging === 'function') {
+			choir.push(animal);
+			console.log('恭喜加入合唱团');
+			console.log('合唱团已有成员数量:' + choir.length);
+		}
+	};
+
+	joinChoir(duck);
+	joinChoir(chicken);
+
+	var makeSound = function(animal) {
+		if(animal instanceof Duck) {
+			console.log('嘎嘎嘎');
+		} else if(animal instanceof Chicken) {
+			console.log('咯咯咯');
+		}
+	};
+
+	var Duck = function() {};
+	var Chicken = function() {};
+
+	makeSound(new Duck());
+	makeSound(new Chicken());
+
+	var makeSound = function(animal) {
+		animal.sound();
+	};
+
+	var Duck = function() {};
+
+	Duck.prototype.sound = function(){
+		console.log('嘎嘎嘎');
+	};
+
+	var Chicken = function(){};
+
+	Chicken.prototypedound = function() {
+		console.log('咯咯咯');
+	};
+
+	makeSound(new Duck());
+	makeSound(new Chicken());
+
+	var Dog = function() {};
+
+	Dog.prototype.sound = function() {
+		console.log('汪汪汪');))))))))))))))))))))K)))))))))IIIIIIOIII(((((I*****888899999((((()()())(()()()()(()())(()()()))))))))))
+	} 
+	</script>
+</body>
+</html>

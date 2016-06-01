@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script>
+	/*function getFns() {
+		var arr = new Array();
+		for(var i = 0; i < 10; i++) {
+			arr[i] = getFn(i);
+		}
+		return arr;
+	}
+
+	function getFn(i) {
+		return function() {
+			return i;
+		}
+	}
+*/
+	/*var data = getFns();
+	function getFns() {
+		var arr = new Array();
+		for(var i = 0; i < 10; i++) {
+			(function(i) {
+				arr[i] = function() {
+					return i;
+				};
+			})(i);
+		}
+		return arr;
+	}
+
+	var data = getFns();
+	console.log(data[5]());*/
+
+	/*var log = function(e) {
+		console.log(e);
+	}
+
+	log = function() {
+		console.log('prev');
+		log.apply(this, arguments);
+	}
+
+	document.onclick = log;*/
+
+	
+	$(document).on('click', function() {
+		console.log('document');
+	});
+
+	var events = $(document).data('events');
+
+	var fn = $(document).click;
+
+	$(document).click = function() {
+		console.log('prev');
+		fn.apply(null, arguments);
+	}
+
+	var str = '\ue410\u8bd5\ue410\u8bd5emoji\u8868\u60c5hello,heihei\ue410haha';
+	var ukey = new Date();
+
+	function code(str) {
+		return str.replace(/\ue410/g, ukey);
+	}
+
+	function decode(str) {
+		return str.replace(new RegExp(ukey, 'g'), '\\ue410');
+	}
+
+	</script>
+</body>
+</html>

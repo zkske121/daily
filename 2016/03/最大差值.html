@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	var data = [6,7,3,2,1,2,5,8,9];
+
+	function sub(arr) {
+		var tmp = arr.sort();
+		console.log(tmp);
+		return tmp[tmp.length -1] - tmp[0];
+	}
+
+	function sub2(arr) {
+		var min, max;
+
+		min = max = arr[0];
+
+		for(var i = 1,v; v = arr[i++];) {
+			if(v > max) {
+				max = v;
+			} else if(v < min) {
+				min = v;
+			}
+		}
+
+		return max - min;
+	}
+
+	var ret = sub(data);
+	var ret = sub2(data);
+
+	console.log(ret);
+	</script>
+</body>
+</html>

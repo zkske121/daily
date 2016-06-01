@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	* {
+		margin:0;
+		padding: 0;
+	}
+	ul{
+		list-style: none;
+	}
+	.container {
+		margin:200px;
+		width: 300px;
+		height: 150px;
+		overflow: hidden;
+		position: relative;
+	}
+	.container ul {
+		position: absolute;
+		top:0;
+		left: 0;
+		background-color: gray;
+	}
+	.container ul li {
+		height: 150px;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<a href="http://www.baidu.com">
+			<ul class="list">
+				<li>11111111</li>
+				<li>22222222</li>
+				<li>33333333</li>
+			</ul>
+		</a>
+	</div>
+	<script>
+	var adModule = (function() {
+		var list, item, totalHeight, itemHeight, doAction;
+
+		function animate(action, interval) {
+			interval = interval || 10;
+
+			return function(target, callback) {
+				var timer, ret;
+				timer = setInterval(function() {
+					ret = action(target);
+
+					if(ret) {
+						clearInterval(timer);
+						timer = null;
+						callback && callback();
+					}
+				}, interval);
+			}
+		}
+
+		function delay(fn, second, context) {
+			return function() {
+				var args = arguments;
+				setTimeout(function() {
+					fn.apply(context, args);
+				}, second);
+			};
+		}
+
+		function addItem(flag, item) {
+			if(flag) {
+				list.appendChild(item);
+			} else {
+				list.insertBefore(item, list.children[0]);
+			}
+		}
+
+		function initTarget(flag) {
+			var end = flag ? (itemHeight - totalHeight) : 0;
+			var calc = flag ? -1 : 1;
+			var reset = flag ? 0 : (itemHeight - totalHeight);
+
+			return function() {
+				var curr = list.offsetTop;
+				if(curr === end) {
+					list.style.top = [curr = reset, 'px'].join('');
+				}
+				return curr + calc * itemHeight;
+			}
+		}
+
+		function init(dom, orient, second) {
+			var flag = orient.toLowerCase() === 'up';
+
+			list = dom;
+
+			item = flag ? list.children[0] : list.children[list.children.length - 1];
+			addItem(flag, item.cloneNode(true));
+
+			itemHeight = item.offsetHeight;
+			totalHeight = list.offsetHeight;
+
+			list.style.top = [flag ? 0 : itemHeight - totalHeight, 'px'].join('');
+
+			var getTarget = initTarget(flag);
+
+			var action = animate(function(target) {
+				var clac = flag ? -1 : 1;
+				var curr = list.offsetTop + clac;
+
+				list.style.top = [curr, 'px'].join('');
+
+				return curr === target;
+
+			}, 7);
+
+			doAction = delay(function() {
+				action(getTarget(), doAction);
+			}, second || 1000);
+
+			doAction();
+		}
+
+		return {
+			init: init
+		};
+	})();
+	
+	adModule.init(document.querySelectorAll('.list')[0], 'down', 500);
+	</script>
+</body>
+</html>

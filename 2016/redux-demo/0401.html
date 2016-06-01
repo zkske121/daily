@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="lib/redux.min.js"></script>
+	<script>
+	function aReducer(state, action) {
+		!state && (state = 'a');
+		switch(action.type) {
+			case 'a':
+				return 'A' + action.text;
+			default:
+				return state;
+		}
+	}
+
+	function bReducer(state, action) {
+		!state && (state = 'b');
+		switch(action.type) {
+			case 'b':
+				return 'B' + action.text;
+			default:
+				return state;
+		}
+	}
+
+	function cReducer(state, action) {
+		!state && (state = 'c');
+		switch(action.type) {
+			case 'c':
+				return 'C' + action.text;
+			default:
+				return state;
+		}
+	}
+
+	function aAction(text) {
+		return {
+			type: 'a',
+			text: text
+		}
+	}
+
+	function bAction(text) {
+		return {
+			type: 'b',
+			text: text
+		}
+	}
+
+	function cAction(text) {
+		return {
+			type: 'c',
+			text: text
+		}
+	}
+
+	var dReducer = Redux.combineReducers({b:bReducer, c:cReducer});
+	var eReducer = Redux.combineReducers({a:aReducer, d:dReducer});
+
+	function bindActionCreators(obj, dispatch) {
+		var result = {};
+		for(var key in obj) {
+			result[key] = function() {
+				dispatch(obj[key].apply(this, arguments));
+			}
+		}
+		return result;
+	}
+
+	let store = Redux.createStore(eReducer);
+	console.log(store.getState());
+
+	var actions = bindActionCreators({
+		a:aAction,
+		b:bAction,
+		c:cAction
+	}, store.dispatch);
+	
+	/*store.dispatch({
+	  type: 'c'
+	});*/
+
+	actions.c('this is c');
+
+	console.log(store.getState());
+	</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" id="num">
+	<button id="btn">show</button>
+	<script>
+	var oNum = document.getElementById('num'),
+		oBtn = document.getElementById('btn');
+
+	oBtn.onclick = function() {
+		var ret = numFixed(oNum.value, 2);
+		console.log(ret);
+		oNum.value = ret;
+	}
+
+	function numFixed(num, digit) {
+
+		num = parseFloat(num);
+		if(num != num) num = 0;
+
+		var flag = num < 0 ? -1 : 1;
+		num = Math.abs(num);
+
+		digit = typeof digit !== 'number' ? 0 : Math.abs(parseInt(digit));
+
+		var cardinal = 1,
+			i = digit;
+
+		while(i-- > 0) cardinal *= 10;
+
+		return (Math.round(num * cardinal) / cardinal * flag).toFixed(digit) ;
+	}
+
+
+	</script>
+</body>
+</html>

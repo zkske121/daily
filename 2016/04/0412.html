@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	function getFns(fns) {
+		return function(obj) {
+			var result = obj;
+
+			while(fns.length) {
+				result = fns.shift().call(this, result);
+			}
+
+			return result;
+		}
+	}
+
+	function add(n) {
+		return n + 1;
+	}
+
+	function double(n) {
+		return 2 * n;
+	}
+
+	var t = getFns([add, double]);
+	var result = t(1);
+	console.log(result);
+	</script>
+</body>
+</html>

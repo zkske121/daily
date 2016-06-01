@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>去除字符串中间的*</title>
+</head>
+<body>
+	<script src="js/assert.js"></script>
+	<script>
+	"use strict";
+	// function removeChar(str, char) {
+	// 	var len = str.length,
+	// 		index,
+	// 		result = str;
+
+	// 	char = char || '*';
+	// 	index = result.indexOf(char);
+		
+	// 	if(index == 0 || index == len - 1 || index == -1) return str;
+
+	// 	do{
+	// 		result = result.slice(0, index) + result.slice(index + 1);
+	// 	}while((index = result.indexOf(char)) != -1);
+
+	// 	return result;
+	// }
+
+	// function removeChar2(str, char) {
+	// 	char = char || '\\*';
+	// 	var reg = new RegExp(char, 'g');
+
+	// 	return str.replace(reg, function(char, index, resouce) {
+	// 		return (index != 0 && index != resouce.length - 1) 
+	// 					? '' : char;
+	// 	});
+	// }
+
+	// function removeChar3(str, char) {
+	// 	return str.replace(/(^\**)|(\**$)/g, "");
+	// }
+	// console.log(removeChar3('*f*sdf*', 's'));
+	
+	/*function *say(a, b) {
+		var foo = yield add(a, b);
+		console.log(foo); 
+	}
+
+	var t = say(2, 4);
+
+	var result = t.next();
+	t.next('zenki');
+	console.log(result);*/
+
+	/*function add(num, callback) {
+		setTimeout(function() {
+			console.log(num + 1);
+			callback && callback(num + 1);
+		}, 500);
+	}
+
+	
+
+	debugger;
+	var addFn = helper(add);
+
+	var flow = function* () {
+		var t = yield addFn(0);
+		console.log(t);
+	}
+
+	var generator = flow();
+	var ret = generator.next();
+
+	ret.value(function() {
+		generator.next();
+	});*/
+
+	debugger;
+	/*function* range(start, stop) {
+	  for (var i = start; i < stop; i++)
+	    yield i;
+	}
+
+	var gener = range(1, 5);
+	var result;
+
+	for(var v of gener) {
+		console.log(v);
+	}*/
+
+	/*do{
+		result = gener.next();
+		console.log(result.value); 
+	}while(!result.done);*/
+	function add(num, callback) {
+		setTimeout(function() {
+			result  = num + 1;
+			callback && callback(result);
+		}, 500);
+	}
+
+	function* gen(fn) {
+		var result = yield fn(0);
+		console.log(result);
+	}
+
+	function* gen2(fn) {
+		var result = yield fn(0);
+		console.log(result);
+	}
+
+	function asyn(num) {
+		return function(fn) {
+			setTimeout(function() {
+				fn && fn(num + 1);
+			});
+		}
+	}
+
+	function helper(fn) {
+		return function() {
+			var args = Array.prototype.slice.call(arguments);
+			var pass; 
+
+			args.push(function() {
+				if(pass) pass.apply(null, arguments);
+			});
+
+			fn.apply(null, args);
+
+			return function(fn) {
+				pass = fn;
+			};
+		}
+	}
+
+	/*var addDelay = helper(add);
+	var g = gen(addDelay);
+	var result = g.next();
+	result.value(function(num) {
+		result = g.next(num);
+	});*/
+
+	var g = gen2(asyn);
+	var result = g.next();
+	result.value(function(num) {
+		result = g.next(num);
+	});
+	
+	</script>
+</body>
+</html>

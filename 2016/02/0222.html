@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	function sortList(arr, key) {
+		var curry = [],
+			sub = [],
+			support = [],
+			normal = [];
+			ret = [curry, sub, normal, support];
+
+		for(var i = 0, v; v = arr[i++];) {
+			if(v.FullCurrencyName.indexOf(key) > -1) {
+				curry.push(v);
+			} else if(v.NationName.indexOf(key) > -1) {
+				sub.push(v);
+			} else if(!v.IsSupport) {
+				support.push(v);
+			} else {
+				normal.push(v);
+			}
+		}
+
+		return ret.reduce(function(prev, next) {
+			return prev.concat(next.sort(function(a, b) {
+				return a < b;
+			}))
+		}, []);
+	}
+	</script>
+</body>
+</html>

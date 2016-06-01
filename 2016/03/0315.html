@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+    /*function f(num) {
+    		if(num < 2) {
+    			return 1;
+    		}
+    		return f(num - 2) + f(num - 1);
+    	}
+
+    	function fibonacci(num) {
+            return (function(arr) {
+                while (arr.length < num) {
+                    arr.push(arr.length < 2 ? 1 : arr[arr.length - 1] + arr[arr.length - 2]);
+                }
+                return arr;
+            })([1]);
+        }
+
+        function f2(n) {
+        	var a, b, res;
+
+        	a = b = 1;
+
+        	for(var i = 0; i <= n; i++) {
+        		res = a + b;
+        		a = b = res;
+        	}
+
+        	return res;
+        }
+
+    	var timeoutScheduler = function(store) {
+    		return function(next) {
+    			return function(action) {
+    				if(!action.meta || !action.meta.delay) {
+    					return next(action);
+    				}
+
+    				var timeoutId = setTimeout(function() {
+    					next(action);
+    				}, action.meta.delay);
+
+    				return function cancel() {
+    					clearTimeout(timeoutId);
+    				}
+    			}
+    		}
+    	}
+
+    	function toThousands(num) {
+    		var num = (num || 0).toString(), 
+    			re = /\d{3}$/,
+    			result = '';
+
+    		while(re.test(num)) {
+    			result = RegExp.lastMatch + result;
+    			console.log('last', RegExp.lastMatch);
+    			if(num !== RegExp.lastMatch) {
+    				result = ',' + result;
+    				num = RegExp.leftContext;
+    				console.log('leftContext', RegExp.leftContext);
+    			} else {
+    				num = '';
+    				break;
+    			}
+    		}
+
+    		if(num) {
+    			result = num + result;
+    		}
+
+    		return result;
+    	}*/
+
+
+
+    function toThousands2(num) {
+        var tmp = (num || 0).toString(),
+            result = '',
+            i = tmp.length,
+            n = 3;
+
+        while (i--) {
+            result = (--n ? '' : ',') + tmp.charAt(i) + result;
+            if (!n) n = 3;
+        }
+
+        return result;
+    }
+
+    function toThousands3(num) {
+        var num = (num || 0).toString(),
+            result = '';
+        while (num.length > 3) {
+            result = ',' + num.slice(-3) + result;
+            num = num.slice(0, num.length - 3);
+        }
+        if (num) {
+            result = num + result;
+        }
+        return result;
+    }
+
+    function toThousands4(num) {
+        var num = (num || 0).toString(),
+            len = num.length,
+            tmp = [],
+            start = len % 3;
+
+        if (len <= 3) return num;
+        if (!start) start = 3;
+
+        tmp.push(num.substr(0, start));
+
+        while (start < len) {
+            tmp.push(',');
+            tmp.push(num.substr(start, 3));
+            start += 3;
+        }
+
+        return tmp.join('');
+    }
+
+    function toThousands5(num) {
+        var num = (num || 0).toString(),
+            result = '',
+            len = num.length,
+            start = len % 3;
+
+        if (!start) start = 3;
+        result += num.substr(0, start);
+
+        for (; start < len; start += 3) {
+            result += ',' + num.substr(start, 3);
+        }
+
+        return result;
+    }
+
+    function toThousands6(num, result) {
+        result = result || '';
+        if (num >= 1000) {
+            var a = num % 1000;
+            return toThousands6((num - a) / 1000, ',' + (a + 1000 + result).slice(1));
+        }
+        return num + result;
+    }
+
+    function toThousands7(num) {
+    	var num = (num || 0),
+    		result = '',
+    		tmp;
+
+    	while(num > 1000) {
+    		tmp = num % 1000;
+    		result = ',' + ('' + (1000 + tmp)).slice(1) + result;
+    		num = (num - tmp) / 1000;
+    	}
+
+    	return num + result;
+    }
+
+    function timesFn(fn, time) {
+        var timestamp = Date.now();
+        return function() {
+            console.time(timestamp);
+            while (time--) fn.apply(this, arguments);
+            console.timeEnd(timestamp);
+        }
+    }
+
+    [1, 123, 1234, 12345, 123456, 1234567, 12345678, 123456789].forEach(function(v, i) {
+        console.log(v, '=====================');
+        timesFn(toThousands7, 500000)(v);
+    });
+    </script>
+</body>
+
+</html>

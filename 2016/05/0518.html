@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>compose</title>
+</head>
+<body>
+	<script>
+	/*var a=[];
+	for(var i=0;i<10;i++){
+	    var c=i;
+	    a[i]=function(){
+	        console.log(c);
+	    };
+	}
+	a[6](); //11*/
+
+
+	var a=[];
+	var c;
+	for(var i=0;i<10;i++){
+	    a[i]=function(){
+	    	if(i == 10) debugger;
+	        if (i === 1) c=i;
+	        console.log(c);
+	    };
+	}
+	a[6](); //7
+
+	</script>
+</body>
+</html>

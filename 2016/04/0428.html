@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+	<div id="show"></div>
+    <script>
+    window.onload = function() {
+        var t = 3; //设定跳转的时间
+        function refer() {
+            if (t == 0) {
+                location = "http://www.baidu.com"; //#设定跳转的链接地址
+            }
+            document.getElementById('show').innerHTML = "" + t + "秒后跳转到百度"; // 显示倒计时
+            t--; // 计数器递减
+            //本文转自：
+        }
+
+        setInterval(refer, 1000); //启动1秒定时
+
+
+    }
+    </script>
+</body>
+
+</html>

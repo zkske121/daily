@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+    function HashString() {
+        this.start = 0;
+        this.exception = [];
+    }
+
+    HashString.prototype.pop = function() {
+        this.start++;
+        if (this.exception.indexOf(this.start) != -1) {
+            this.start++;
+            HashString.prototype.pop.call(this);
+        }
+        return this.start.toString();
+    };
+
+    HashString.prototype.exc = function(char) {
+        if (/[a-z0-9]/.test(char)) {
+            this.exception.push(parseInt(char, 36));
+        }
+    };
+    </script>
+</body>
+
+</html>

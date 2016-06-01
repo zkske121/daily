@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>myMiddleware</title>
+</head>
+<body>
+	<script>
+	var store = {
+		dispatch: function(action) {
+			console.log('dispatching', action);
+		}
+	};
+
+	/*function logAndAction(store) {
+		var next = store.dispatch;
+		return function(action) {
+			console.log('start', action);
+			var result = next(action);
+			console.log('end');
+			return result;
+		}
+	}
+
+	function alertAction(store) {
+		var next = store.dispatch;
+		return function(action) {
+			alert(action);
+			return next(action);
+		}
+	}
+
+	function myMiddlewareApply(store, middlewares) {
+		middlewares = middlewares.slice();
+		middlewares.reverse();
+
+		middlewares.forEach(function(middleware) {
+			store.dispatch = middleware(store);
+		});
+	}
+
+	myMiddlewareApply(store, [logAndAction, alertAction]);
+
+	store.dispatch('test action');
+
+	*/
+
+	function logAndAction(store) {
+		return function logAndActionNext(next) {
+			return function(action) {
+				console.log('start', action);
+				var result = next(action);
+				console.log('end');
+				return result;
+			}
+		}
+	}
+
+	function alertAction(store) {
+		return function alertActionNext(next) {
+			return function(action) {
+				alert(action);
+				return next(action);
+			}
+		}
+	}
+
+	function delayAction(store) {
+		return function delayActionNext(next) {
+			return function(action) {
+				var timeoutId = setTimeout(function() {
+					next(action);
+				}, 10 * 1000);
+
+				return function cancelAction() {
+					clearTimeout(timeoutId);
+				};
+			}
+		}
+	}
+
+	function applyMiddleware(store, middlewares) {
+		middlewares = middlewares.slice();
+		//middleware中动作的执行都是在next之前的,要保证添加的middleware顺序执行,就需要倒序
+		middlewares.reverse();
+
+		var dispatch = store.dispatch;
+		middlewares.forEach(function(middleware) {
+			dispatch = middleware(store)(dispatch);
+		});
+
+		return Object.assign({}, store, {dispatch: dispatch});
+	} 
+
+	var cancel = applyMiddleware(store, [logAndAction, alertAction, delayAction]).dispatch('test action');
+	setTimeout(function() {
+		// cancel();
+	}, 1000);
+	</script>
+</body>
+</html>

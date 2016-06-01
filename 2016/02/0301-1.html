@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	var tmp = [];
+
+	var workModule = (function() {
+		var MINUTE = 60 * 1000;
+		var HOUR = 60 * MINUTE;
+		var calcTime = initCalcTime(MINUTE);
+
+		function getDate(str) {
+			var now = new Date();
+			var prev = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate() + ' ';
+
+			return new Date(prev + str);
+		}
+
+		function initCalcTime(unit) {
+
+			unit = unit < 1000 ? 1 : unit;
+
+			return function(start, end) {
+				return  (end - start) / unit;
+			}
+		}
+
+		var more_19 = function(date) {
+			return date.getHours() >= 19;
+		};
+
+		var until_1830_19 = function(date) {
+			return date.getHours() === 18 && date.getMinutes() > 30;
+		};
+
+		var more_13 = function(date) {
+			return date.getHours() >= 13;
+		}
+
+		var until_12_13 = function(date) {
+			return date.getHours() === 12 && date.getMinutes() > 0;
+		}
+
+		var less_7 = function(date) {
+			return date.getHours() < 7;
+		}
+
+		function action(obj) {
+			if(Object.prototype.toString.call(obj) !== '[object Array]') return 0;
+			if(obj.length < 2) return 0;
+
+			var start = getDate(obj[0]),
+				end = getDate(obj[1]);
+
+			do{
+				if(more_19(start)) break;
+
+				if(until_1830_19(start)) {
+					if(until_1830_19(end)) return 0;
+
+					start.setHours(19);
+					start.setMinutes(0);
+					break; 
+				}
+
+				if(until_12_13(start)) {
+					if(until_12_13(end)) return 0;
+
+					start.setHours(13);
+					start.setMinutes(0);
+				}
+
+				if(more_13(start)) {
+					if(until_1830_19(end)) {
+						end.setMinutes(30);
+					} else if(more_19(end)) {
+						end = end - HOUR * 0.5;
+					}
+					break;
+				}
+
+				if(less_7(start)) {
+					start.setHours(7);
+					start.setMinutes(0);
+				}
+
+				if(until_12_13(end)) {
+					end.setMinutes(0);
+				} else if(more_19(end)) {
+					end = end - HOUR * 1.5;
+				} else if(until_1830_19(end)) {
+					end.setMinutes(30);
+					end = end - HOUR * 1;
+				} else {
+					end = end - HOUR * 1;
+				}
+			}while(0);
+
+			return calcTime(start, end);
+		}
+
+		return {
+			countWorkTime: function(data, day, standard) {
+				standard = standard || 8;
+
+				var curr = data.reduce(function(p, n) {
+					n = action(n);
+					//测试代码
+					tmp.push(n);
+					return p + n;
+				}, 0);
+
+				return curr / 60  - day * standard;
+			}
+		};
+
+	})();
+
+	/*var data = [
+		['06:00', '12:00'], //5
+		['13:00'], //0
+		['12:30', '12:50'], //0
+		['12:15', '14:00'], //1
+		['12:20', '19:00'], //5.5
+		['12:20', '18:45'], //5.5
+		['13:00', '20:00'], //6.5
+		['13:30', '18:45'], //5
+		['13:00', '17:00'], //4
+		['18:40', '18:50'], //0
+		['18:45', '20:30'], //1.5
+		['19:00', '21:00'], //2
+		['09:00', '20:00'] //9.5
+	];*/
+
+	var data = [
+	['10:50:00', '18:30:00'],
+	['9:26:00', '19:50:00'],
+	['10:27:00', '18:19:00'],
+	['09:47:00', '18:57:00'],
+	['10:18:00', '18:25:00'],
+	['09:29:00', '13:31:00'],
+	['10:19:00', '18:22:00'],
+	['10:16:00', '18:31:00'],
+	['09:56:00', '21:11:00'],
+	['10:15:00', '18:41:00'],
+	['10:11:00', '21:24:00'],
+	['10:18:00', '19:22:00'],
+	['10:42:00', '20:42:00'],
+	['10:02:00', '18:32:00'],
+	['10:04:00', '21:24:00'],
+	['10:19:00', '18:46:00'],
+	['09:48:00', '20:13:00'],
+	];
+
+
+	function getDate(str) {
+		var now = new Date();
+		var prev = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate() + ' ';
+
+		return new Date(prev + str);
+	}
+
+	function unitTest(item) {
+		return (getDate(item[1]) - getDate(item[0])) / (1000 * 60);
+	}
+
+	var ret = workModule.countWorkTime(data, 18);
+	console.log(ret);
+	console.log('--------------');
+	data.map(function(v, i) {
+		var t = unitTest(v);
+		console.log(tmp[i] - t);
+	});
+	</script>
+</body>
+</html>

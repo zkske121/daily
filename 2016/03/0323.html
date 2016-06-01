@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	function add(n, callback) {
+		console.log(n);
+		var result = n + 1;
+		setTimeout(function() {
+			callback.call(null, result);
+		}, 10);
+
+		return result;
+	}
+
+	function action(n, list) {
+		return function loop() {
+			if(list.length) {
+				n = list.shift()(n, loop);
+			}
+		}
+	}
+
+	var list = [];
+	list.push(add);
+	list.push(add);
+	list.push(add);
+	list.push(add);
+
+	action(0, list)();
+
+	add(0, function(n) {
+		add(n, function(n) {
+			add(n, function(n) {
+
+			});
+		});
+	});
+	</script>
+</body>
+</html>

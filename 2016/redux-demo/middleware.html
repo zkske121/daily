@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="add">add</button>
+	<button id="sub">sub</button>
+	<ul id="container">
+	</ul>
+
+	<script src="lib/redux.min.js"></script>
+	<script src="lib/underscore-min.js"></script>
+	<script>
+	function getById(id) {
+		return document.getElementById(id);
+	}
+
+	var container = getById('container'),
+		add = getById('add'),
+		sub = getById('sub');
+
+	function counter(state, action) {
+		 if(!state) {
+		 	state = [];
+		 }
+
+		 switch(action.type) {
+		 	case 'add':
+		 		return  _.chain(state)
+		 				.push(state.length)
+		 				.value();
+		 	case 'sub':
+		 		return  state.slice(0, -1);
+	 		default:
+	 			return state;
+		 }
+	}	
+
+	function namer(state, action) {
+		if(!state) {
+			state = 'zenki';
+		}
+
+		switch(action.type) {
+			case 'update':
+				return action.name;
+			default:
+				return state;
+		}
+	}
+
+	var reducer = Redux.combineReducers({
+		list: counter,
+		name: namer
+	});
+
+	var logMiddleware = function(store) {
+		return function(next) {
+			return function(action) {
+				console.log('state', store.getState());
+				var state = next(action);
+				console.log('next state', store.getState());
+				return state;
+			}
+		}
+	};
+
+	var asyncMiddleware = function(store) {
+		return function(next) {
+			return function(action) {
+				var timeoutId = setTimeout(function() {
+					next(action);
+				}, 1000);
+
+				/*return function(){
+					clearTimeout(timeoutId);
+				};*/
+			}
+		}
+	}
+
+	var myMiddleware = Redux.applyMiddleware(
+			logMiddleware,
+			asyncMiddleware)(Redux.createStore);
+
+	// var store = Redux.createStore(reducer);
+	var store = myMiddleware(reducer);
+
+	function render() {
+		container.innerHTML = _.reduce(store.getState().list, function(p, n) {
+			return [p, '<li>', n, '</li>'].join('');
+		}, '');
+	}
+
+	store.subscribe(render);
+	render();
+
+	add.addEventListener('click', function() {
+		store.dispatch({
+			type: 'add'
+		});
+	}, false);
+
+	sub.addEventListener('click', function() {
+		store.dispatch({
+			type: 'sub'
+		});
+	}, false);
+
+	</script>
+</body>
+</html>

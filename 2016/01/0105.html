@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>根据路径获取对象的值</title>
+</head>
+<body>
+	<script>
+	function MyStore(context, obj) {
+		this.context = context;
+		this.data = (obj && obj.toString() === '[object Object]') || {};
+	}
+
+	MyStore.prototype = {
+		constructor: MyStore, 
+		updateComponent: function () {
+			// this.context.setState(this.data);
+			console.log(this.data);
+		},
+		setVal: function(path, val) {
+			var param = path.split(':'), obj;
+			if(param.length !== 2) return;
+			if(obj = this.getProp(param[0])) {
+				obj[param[1]] = val;
+				this.updateComponent();
+			}
+		},
+		getProp: function(path) {
+			var ret;
+
+			path = path.split('.');
+
+			(function loopPath(o, p) {
+				ret = o[p.shift()];
+				if(ret && p.length) loopPath(ret, p);
+			})(this.data, path);
+
+			return ret;
+		}
+	}
+
+	//测试store
+	/*var obj = {
+		zenki: {
+			info: {
+				name: 'zk',
+				age: '30',
+				3:'3'
+			}
+		}
+	};
+
+	var store = new MyStore(null, obj);
+
+	store.setVal('zenki.info:name', 'zenki');*/
+	</script>
+
+</body>
+</html>

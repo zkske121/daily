@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	'use strict';
+	function isFlower(num) {
+		var tmp = (num).toString().split(''),
+			len = tmp.length,
+			total = tmp.reduce(function(p, n) {
+			return p + Math.pow(n, len);
+		}, 0);
+
+		return num == total;
+	}
+
+	var i = 100, result = []; 
+	while(i < 100000) {
+		isFlower(i) && (result.push(i));
+		i++;
+	}
+
+	console.log(result);
+	</script>
+</body>
+</html>

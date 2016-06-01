@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <table border=1>
+        <tr><td><button id='do'>Do long calc - bad status!</button></td>
+            <td><div id='status'>Not Calculating yet.</div></td>
+        </tr>
+        <tr><td><button id='do_ok'>Do long calc - good status!</button></td>
+            <td><div id='status_ok'>Not Calculating yet.</div></td>
+        </tr>
+    </table>    
+<script>
+
+function long_running(status_div) {
+
+    var result = 0;
+    for (var i = 0; i < 1000; i++) {
+        for (var j = 0; j < 700; j++) {
+            for (var k = 0; k < 300; k++) {
+                result = result + i + j + k;
+            }
+        }
+    }
+    document.querySelector(status_div).innerHTML = 'calclation done' ;
+}
+
+document.querySelector('#do').onclick = function () {
+    document.querySelector('#status').innerHTML = 'calculating....';
+    long_running('#status');
+};
+
+document.querySelector('#do_ok').onclick = function () {
+    document.querySelector('#status_ok').innerHTML = 'calculating....';
+    window.setTimeout(function (){ long_running('#status_ok') }, 0);
+};
+
+</script>
+</body>
+</html>

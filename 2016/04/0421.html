@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	function delay(fn, second) {
+		return function() {
+			setTimeout(fn, second);
+		}
+	}
+
+	function action(fn) {
+		var flag = true;
+		return function() {
+			if(!flag) return;
+
+			flag = false;
+			fn();
+			setTimeout(function() {
+				flag = true;
+			}, 1000);
+		}
+	}
+
+	var t = action(function() {
+		console.log(1);
+	});
+
+	t();
+	t();
+	t();
+	t();
+	t();
+	t();
+	t();
+	t();
+	</script>
+</body>
+</html>

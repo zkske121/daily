@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+	<script>
+	/*function safeFun(fun) {
+		var state = true;
+		return function() {
+			if(!state) return;
+			
+			state = false;
+			var promise = fun.apply(null, arguments);
+
+			promise.always(function() {
+				state = true;
+			});
+
+			return promise;
+		}
+	}
+
+	var safeAjax = safeFun($.ajax);
+
+	safeAjax(...);
+
+	function loadScript(url, callback) {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        if (script.readyState) { //IE
+            script.onreadystatechange = function() {
+                if (script.readyState == "loaded" || script.readyState == "complete") {
+                    script.onreadystatechange = null;
+                    callback();
+                }
+            };
+        } else { //Others
+            script.onload = function() {
+                callback();
+            };
+        }
+        script.src = url;
+        document.getElementsByTagName("head")[0].appendChild(script);
+    }
+
+    var model;
+
+    var action = function(fn) {
+    	var timer;
+    	return function() {
+    		timer = setInterval(function() {
+    			if(model) {
+    				clearInterval(timer);
+    				timer = null;
+    				fn.call(null, model);
+    			}
+    		}, 10);
+    	};
+    };
+
+    loadScript('aa.js', function() {
+    	loadScript('bb.js', function() {
+    		model = new BB();
+    	});
+    });
+
+    function getModel(model) {
+    	console.log(model);
+    }
+
+    var init = action(getModel);
+
+    init();*/
+
+    function getAttr() {
+    	var ret = {}, args = Array.prototype.slice.call(arguments);
+    	args.forEach(function(v) {
+    		ret[v] = [];
+    	});
+
+    	return function(list) {
+    		list.forEach(function(v) {
+    			for(var key in v) {
+    				if(args.indexOf(key) > - 1) {
+    					ret[key].push(v[key]);
+    				}
+    			}
+    		});
+
+    		return ret;
+    	}
+    }
+
+    var getName = getAttr('name', 'age');
+
+    var result = getName([{name: 'zenki'}, {name: 'zk'}]);
+    
+    console.log(result);
+	</script>
+</body>
+</html>

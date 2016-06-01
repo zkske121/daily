@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    button {
+        margin: 5px;
+    }
+    </style>
+</head>
+
+<body>
+    <span id="sort">
+	</span>
+    <table id="data">
+    </table>
+    <script>
+    var oSort = document.getElementById('sort'),
+        oData = document.getElementById('data'),
+        ID = 'ID',
+        NAME = 'NAME',
+        AGE = 'AGE',
+        SEX = 'SEX',
+        OTHER = 'OTHER',
+        ADULT = 'ADULT',
+        title = [ID, NAME, AGE, SEX, ADULT, OTHER],
+        sortTitle = title.slice(),
+        data,
+        idSort = getSort(function(a, b) {
+            return a[ID] < b[ID];
+        }),
+        nameSort = getSort(function(a, b) {
+            return a[NAME] < b[NAME];
+        }),
+        sexSort = getSort(function(a, b) {
+            return !!a[SEX] && !b[SEX];
+        }),
+        ageSort = getSort(function(a, b) {
+            return a[AGE] < b[AGE];
+        }),
+        otherSort = getSort(function(a, b) {
+            return a[OTHER] < b[OTHER];
+        }),
+        adultSort = getSort(function(a, b) {
+        	return !!a[ADULT] && !b[ADULT];
+        }),
+        sortFns = [idSort, nameSort, ageSort, sexSort, adultSort, otherSort], 
+        getTimestampStr = getTimestampStr();
+
+
+
+    data = initData(10);
+    render(data);
+
+    function initData(total) {
+        var data = [];
+
+        total = total || 10;
+
+        for (var i = 0, t; i <= total; i++) {
+            t = {};
+            t[ID] = i;
+            t[NAME] = getChar(4);
+            t[AGE] = randomNumber(1, 30);
+            t[SEX] = getBoolean();
+            t[ADULT] = t[AGE] >= 18;
+            t[OTHER] = getTimestampStr();
+            data.push(t);
+        }
+
+        return data;
+    }
+
+    function randomNumber(start, end) {
+        return parseInt(Math.random() * (end - start + 1) + start);
+    }
+
+    function getBoolean() {
+        return Math.random() > 0.5;
+    }
+
+    //随机生成大小写字母
+    function getChar(len) {
+        var capital = [{
+                min: 65,
+                max: 90
+            }, {
+                min: 97,
+                max: 122
+            }],
+            tmp = capital[Number(getBoolean())],
+            result = '';
+
+        len = len || 1;
+
+        while (len--) {
+            result += String.fromCharCode(randomNumber(tmp.min, tmp.max))
+        }
+
+        return result;
+    }
+
+
+    function getTimestampStr() {
+        var now = +new Date(),
+        	i = 2;
+        return function() {
+        	if(!--i) {
+        		now += 1000;
+        		i = 2;
+        	}
+            
+            return now.toString(32);
+        }
+
+    }
+
+    function prevAry(ary, index) {
+        var result = ary.slice(),
+            tmp;
+
+        if (!index || index >= result.length) return result;
+
+        tmp = result.splice(index, 1).pop();
+        result.splice(index - 1, 0, tmp);
+
+        return result;
+    }
+
+    function render(data) {
+        var tHead = '',
+            tBody = '';
+
+        oSort.innerHTML = sortTitle.reduce(function(p, n) {
+            return p + '<button>' + n + '</button>';
+        }, '');
+
+        tHead = '<tr>' + title.reduce(function(p, n) {
+            return p + '<th>' + n + '</th>';
+        }, tHead) + '</tr>';
+
+        tBody = data.reduce(function(body, item) {
+            return body + '<tr>' + title.reduce(function(p, n) {
+                return p + '<td>' + item[n] + '</td>';
+            }, '') + '</tr>';
+        }, tBody);
+
+        oData.innerHTML = tHead + tBody;
+
+        // console.log(tBody);
+    }
+
+    function getSort(fn) {
+        return function(a, b) {
+            var ret = 0;
+
+            if (fn.call(this, a, b)) {
+                ret = -1;
+            } else if (fn.call(this, b, a)) {
+                ret = 1;
+            }
+
+            return ret;
+        }
+    }
+
+    function getMutipSort(arr) {
+        return function(a, b) {
+            var tmp, i = 0;
+
+            do {
+                tmp = arr[i++](a, b);
+            } while (tmp == 0 && i < arr.length);
+
+            return tmp;
+        }
+    }
+
+    oSort.onclick = function(e) {
+        var index = Array.prototype.indexOf.call(this.children, e.target);
+
+        sortTitle = prevAry(sortTitle, index);
+        sortFns = prevAry(sortFns, index);
+
+        render(data.sort(getMutipSort(sortFns)));
+    }
+    </script>
+</body>
+
+</html>

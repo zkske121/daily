@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="js/underscore.js"></script>
+    <script>
+    /*var obj = {'name':'zenki',
+    	friend:{
+    		name:'aa',
+    		age:'19'
+    	}
+	};*/
+
+	/*var newFriend = {
+			name:'cc'
+		};
+
+	_.extend(obj, {
+		name:'zk'
+	});
+
+	_.extend(obj.friend, newFriend);*/
+
+	/*var deepExtend = function(source, target) {
+	    for(var key in target) {
+	        if(!target.hasOwnProperty(key)) continue;
+	        if(typeof target[key] == 'object' && Object.keys(target).length != 0) {
+	            deepExtend(source[key], target[key]);
+	        } else {
+	            source[key] = target[key];
+	        }
+	    }
+
+	    return source;
+	};
+
+	deepExtend(obj, {
+		name:'ccc',
+		friend:{
+			name:'ddd'
+		}
+	})
+
+	var exStore = {
+		MemberInfo:{
+			passs:''
+		}
+	};
+
+	_.extend(exStore, {
+	    'MemberInfo': {
+	        "CName": 'name',
+	        "IdentifyID": 'idcard',
+	        "MobilePhone": 'phone'
+	    }});
+	console.log(exStore);*/
+	var str = 'abc*defgh*ijk*lmn';
+	function getIndex(source, target, n) {
+		var index = -1;
+		while(n--) {
+			index = source.indexOf(target, index + 1);
+			if(index < 0) break;
+		}
+		return index;
+	}
+
+	var ret = getIndex(str, '*', 5);
+	ret = ret < 0 ? str : str.slice(0, ret);
+	console.log(ret);
+    </script>
+</body>
+
+</html>

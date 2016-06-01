@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+    /*var data = [
+    		['06:00', '12:00'], //5
+    		['13:00'], //0
+    		['12:30', '12:50'], //0
+    		['12:15', '14:00'], //1
+    		['12:20', '19:00'], //5.5
+    		['12:20', '18:45'], //5.5
+    		['13:00', '20:00'], //6.5
+    		['13:30', '18:45'], //5
+    		['13:00', '17:00'], //4
+    		['18:40', '18:50'], //0
+    		['18:45', '20:30'], //1.5
+    		['19:00', '21:00'], //2
+    		['09:00', '20:00'] //9.5
+    	];*/
+
+    	var data = [
+    	['10:50:00', '18:30:00'],
+    	['9:26:00', '19:50:00'],
+    	['10:27:00', '18:19:00'],
+    	['09:47:00', '18:57:00'],
+    	['10:18:00', '18:25:00'],
+    	['09:29:00', '13:31:00'],
+    	['10:19:00', '18:22:00'],
+    	['10:16:00', '18:31:00'],
+    	['09:56:00', '21:11:00'],
+    	['10:15:00', '18:41:00'],
+    	['10:11:00', '21:24:00'],
+    	['10:18:00', '19:22:00'],
+    	['10:42:00', '20:42:00'],
+    	['10:02:00', '18:32:00'],
+    	['10:04:00', '21:24:00'],
+    	['10:19:00', '18:46:00'],
+    	['09:48:00', '20:13:00']
+    	];
+
+        var tmp = [];
+   var countWorkTime = (function() {
+    var MINUTE = 1000 * 60;
+    var HOUR = MINUTE * 60;
+    var CLOCK_0000 = '00:00';
+    var CLOCK_0700 = '07:00'; 
+    var CLOCK_1200 = '12:00'; 
+    var CLOCK_1300 = '13:00'; 
+    var CLOCK_1830 = '18:30'; 
+    var CLOCK_1900 = '19:00'; 
+    var clockList = [CLOCK_1900, CLOCK_1830, CLOCK_1300, CLOCK_1200, CLOCK_0700, CLOCK_0000];
+    var getDateByClock = dateUtil();
+    var CALC_START = getDateByClock(CLOCK_0700);
+    var config = {};
+
+    config[CLOCK_1900] = function(curr) {
+        return HOUR * 1.5;
+    };
+    config[CLOCK_1830] = function(curr) {
+        return HOUR + (curr - getDateByClock(CLOCK_1830));
+    };
+    config[CLOCK_1300] = function(curr) {
+        return HOUR * 1;
+    };
+    config[CLOCK_1200] = function(curr) {
+        return curr - getDateByClock(CLOCK_1200);
+    };
+    config[CLOCK_0700] = function(curr) {
+        return 0;
+    };
+    config[CLOCK_0000] = function(curr) {
+        return curr - CALC_START;
+    };
+
+    function dateUtil() {
+        var cache = {};
+        var now = new Date();
+        var prev = [now.getFullYear(), '-', now.getMonth() + 1, '-', now.getDate(), ' '].join('');
+
+        return function(str) {
+            if(!cache[str]) {
+                cache[str] = new Date(prev + str);
+            }
+            return cache[str];
+        }
+    }
+
+    function calcTime(time) {
+        var curr = getDateByClock(time);
+        var tmp, increment;
+
+        tmp = clockList.find(function(v, i) {
+            return curr >= getDateByClock(v);
+        });
+
+        increment = config[tmp](curr);
+
+        return curr - CALC_START - increment;
+    }
+
+    function calcData(data) {
+        if(Object.prototype.toString.call(data) !== '[object Array]') return 0;
+        if(data.length < 2) return 0;
+        if(getDateByClock(data[0]) > getDateByClock(data[1])) return 0;
+
+        return calcTime(data[1]) - calcTime(data[0]);
+    }
+
+    return function(data, day, standard) {
+        var curr = data.reduce(function(p, n) {
+            n = calcData(n);
+            tmp.push(n / MINUTE);
+            return p + n;
+        }, 0);
+
+        standard = standard || 8;
+
+        return curr / HOUR - day * standard;
+    }
+   })();
+
+
+   console.log(countWorkTime(data, 18));
+   console.log(tmp.join(' '));
+   /* var arr = [];
+    arr.push(assert(countWorkTime, [[['07:00', '16:00']], 1], 0));
+    arr.push(assert(countWorkTime, [[['06:00', '16:00']], 1], 0));
+    arr.push(assert(countWorkTime, [[['09:00', '18:00']], 1], 0));
+    arr.push(assert(countWorkTime, [[['10:10', '19:40']], 1], 0));
+    arr.push(assert(countWorkTime, [[['18:50', '21:30']], 1], -5.5));
+    arr.push(assert(countWorkTime, [[['18:50', '21:30']], 1], -5.5));
+    arr.push(assert(countWorkTime, [[['18:40', '19:00']], 1], -8));
+    arr.push(assert(countWorkTime, [[['18:40', '19:30']], 1], -7.5));
+    arr.push(assert(countWorkTime, [[['21:00', '22:30']], 1], -6.5));
+    arr.push(assert(countWorkTime, [[['18:00', '22:30']], 1], -4));
+    arr.push(assert(countWorkTime, [[['22:00']], 1], -8));
+
+    arr.forEach(function(v, i) {
+        if(!v()) console.log(['第', i + 1, '条测试没有通过!'].join(''));
+    });
+
+    function assert(fn, args, result) {
+        return function(){
+            try{
+                return fn.apply(null, args) === result;
+            }catch(e) {
+                return false;
+            }
+        }
+    }*/
+    </script>
+</body>
+
+</html>

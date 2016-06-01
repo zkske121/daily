@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+    function conditions(fn) {
+        var tmp = [];
+        return function() {
+            for (var i = 9; i > 0; i--) {
+                for (var j = i - 1; j > 0; j--) {
+                    var k = fn(i, j);
+                    if (!k) continue;
+
+                    tmp.push([i, j, k]);
+                }
+            }
+
+            return tmp;
+        }
+    }
+
+    var a = conditions(function(i, j) {
+        var k;
+        if (i + j < 10 && (k = i + j) && k != i && k != j) return k;
+    })();
+
+    var b = conditions(function(i, j) {
+        var k;
+        if (i - j > 0 && (k = i - j) && k != i && k != j) return k;
+    })();
+
+    var c = conditions(function(i, j) {
+        var k;
+        if (i % j == 0 && (k = i / j) && k != i && k != j) return k;
+    })();
+
+    a = choice(a);
+    b = choice(b);
+    c = choice(c);
+
+    for(var i = 0; i < a.length; i++) {
+    	for(var j = 0; j < b.length; j++) {
+    		for(var k = 0; k < c.length; k++) {
+    			var ret = a[i].concat(b[j]).concat(c[k]);
+    			if(!isRepeat(ret)) console.log(ret);
+    		}
+    	}
+    }
+
+    function choice(ary) {
+        var tmp = ary.map(function(v) {
+            return v.sort().join('');
+        });
+
+        return noRepeat(tmp).map(function(v) {
+        	return v.split('');
+        });
+    }
+
+    function isRepeat(ary) {
+        for (var i = 0, j; j = ary[i++];) {
+            if (ary.indexOf(j, i) > -1) return true;
+        }
+    }
+
+    function noRepeat(arr) {
+        var ret = arr.slice(),
+            item,
+            tmp;
+        for (var i = 0; i < ret.length; i++) {
+            item = ret[i];
+            tmp = i + 1;
+            while ((tmp = ret.indexOf(item, tmp)) > -1) ret.splice(tmp, 1);
+        }
+        return ret;
+    }
+    </script>
+</body>
+
+</html>

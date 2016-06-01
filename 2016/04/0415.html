@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+	<script src="js/assert.js"></script>
+    <script>
+    function initStore(obj) {
+        return function() {
+        	//String,Object,Boolean
+            var args = Array.prototype.slice.call(arguments),
+            	keys = [],
+            	key,
+            	source = obj;
+
+            if (!args.length) return copy({}, obj, true);
+
+            if(Object.prototype.toString.call(args[0]) === "[object String]") {
+            	keys = args[0].split('.');
+            }
+
+           	if(args[1] && isPlainObject(args[1])) {
+           		getValue(source, args[0], function(tmp, key) {
+           			tmp[key] = copy({}, args[1]);
+           		})();
+           		//保存obj TODO
+			           	
+           	} else {
+           		source = copy({}, source, true);
+           	}
+
+           	return source;
+        }
+    }
+
+    function copy(target, source, deep) {
+        for (var key in source) {
+        	if(target[key] === source[key]) continue;
+
+        	if(deep && isPlainObject(source[key])) {
+        		target[key] = copy({}, source[key], deep);
+        	} else {
+        		target[key] = source[key];
+        	}
+        }
+
+        return target;
+    }
+
+    function isPlainObject(obj) {
+        var toString = Object.prototype.toString,
+            hasOwnProperty = Object.prototype.hasOwnProperty;
+
+        if (!obj || toString.call(obj) !== "[object Object]" || obj.nodeType || obj.setInterval) {
+            return false;
+        }
+        if (obj.constructor &&
+            !hasOwnProperty.call(obj, "constructor") && 
+            !hasOwnProperty.call(obj.constructor.prototype, "isPrototypeOf")
+        ) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function getValue(src, path, callback) {
+    	var keys = path.split('.');
+
+    	return function action(obj) {
+    		var key;
+
+    		obj = obj || src;
+
+    		key = keys.shift();
+
+    		if(!obj.hasOwnProperty(key)) throw new Error(key + '值不存在!');
+
+			if(keys.length) {
+				action(obj[key]);
+			} else {
+				callback(obj, key);
+				return src;
+			}
+    	}
+    }
+    </script>
+    <script>
+    //test
+    /*var indexObj = {
+    	flag: true,
+    	message: {
+    		title: 'this is a message',
+    		value: 'warning'
+    	}
+    };
+
+    var indexStore = initStore(indexObj);
+
+    var testList = [];
+
+    testList.push(assert(indexStore, [], function(result) {
+    	console.log(result);
+    }));
+
+    testList.push(assert(indexStore, ['', {flag: false}], function(result) {
+    	console.log(result);
+    }));
+
+    var result = testList.map(function(fn) {
+    	return fn();
+    });
+
+   	console.log(result);*/
+   	var obj = {
+   		a:{
+   			b:{
+   				c:'ccc'
+   			}
+   		}
+   	};
+
+   	var obj2 = {
+   		a:{
+   			b:{
+   				c:'dddddddddd'
+   			}
+   		}
+   	};
+
+   	var indexStore = initStore(obj);
+   	var listStore = initStore(obj2);
+
+   	var result = indexStore('a.b', {
+   		c: 'zenki'
+   });
+
+   	listStore();
+
+   	console.log(result);
+    </script>
+</body>
+
+</html>

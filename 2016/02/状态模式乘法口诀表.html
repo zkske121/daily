@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	span {
+		margin:5px;
+		border:1px solid #eee;
+		padding:5px;
+	}
+	</style>
+</head>
+<body>
+	<div id="container">
+		
+	</div>
+	<script>
+	function changeState(dom, container, display) {
+			var i, j;
+
+			if(display) {
+				dom.style.display = display;
+				return;
+			}
+			
+			i = dom.getAttribute('i');
+			j = dom.getAttribute('j');
+			dom.innerHTML = [i, ' * ', j, ' = ', i*j].join('');
+			dom.style.display = 'inline-block';
+			container.appendChild(dom);
+			if(i === j) container.appendChild(document.createElement('br'));
+	}
+
+	function generate(target) {
+		var span = document.createElement('span');
+		var i = 1, j = 1, ret = [], tmp;
+
+		target = target || 9;
+
+		for(; i <= target; i++) {
+			for(; j <= i; j++) {
+				tmp = span.cloneNode();
+				tmp.setAttribute('i', j);
+				tmp.setAttribute('j', i);
+				ret.push(tmp);
+			}
+
+			j = 1;
+		}
+
+		return ret;
+	}
+
+	function repeatAction(data, action, callback) {
+		var i = 0, timer;
+
+		timer = setInterval(function() {
+			action(data[i++]);
+			if(i === data.length) {
+				clearInterval(timer);
+				callback();
+				return;
+			}
+		}, 100);
+	}
+
+	var factory = (function() {
+		var data = [];
+		var container;
+		var config = {
+			increase: {
+				action: function() {
+					var self = this;
+					var action = function() {
+						return function(v) {
+							changeState(v, container);
+						}	
+					};
+
+					repeatAction(data, action(), function() {
+						doAction(self.next);
+					});
+				},
+				next: 'decrease'
+			},
+			decrease: {
+				action: function() {
+					var self = this;
+					var action = function() {
+						return function(v) {
+							changeState(v, container, 'none');
+						}
+					};
+					repeatAction([].concat(data).reverse(), action(), function() {
+						doAction(self.next);
+					});
+				},
+				next: 'show'
+			},
+			show: {
+				action: function() {
+					setTimeout(function() {
+						data.forEach(function(v) {
+							changeState(v, container, 'inline-block');
+						});
+					}, 100);
+				}
+			} 
+		};
+
+		var doAction = function(name) {
+			config[name].action();
+		};
+
+		return {
+			setData: function(arr) {
+				data = arr;
+			},
+			setContainer: function(dom) {
+				container = dom || document.body;
+			},
+			doAction: doAction
+		}
+	})();
+
+	function init() {
+		var list = generate(15);
+
+		factory.setData(list);
+		factory.setContainer(document.getElementById('container'));
+		factory.doAction('increase');
+	}
+
+	init();
+	</script>
+</body>
+</html>

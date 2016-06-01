@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	var fn = function(n) {
+		return (n%2) == 0;
+	}
+
+	fn.age = 29;
+
+	fn.prototype.name = 'isEven';
+
+	var obj = {name: 'zenki'};
+
+	function complement(PRED, OBJ) {
+		return function() {
+			PRED.name =  'odd';
+			console.log(PRED.age);
+			return !PRED.apply(null, arguments);
+		}
+	}
+
+	var isOdd = complement(fn, obj);
+
+	fn.prototype.name = 'false';
+
+	var ret;
+
+	fn = function() {
+		return false;
+	}
+
+	fn.age = 30;
+	obj.name = 'zk';
+
+	console.log(fn.age);
+
+/*	fn = function() {
+		return false;
+	}*/
+
+	ret = isOdd(5);
+
+	console.log(ret);
+
+	
+	</script>
+</body>
+</html>

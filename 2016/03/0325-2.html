@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选取日期3</title>
+</head>
+<body>
+	筛选一年中,选中的星期数的日期:<br />
+	请用控制台查看结果<br />
+	<select name="" id="start">
+		<option value="1">星期一</option>
+		<option value="2">星期二</option>
+		<option value="3">星期三</option>
+		<option value="4">星期四</option>
+		<option value="5">星期五</option>
+		<option value="6">星期六</option>
+		<option value="7">星期天</option>
+	</select>
+	至
+	<select name="" id="end">
+		<option value="1">星期一</option>
+		<option value="2">星期二</option>
+		<option value="3">星期三</option>
+		<option value="4">星期四</option>
+		<option value="5">星期五</option>
+		<option value="6">星期六</option>
+		<option value="7">星期天</option>
+	</select>
+	<button id="show">show</button>
+	<script>
+	var oStart = getById('start'),
+		oEnd = getById('end'),
+		oShow = getById('show'),
+		timeId = 0,
+		now = new Date(),
+		start = new Date(now.getFullYear() + '/01/01'),
+		end = new Date(now.getFullYear() + '/12/31'),
+		ONEDAY = 24 * 60 * 60 * 1000,
+		initDay = start.getDay(),
+		weeks = ['天', '一', '二', '三', '四', '五', '六'];
+		
+	oShow.onclick = function() {
+		console.time(timeId);
+		var i = 0, result;
+
+		//执行多次 查看运行时间
+		while(i++ < 10000) {
+			result = action();
+		}
+		
+		result = action();
+		result = result.map(function(day) {
+			day = new Date(day);
+			return [day.getMonth() + 1, '月', day.getDate(), '日', ' 星期' , weeks[day.getDay()]].join('');
+		});
+		
+		console.log(result);
+		console.timeEnd(timeId++);
+	};
+
+	function action() {
+		var selectDays = [], 
+			startDay = parseInt(oStart.value),
+			endDay = parseInt(oEnd.value),
+			getDayMultiple,
+			result = [],
+			tmp = start;
+
+		while(startDay <= endDay) {
+			selectDays.push(startDay);
+			startDay++;
+		}
+
+		if(!selectDays.length) return result;
+
+		//计算步长
+		getDayMultiple = intiDayMultiple(initDay, selectDays);
+
+		tmp = +tmp;
+		end = +end;
+
+		while(tmp < end) {
+			tmp += getDayMultiple() * ONEDAY;
+			result.push(tmp);
+		}
+
+		if(result[result.length - 1] > end) result.pop();
+
+		return result;
+	}
+
+	function getById(id) {
+		return document.getElementById(id);
+	}
+
+	function intiDayMultiple(initDay, selectDays) {
+		var day = initDay, //保存当前星期数
+			s = selectDays,  //选择的星期数 数组
+			n = s.indexOf(day) > -1 ? s.indexOf(day) : 0, //用于初始化指针
+			len = s.length;
+
+		var stepDay = generateCounter(1, addOne, checkWeeks);
+		var stepN = generateCounter(0, addOne, checkArr(len));
+
+		return function() {
+			var m = 0; //步长
+
+			//特殊处理选中一天的情况
+			if(len == 1 && day == s[n]) return 7; 
+
+			while(day != s[n]) {
+				m++;
+				day = stepDay(day);
+			}
+
+			n = stepN(n);
+
+			return m;
+		}
+	}
+
+	function generateCounter(init, step, check) {
+		return function(count) {
+			count = step(count);
+			if(check(count)) count = init;
+			return count;
+		}
+	}
+
+	function addOne(count) {
+		return count + 1;
+	}
+
+	function checkWeeks(count) {
+		return count > 7;
+	}
+
+	function checkArr(obj) {
+		var len = typeof obj === 'number' ? obj : obj.length; 
+		return function(count) {
+			return count >= len;
+		}
+	}
+	</script>
+</body>
+</html>

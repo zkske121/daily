@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	.container {
+		margin:200px;
+		width: 400px;
+		height: 400px;
+		border:1px solid grey;
+	}
+	.item {
+		width: 30px;
+		height: 30px;
+		margin: 4px;
+		float: left;
+		border:1px solid gray;
+	}
+	.red {
+		background-color: red;
+	}
+	</style>
+</head>
+<body>
+	<script>
+	var oItem = document.createElement('div');
+	oItem.className = 'item';
+
+	var oContainer = oItem.cloneNode();
+	oContainer.className = 'container';
+
+	var list = [];
+
+	for(var i = 0, tmp; i < 100; i++) {
+		tmp = oItem.cloneNode();
+		tmp.innerHTML = i;
+		list.push(oContainer.appendChild(tmp));		
+	}
+
+	document.body.appendChild(oContainer);
+
+	var lineA = [14,24,34,44,54,64,74];
+
+	lineA.forEach(function(v, i) {
+		list[v].className += ' red';
+	});
+
+	/*list[1].forEach(function(v, i) {
+		v.className += ' red';
+		lineA.push(v);
+		lineA.shift().className = 'item';
+	});*/
+	console.log(lineA);
+	</script>
+</body>
+</html>

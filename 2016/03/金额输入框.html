@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" id="num">
+	<script>
+	var num = document.getElementById('num');
+
+	function throttle(fn, second) {
+		var timer;
+		return function() {
+			var args = arguments, self = this;
+
+			if(timer) {
+				clearTimeout(timer);
+				timer = null;
+			}
+
+			timer = setTimeout(function() {
+				fn.apply(self, args);
+			}, second);
+		}
+	}
+
+	function fixNumber(v) {
+		var tmp = v.replace(/[^.\d]/g, '');
+
+		if(/^(0|\.)$/.test(tmp) || tmp === '') return 0;
+
+		tmp = tmp.replace(/^([^.]*)(\.?.*)$/, function($, $1, $2) {
+			$1 =  $1 === '' ? '0' : parseInt($1) + '';
+			$2 = ($2 === '.' || $2 === '') ? '' : Number('.' + $2.split('.')[1]).toFixed(2).slice(1);
+			
+			return $1.replace(/\B(?=(\d{3})+$)/g,',') + $2;
+		});
+
+		return tmp;
+	}
+
+	function fixNumber2(v) {
+		var num = parseFloat(v.replace(/,/g, ''));
+
+		if(isNaN(num)) return 0;
+
+		num = num.toFixed(2).toString().split('');
+
+		for(var i = num.indexOf('.') - 1, j = 1; i > 0; i--, j++) {
+			if(j != 3) continue;
+
+			num.splice(i, 0, ',');
+			j = 0;	
+		}
+
+		return num.join(''); 
+	}
+
+	num.oninput = throttle(function(e) {
+		this.value = fixNumber2(this.value);
+	}, 500);
+	</script>
+</body>
+</html>

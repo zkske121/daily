@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	var reg = /(.).+?(?=\1)/g;
+	var str = ["B","B","C","A","B","C","C","B","A","B","B","B","B","B","B","C","A","B","C","A"];
+
+	str = str.join('');
+	var result = str.match(reg);
+
+	console.log(pureStr(str, 'abcd'));
+
+	function pureStr(source, sub) {
+		var len = sub.length,
+			i = source.indexOf(sub),
+			l,
+			result = source;
+
+		while(i != (l = result.lastIndexOf(sub))) {
+			result = result.split('').splice(l, len).join('');
+		}
+
+		return result;
+	}
+	</script>
+</body>
+</html>
