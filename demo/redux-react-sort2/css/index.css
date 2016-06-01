@@ -1,0 +1,18 @@
+.app {
+	position: relative;
+	width: 100%;
+	height: 600px;
+	background-color: #aaa;
+}
+
+.item {
+	display: inline-block;
+	width: 50px;
+	height: 300px;
+	margin: 10px;
+	position: absolute;
+	background-color: #075014;
+	-webkit-transition: top .6s ease-in-out,left .6s ease-in-out, height .6s ease-in-out;
+	-o-transition: top .6s ease-in-out,left .6s ease-in-out, height .6s ease-in-out;
+	transition: top .6s ease-in-out,left .6s ease-in-out, height .6s ease-in-out;
+}
