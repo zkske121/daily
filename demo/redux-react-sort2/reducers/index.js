@@ -4,13 +4,17 @@ function list(state = [], action) {
 	switch(action.type) {
 		case 'change':
 			const {index, change} = action;
-
 			const res = state.map(v => Object.assign({}, v));
 
-			const tmp = res[index].left;
+			const indexItem = res.find(v => v.index == index);
+			const changeItem = res.find(v => v.index == change);
+			const tmp = Object.assign({}, changeItem);
 
-			res[index].left = res[change].left;
-			res[change].left = tmp;
+			changeItem.left = indexItem.left;
+			changeItem.index = indexItem.index;
+
+			indexItem.left = tmp.left;
+			indexItem.index = tmp.index;
 
 			return res; 
 		default:
