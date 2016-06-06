@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux' 
 import { setPath }  from '../route'
 
-let count = 0;
+let count = 100;
 
 function route(state = 'home', action) {
 	switch(action.type) {
