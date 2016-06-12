@@ -18,6 +18,13 @@ class List extends Component {
     }
   }
 
+  // 直接改变props，不会重新渲染bug
+  componentWillReceiveProps(props) {
+    this.setState({
+      data: props.userList
+    })
+  }
+
 	searchHandle(e) {
 		e.stopPropagation();
 		e.preventDefault();
