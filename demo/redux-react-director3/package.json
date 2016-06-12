@@ -40,7 +40,8 @@
     "redux": "^3.2.1",
     "redux-logger": "^2.4.0",
     "redux-thunk": "^1.0.3",
-    "style-loader": "^0.13.1"
+    "style-loader": "^0.13.1",
+    "velocity-react": "^1.1.5"
   },
   "devDependencies": {
     "babel-core": "^6.3.15",

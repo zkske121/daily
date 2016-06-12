@@ -2,49 +2,67 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as action from '../actions'
 import { bindActionCreators } from 'redux'
-import { Row, Col, Menu, Icon, SubMenu, MenuItemGroup, Spin, QueueAnim } from 'antd'
+import { Row, Col, Menu, Icon, SubMenu, MenuItemGroup, Spin } from 'antd'
 import Add from '../components/Add'
 import Edit from '../components/Edit'
 import Home from '../components/Home'
 import List from '../components/List'
 import warrperContainer from '../hoc/warrperContainer'
+import { VelocityTransitionGroup } from 'velocity-react'
 
 import '../style/home.css'
 import 'antd/dist/antd.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      route: this.props.route
+    };
+  }
+
+  // 直接改变props，不会重新渲染bug
+  componentWillReceiveProps(props) {
+    this.setState({
+      route: props.route
+    })
+  }
+
+  // 因布局因素，需根据容器内容高度，重置容器高度
   resetHeight(height) {
-    const container = React.findDOMNode(this.refs.container);
-    container.style.height = `${height}px`;
+     const container = React.findDOMNode(this.refs.container);
+     container.style.height = `${height}px`;
   }
 
   render() {
     const {setHash} = this.props.actions;
-    const {route} = this.props;
+    var {route} = this.state;
     let container;
 
-    switch(route) {
-      case 'home':
-        container = Home;
-        break;
-      case 'add':
-        container = Add;
-        break;
-      case 'edit':
-        container = Edit;
-        break;
-      case 'list':
-        container = List;
-        break;
-      default:
-        container = Home;
-    }
+    // 匹配不到路由时，默认为home
+    if(!route in pages) route = 'home';
 
-    const Page = warrperContainer(container);
-    const tpl = <Page key={route} resetHeight={this.resetHeight.bind(this)} {...this.props} />;
+    const Page = pages[route];
+    const tpl = <Page key={route} {...this.props} resetHeight={this.resetHeight.bind(this)} />;
+
+    const enterAnimation = {
+      animation:{
+        translateX:0,
+        opacity:1
+      },
+      duration: 500
+    };
+
+    const leaveAnimation = {
+      animation: {
+        opacity: 0,
+        translateX: 200,
+      },
+      duration: 500
+    };
 
     return (
-        <div>
+        <div >
             <Row className='header'>
               <Col span={20} offset={2}>
                 <h2 className='logo'><Icon type="appstore" /> CMS / 人员信息录入平台</h2> 
@@ -69,11 +87,11 @@ class App extends Component {
               </Col>
             </Row>
             <Row>
-              <Col offset={2} span={20} >
+              <Col offset={2} span={20}>
                 <Spin spinning={this.props.reqState == 'loading'} >
-                  <QueueAnim leaveReverse={true} className='container' ref='container' type={['right','top']}>
+                    <VelocityTransitionGroup ref='container' component='div' enter={enterAnimation} leave={leaveAnimation} className='container'>
                       {this.props.reqState != 'fail' ? tpl : '数据加载失败,请重试!'}
-                  </QueueAnim>
+                    </VelocityTransitionGroup>
                 </Spin>
               </Col>
             </Row>
@@ -89,7 +107,22 @@ class App extends Component {
 App.propTypes = {
   actions: PropTypes.object.isRequired,
   route: PropTypes.string.isRequired
-}
+} 
+
+// 初始化组件，包装设置容器高度方法
+const pages = (() => {
+  const home = warrperContainer(Home),
+        edit = warrperContainer(Edit),
+        list = warrperContainer(List),
+        add = warrperContainer(Add);
+
+  return {
+    home,
+    edit,
+    list,
+    add
+  }
+})();
 
 function mapStateToProps(state) {
   return state;

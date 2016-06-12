@@ -130,10 +130,10 @@ class List extends Component {
           </Col>
 					<Col>
 						<Form inline onSubmit={this.searchHandle.bind(this)}>
-			        <FormItem label="姓名: ">
+			        <FormItem label="姓名">
 			          <Input {...getFieldProps('name')} />
 			        </FormItem>
-			        <FormItem label='性别: ' >
+			        <FormItem label='性别' >
                 <Select {...getFieldProps('sex', {
                   initialValue: '2'
                 })}>

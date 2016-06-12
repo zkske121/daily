@@ -109,7 +109,7 @@ class Edit extends Component {
     };
 
     return (
-      <Form horizontal form={this.props.form}>
+      <Form horizontal form={this.props.form} >
         <FormItem 
           {...formItemLayout}
           label='姓名：'>
