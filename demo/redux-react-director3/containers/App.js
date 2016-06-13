@@ -14,20 +14,6 @@ import '../style/home.css'
 import 'antd/dist/antd.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      route: this.props.route
-    };
-  }
-
-  // 直接改变props，不会重新渲染bug
-  componentWillReceiveProps(props) {
-    this.setState({
-      route: props.route
-    })
-  }
-
   // 因布局因素，需根据容器内容高度，重置容器高度
   resetHeight(height) {
      const container = React.findDOMNode(this.refs.container);
@@ -36,7 +22,7 @@ class App extends Component {
 
   render() {
     const {setHash} = this.props.actions;
-    var {route} = this.state;
+    var {route} = this.props;
     let container;
 
     // 匹配不到路由时，默认为home
