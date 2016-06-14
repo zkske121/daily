@@ -8,7 +8,8 @@ import Edit from '../components/Edit'
 import Home from '../components/Home'
 import List from '../components/List'
 import warrperContainer from '../hoc/warrperContainer'
-import { VelocityTransitionGroup } from 'velocity-react'
+import { VelocityComponent, VelocityTransitionGroup, velocityHelpers } from 'velocity-react'
+import 'velocity-animate/velocity.ui'
 
 import '../style/home.css'
 import 'antd/dist/antd.css';
@@ -31,21 +32,22 @@ class App extends Component {
     const Page = pages[route];
     const tpl = <Page key={route} {...this.props} resetHeight={this.resetHeight.bind(this)} />;
 
-    const enterAnimation = {
-      animation:{
-        translateX:0,
-        opacity:1
-      },
-      duration: 500
-    };
 
-    const leaveAnimation = {
-      animation: {
-        opacity: 0,
-        translateX: 200,
-      },
-      duration: 500
-    };
+    const enterAnimation = velocityHelpers.registerEffect({
+      defaultDuration: 700,
+      calls: [
+          [ { opacity: [ 1, 0 ], transformPerspective: [ 800, 800 ], rotateY: [ 0, -55 ] } ]
+      ],
+      reset: { transformPerspective: 0 }
+    });
+
+    const leaveAnimation = velocityHelpers.registerEffect({
+      defaultDuration: 700,
+      calls: [
+          [ { opacity: [ 0, 1 ], transformPerspective: [ 800, 800 ], rotateY: 55 } ]
+      ],
+      reset: { transformPerspective: 0, rotateY: 0 }
+    });
 
     return (
         <div >
@@ -75,14 +77,15 @@ class App extends Component {
             <Row>
               <Col offset={2} span={20}>
                 <Spin spinning={this.props.reqState == 'loading'} >
-                    <VelocityTransitionGroup ref='container' component='div' enter={enterAnimation} leave={leaveAnimation} className='container'>
+                    <VelocityTransitionGroup ref='container' component='div' enter={enterAnimation} leave={leaveAnimation} runOnMount='true' className='container'>
                       {this.props.reqState != 'fail' ? tpl : '数据加载失败,请重试!'}
                     </VelocityTransitionGroup>
                 </Spin>
               </Col>
             </Row>
             <footer className='footer'>
-              <h2>此demo仅供个人学习使用  <a target='_blank' href='https://github.com/zkske121/daily/tree/master/demo/redux-react-director3'>源码地址</a>
+              <h2>此demo仅供个人学习使用  
+                  <a target='_blank' href='https://github.com/zkske121/daily/tree/master/demo/redux-react-director3'>源码地址</a>
               </h2>
             </footer>
         </div>

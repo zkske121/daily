@@ -41,6 +41,7 @@
     "redux-logger": "^2.4.0",
     "redux-thunk": "^1.0.3",
     "style-loader": "^0.13.1",
+    "velocity-animate": "^1.2.3",
     "velocity-react": "^1.1.5"
   },
   "devDependencies": {
