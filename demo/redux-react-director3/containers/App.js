@@ -99,19 +99,9 @@ App.propTypes = {
 } 
 
 // 初始化组件，包装设置容器高度方法
-const pages = (() => {
-  const home = warrperContainer(Home),
-        edit = warrperContainer(Edit),
-        list = warrperContainer(List),
-        add = warrperContainer(Add);
-
-  return {
-    home,
-    edit,
-    list,
-    add
-  }
-})();
+const routComponents = {Home, Edit, List, Add};
+const pages = Object.keys(routComponents)
+                    .reduce( (p, n) => (p[n.toLowerCase()] = warrperContainer(routComponents[n]), p), {});                   
 
 function mapStateToProps(state) {
   return state;

@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux' 
 import { setPath }  from '../route'
+import Types from '../constants'
 
 let count = 100;
 
 function route(state = 'home', action) {
 	switch(action.type) {
-		case 'setRoute': 
+		case Types.ROUTE_SET:
 			return action.route;
-		case 'setHash':
+		case Types.ROUTE_HASH:
+			// 只改变hash值，由director触发事件，改变route
 			setPath('\/' + action.route);
 			return state;
 		default:
@@ -17,7 +19,7 @@ function route(state = 'home', action) {
 
 function reqState(state = 'success', action) {
 	switch(action.type) {
-		case 'reqState':
+		case Types.REQ_STATE:
 			return action.value;
 		default:
 			return state;
@@ -29,15 +31,15 @@ function userList(state = [], action) {
 	let index;
 
 	switch(action.type) {
-		case 'add':
+		case Types.USER_ADD:
 			ary.push(Object.assign({uId: count++}, action.user));
 			return ary;
-		case 'update':
+		case Types.USER_UPDATE:
 			index = ary.findIndex(u => u.uId == action.user.uId);
 			ary.splice(index, 1, Object.assign({}, action.user));
 
 			return ary;
-		case 'delete':
+		case Types.USER_DELETE:
 			index = ary.findIndex(u => u.uId == action.uId);
 			ary.splice(index, 1);
 			return ary;
@@ -48,7 +50,7 @@ function userList(state = [], action) {
 
 function userId(state = -1, action) {
 	switch(action.type) {
-		case 'find':
+		case Types.USER_FIND:
 			return action.uId;
 		default:
 			return state;
