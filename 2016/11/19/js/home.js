@@ -37,9 +37,9 @@ class App extends Component {
 			isChecked: false
 		};
 	}
-	toggle(isChecked) {
+	toggle() {
 		this.setState({
-			isChecked    
+			isChecked: !this.state.isChecked    
 		});
 	}
 	selectAll() {
@@ -48,10 +48,12 @@ class App extends Component {
 		if(!source.length) return;
 
 		this.setState({
-			target: source.map(v => {
-					v.checked = isChecked;
-					return v;
-				}).concat(target),
+			target: target.concat(
+						source.map(v => {
+							v.checked = isChecked;
+							return v;
+						})
+					),
 			source: []
 		});
 	}
@@ -66,7 +68,7 @@ class App extends Component {
 		});
 	}
 	choice(index, fromSource) {
-		var { source, target } = this.state;
+		var { source, target, isChecked } = this.state;
 
 		if(fromSource) {
 			target = target.concat(source.splice(index, 1));
@@ -81,11 +83,11 @@ class App extends Component {
 	}
 	itemMap(ary, isSource) {
 		return ary.map((v, index) => {
-							return <li key={index}>
-									<span onClick = {this.choice.bind(this, index, isSource)} >{v.name}</span> 
-									<span onClick = {this.itemChioce.bind(this, index, v.checked, isSource)}>{v.checked ? '选中' : '不选'}</span>
-								</li>
-						})
+					return <li key={index}>
+							<span onClick = {this.choice.bind(this, index, isSource)} >{v.name}</span> 
+							<span onClick = {this.itemChioce.bind(this, index, v.checked, isSource)}>{v.checked ? '选中' : '不选'}</span>
+						</li>
+				});
 	}
 	itemChioce(index, checked, isSource) {
 		this.state[ isSource ? 'source' : 'target'][index].checked = !checked;
@@ -96,8 +98,9 @@ class App extends Component {
 		return (
 		    <div >
 		    	<button onClick = { this.selectAll.bind(this) }>down</button>
-		    	<button style={{backgroundColor: (isChecked ? 'red' : ''), color: (isChecked ? '#fff' : '#000')}} onClick={this.toggle.bind(this, true)}> checked</button>
-		    	<button style={{backgroundColor: (isChecked ? '' : 'red'), color: (isChecked ? '#000' : '#fff')}} onClick={this.toggle.bind(this, false)}> no-check</button>
+		    	<button style={{border: 'solid 1px ' + (isChecked ? 'red' : 'white') }} 
+		    			onClick={ this.toggle.bind(this) }>{ isChecked ? '选中' : '不选' }
+    			</button>
 				<ul>
 					{
 						this.itemMap(source, true)
