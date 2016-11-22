@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		
+		// function sortX(ary) {
+		// 	var res = ary.slice();
+		// 	var len = res.length,
+		// 		tmp,
+		// 		i,
+		// 		j,
+		// 		min;
+
+		// 	for(i = 0; i < len - 1; i++) {
+		// 		tmp = res[i];
+		// 		min = i;
+
+		// 		for(j = i + 1; j < len; j++) {
+		// 			if(res[j] < tmp) {
+		// 				tmp = res[j];
+		// 				min = j;
+		// 			}
+		// 		}
+
+		// 		if(min != i) {
+		// 			res[min] = res[i];
+		// 			res[i] = tmp;
+		// 		}
+		// 	}
+
+		// 	return res;
+		// }
+
+		// function getAry(n) {
+		// 	return new Array(n).join(' ').split(' ').map(function(v, i) {
+		// 		return i;
+		// 	}).sort(function(a, b) {
+		// 		return Math.random() > 0.5;
+		// 	});
+		// }
+
+		// var ary = getAry(20);
+		// console.log(ary);
+
+		// var res = sortX(ary);
+		// console.log(res);
+
+		// function single(fn) {
+		// 	var instance;
+		// 	return function(x) {
+		// 		if(!instance) {
+		// 			console.log(arguments)
+		// 			return instance = new (fn.bind(null, x));
+		// 		}
+		// 		return instance;
+		// 	}
+		// }
+
+		// function Person(name) {
+		// 	this.name = name;
+		// }
+
+		// var createPerson = single(Person);
+
+		// console.log(createPerson(1) === createPerson(1));
+
+		// var factory = (function() {
+		// 	var listenAry = [];
+
+		// 	function listen(fn) {
+		// 		listenAry.push(fn);
+		// 	}
+
+		// 	function trigger() {
+		// 		var self = this,
+		// 			args = Array.prototype.slice.call(arguments);
+		// 		listenAry.forEach(function(v, i) {
+		// 			v.apply(self, args);
+		// 		})
+		// 	}
+
+		// 	return {
+		// 		listen: listen,
+		// 		trigger: trigger
+		// 	}
+		// })();
+
+		// factory.listen(function(x) {
+		// 	alert(x)
+		// });
+
+		// factory.trigger('1');
+
+		function unque(ary) {
+			var res = ary.slice(),
+				tmp;
+
+			for(var i = 0; i < res.length; i++) {
+				tmp = i + 1;
+				while((tmp = res.indexOf(res[i],tmp)) != -1) {
+					res.splice(tmp, 1)
+				};
+			}
+
+			return res;
+		}
+
+		console.log(unque([1,2,3,4,5,3,4,4,5,1,23,4,5,6,6,7,1,2]));
+	</script>
+</body>
+</html>
